@@ -23,10 +23,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       // mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
+        configureFirebase();
+
+
+    }
+
+    private void configureFirebase() {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
 
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
@@ -41,7 +46,5 @@ public class MainActivity extends AppCompatActivity {
                         //.setLogo(R.drawable.logo)
                         .build(),
                 RC_SIGN_IN);
-
-
     }
 }
