@@ -9,6 +9,7 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.vincler.jf.projet11.R;
+import com.vincler.jf.projet11.api.InsertInitialData;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
         configureFirebase();
+
+        InsertInitialData.createInitialData();
 
 
     }
