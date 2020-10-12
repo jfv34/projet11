@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         configureFirebase();
 
-        InsertInitialData.createInitialData();
+        // InsertInitialData.createInitialData();     // for insert initial data
 
 
     }
