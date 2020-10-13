@@ -3,13 +3,15 @@ package com.vincler.jf.projet11.ui.main;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.vincler.jf.projet11.R;
-import com.vincler.jf.projet11.api.InsertInitialData;
+import com.vincler.jf.projet11.ui.FindTheWord.FindTheWordFragment;
+import com.vincler.jf.projet11.utils.Utils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,8 +29,11 @@ public class MainActivity extends AppCompatActivity {
         mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
         configureFirebase();
-
         // InsertInitialData.createInitialData();     // for insert initial data
+
+
+        Fragment findTheWordFragment = FindTheWordFragment.newInstance();
+        Utils.addFragment(this, findTheWordFragment);
 
 
     }
