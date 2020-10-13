@@ -106,7 +106,4 @@ public class InsertInitialData {
 
         return wordsList;
     }
-
-
-
 }
