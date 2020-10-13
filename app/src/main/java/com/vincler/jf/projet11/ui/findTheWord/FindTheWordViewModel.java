@@ -1,4 +1,4 @@
-package com.vincler.jf.projet11.ui.FindTheWord;
+package com.vincler.jf.projet11.ui.findTheWord;
 
 import android.util.Log;
 
@@ -34,7 +34,6 @@ public class FindTheWordViewModel extends ViewModel {
                 englishWord_liveData.postValue(word);
                 String pictureId = task.getResult().getDocuments().get(alea).get("picture_id").toString();
                 getPicture(pictureId, alea);
-
             }
         });
     }
@@ -69,7 +68,6 @@ public class FindTheWordViewModel extends ViewModel {
             alea3 = random.nextInt(NUMBER_OF_WORDS);
         } while ((alea3 == alea2) || (alea3 == alea1) || (alea3 == aleaCorrectPicture));
 
-
         Task<QuerySnapshot> pictures = GetData.getPictures();
         int finalAlea1 = alea1;
         int finalAlea2 = alea2;
@@ -82,13 +80,13 @@ public class FindTheWordViewModel extends ViewModel {
                 String fakePictureUrl1 = documents.get(finalAlea1).get("url").toString();
                 String fakePictureUrl2 = documents.get(finalAlea2).get("url").toString();
                 String fakePictureUrl3 = documents.get(finalAlea3).get("url").toString();
+                fakePictureUrl1_liveData.postValue(fakePictureUrl1);
+                fakePictureUrl2_liveData.postValue(fakePictureUrl2);
+                fakePictureUrl3_liveData.postValue(fakePictureUrl3);
                 Log.i("tag_alea_correctPicture", String.valueOf(aleaCorrectPicture));
                 Log.i("tag_alea1", String.valueOf(finalAlea1));
                 Log.i("tag_alea2", String.valueOf(finalAlea2));
                 Log.i("tag_alea3", String.valueOf(finalAlea3));
-                fakePictureUrl1_liveData.postValue(fakePictureUrl1);
-                fakePictureUrl2_liveData.postValue(fakePictureUrl2);
-                fakePictureUrl3_liveData.postValue(fakePictureUrl3);
             }
         });
     }

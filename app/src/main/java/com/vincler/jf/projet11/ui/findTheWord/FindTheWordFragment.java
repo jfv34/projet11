@@ -1,4 +1,4 @@
-package com.vincler.jf.projet11.ui.FindTheWord;
+package com.vincler.jf.projet11.ui.findTheWord;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -44,7 +44,6 @@ public class FindTheWordFragment extends Fragment {
 
         viewModel.getRandomWord();
         viewModel.englishWord_liveData.observe(getViewLifecycleOwner(),englishWord ->{
-            Log.i("tag_word", englishWord);
             wordText.setText(englishWord);
         });
         viewModel.correctPictureUrl_liveData.observe(getViewLifecycleOwner(), correctPictureUrl -> {
@@ -65,8 +64,6 @@ public class FindTheWordFragment extends Fragment {
             Log.i("tag_fakePicture_Url3", fakePictureUrl3);
             displayPicture(fakePictureUrl3, imageView4);
         });
-
-
     }
 
     private void displayPicture(String url, ImageView imageView) {

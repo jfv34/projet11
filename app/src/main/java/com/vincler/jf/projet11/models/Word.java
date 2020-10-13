@@ -8,8 +8,7 @@ public class Word {
     public Word(String word, String langage_id, String picture_id) {
         this.word = word;
         this.langage_id = langage_id;
-        this.picture_id = picture_id
-        ;
+        this.picture_id = picture_id;
     }
 
     public String getWord() {
