@@ -1,6 +1,7 @@
 package com.vincler.jf.projet11.ui.FindTheWord;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,25 @@ public class FindTheWordFragment extends Fragment {
         FindTheWordViewModel viewModel = new ViewModelProvider(this).get(FindTheWordViewModel.class);
 
         viewModel.getRandomWord();
+        viewModel.englishWord_liveData.observe(getViewLifecycleOwner(),englishWord ->{
+            Log.i("tag_word", englishWord);
+        });
+        viewModel.correctPictureUrl_liveData.observe(getViewLifecycleOwner(),correctPictureUrl ->{
+            Log.i("tag_correctPictureUrl", correctPictureUrl);
+        });
+        viewModel.fakePictureUrl1_liveData.observe(getViewLifecycleOwner(),fakePictureUrl1 ->{
+            Log.i("tag_fakePicture_Url1", fakePictureUrl1);
+        });
+
+        viewModel.fakePictureUrl2_liveData.observe(getViewLifecycleOwner(),fakePictureUrl2 ->{
+            Log.i("tag_fakePicture_Url2", fakePictureUrl2);
+        });
+        viewModel.fakePictureUrl3_liveData.observe(getViewLifecycleOwner(),fakePictureUrl3 ->{
+            Log.i("tag_fakePicture_Url3", fakePictureUrl3);
+        });
+
+
+
 
 
 
