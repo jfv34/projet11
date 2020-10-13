@@ -82,14 +82,13 @@ public class FindTheWordViewModel extends ViewModel {
                 String fakePictureUrl1 = documents.get(finalAlea1).get("url").toString();
                 String fakePictureUrl2 = documents.get(finalAlea2).get("url").toString();
                 String fakePictureUrl3 = documents.get(finalAlea3).get("url").toString();
-                fakePictureUrl1_liveData.postValue(fakePictureUrl1);
-                fakePictureUrl2_liveData.postValue(fakePictureUrl2);
-                fakePictureUrl3_liveData.postValue(fakePictureUrl3);
-
+                Log.i("tag_alea_correctPicture", String.valueOf(aleaCorrectPicture));
                 Log.i("tag_alea1", String.valueOf(finalAlea1));
                 Log.i("tag_alea2", String.valueOf(finalAlea2));
                 Log.i("tag_alea3", String.valueOf(finalAlea3));
-                Log.i("tag_aleaCorrectPicture", String.valueOf(aleaCorrectPicture));
+                fakePictureUrl1_liveData.postValue(fakePictureUrl1);
+                fakePictureUrl2_liveData.postValue(fakePictureUrl2);
+                fakePictureUrl3_liveData.postValue(fakePictureUrl3);
             }
         });
     }

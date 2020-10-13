@@ -36,6 +36,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.2.0" // ViewModel
     implementation 'androidx.fragment:fragment:1.2.5'
     implementation 'com.android.support:multidex:1.0.3' // multidex
+    implementation 'com.github.bumptech.glide:glide:4.11.0' // Glide
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0' // Glide
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'

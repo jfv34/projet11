@@ -1,12 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/fragment_findtheword_word_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="40sp" />
 
     <ImageView
-        android:id="@+id/fragment_findtheword_imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:id="@+id/fragment_findtheword_imageView_1"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+    <ImageView
+        android:id="@+id/fragment_findtheword_imageView_2"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+    <ImageView
+        android:id="@+id/fragment_findtheword_imageView_3"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+    <ImageView
+        android:id="@+id/fragment_findtheword_imageView_4"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
 
 
 </LinearLayout>
