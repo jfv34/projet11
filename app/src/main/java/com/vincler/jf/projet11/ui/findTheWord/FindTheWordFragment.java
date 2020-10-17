@@ -42,8 +42,8 @@ public class FindTheWordFragment extends Fragment {
 
         FindTheWordViewModel viewModel = new ViewModelProvider(this).get(FindTheWordViewModel.class);
 
-        viewModel.getRandomWord();
-        viewModel.englishWord_liveData.observe(getViewLifecycleOwner(),englishWord ->{
+        viewModel.getData();
+        viewModel.word_liveData.observe(getViewLifecycleOwner(), englishWord ->{
             wordText.setText(englishWord);
         });
         viewModel.topLeftPictureLiveData.observe(getViewLifecycleOwner(), correctPictureUrl -> {

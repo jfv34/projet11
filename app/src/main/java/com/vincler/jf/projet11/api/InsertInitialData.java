@@ -4,7 +4,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.vincler.jf.projet11.models.PictureModel;
-import com.vincler.jf.projet11.models.Word;
+import com.vincler.jf.projet11.models.WordModel;
 import com.vincler.jf.projet11.utils.GetStringUtils;
 
 import java.util.ArrayList;
@@ -25,9 +25,9 @@ public class InsertInitialData {
 
         while (t + 3 <= wordsList.size()) {
             String pictureId = GetStringUtils.random(16);
-            Word french_word = new Word(wordsList.get(t), "0", pictureId);
-            Word english_word = new Word(wordsList.get(t + 1), "1", pictureId);
-            Word spanish_word = new Word(wordsList.get(t + 2), "2", pictureId);
+            WordModel french_word = new WordModel(wordsList.get(t), "0", pictureId);
+            WordModel english_word = new WordModel(wordsList.get(t + 1), "1", pictureId);
+            WordModel spanish_word = new WordModel(wordsList.get(t + 2), "2", pictureId);
             PictureModel picture_ = new PictureModel(wordsList.get(t + 3));
 
             insertWord(french_word);
@@ -45,7 +45,7 @@ public class InsertInitialData {
                 .set(picture_);
     }
 
-    public static Task<Void> insertWord(Word word) {
+    public static Task<Void> insertWord(WordModel word) {
 
         return InsertInitialData.getCollection("words")
                 .document(GetStringUtils.random(16))
