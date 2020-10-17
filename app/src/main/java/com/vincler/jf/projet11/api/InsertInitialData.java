@@ -72,7 +72,7 @@ public class InsertInitialData {
         wordsList.add("classe");// french
         wordsList.add("class");// english
         wordsList.add("clase");// spanish
-        wordsList.add("https://www.flickr.com/photos/nettlesphotography/4733764265/sizes/q/");// picture
+        wordsList.add("https://live.staticflickr.com/16/22866190_f91cf2b273_q_d.jpg");// picture
 
         wordsList.add("cuisine");// french
         wordsList.add("kitchen");// english
@@ -92,7 +92,7 @@ public class InsertInitialData {
         wordsList.add("fleur");// french
         wordsList.add("flower");// english
         wordsList.add("flor");// spanish
-        wordsList.add("https://www.flickr.com/photos/cheishichiyo/4675450200/sizes/q/");// picture
+        wordsList.add("https://live.staticflickr.com/3927/32975142044_b9f2ea5f59_q_d.jpg");// picture
 
         wordsList.add("main");// french
         wordsList.add("hand");// english
@@ -102,7 +102,7 @@ public class InsertInitialData {
         wordsList.add("maison");// french
         wordsList.add("house");// english
         wordsList.add("Casa");// spanish
-        wordsList.add("https://www.flickr.com/photos/parismadrid/6883150650/sizes/q/");// picture
+        wordsList.add("https://live.staticflickr.com/2422/3798463572_cc9b914af4_q_d.jpg");// picture
 
         return wordsList;
     }
