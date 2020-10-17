@@ -17,28 +17,27 @@ public class FindTheWordViewModel extends ViewModel {
 
     int NUMBER_OF_WORDS = 10;
     MutableLiveData<String> englishWord_liveData = new MutableLiveData<>();
-    MutableLiveData<String> correctPictureUrl_liveData = new MutableLiveData<>();
-    MutableLiveData<String> fakePictureUrl1_liveData = new MutableLiveData<>();
-    MutableLiveData<String> fakePictureUrl2_liveData = new MutableLiveData<>();
-    MutableLiveData<String> fakePictureUrl3_liveData = new MutableLiveData<>();
+    MutableLiveData<String> topLeftPictureLiveData = new MutableLiveData<>();
+    MutableLiveData<String> topRightPictureLiveData = new MutableLiveData<>();
+    MutableLiveData<String> bottomLeftPictureLiveData = new MutableLiveData<>();
+    MutableLiveData<String> bottomRightPictureLiveData = new MutableLiveData<>();
 
     public void getRandomWord() {
 
         String LANGAGE = "1";  // langage English for testing
-        Random random = new Random();
-        int alea = random.nextInt(NUMBER_OF_WORDS);
+        int random = new Random().nextInt(NUMBER_OF_WORDS);
         Task<QuerySnapshot> data = GetData.getWords(LANGAGE);
         data.addOnCompleteListener(task -> {
             if (task.getResult() != null) {
-                String word = task.getResult().getDocuments().get(alea).get("word").toString();
+                String word = task.getResult().getDocuments().get(random).get("word").toString();
                 englishWord_liveData.postValue(word);
-                String pictureId = task.getResult().getDocuments().get(alea).get("picture_id").toString();
-                getPicture(pictureId, alea);
+                String pictureId = task.getResult().getDocuments().get(random).get("picture_id").toString();
+                getPicture(pictureId, random);
             }
         });
     }
 
-    private void getPicture(String pictureId, int aleaCorrectPicture) {
+    private void getPicture(String pictureId, int randomCorrectPicture) {
         Task<DocumentSnapshot> picture = GetData.getPicture(pictureId);
         picture.addOnCompleteListener(task ->
         {
@@ -47,31 +46,32 @@ public class FindTheWordViewModel extends ViewModel {
                         task.getResult()
                                 .get("url")
                                 .toString();
-                correctPictureUrl_liveData.postValue(correctPictureUrl);
-                getFakePicture(aleaCorrectPicture);
+                topLeftPictureLiveData.postValue(correctPictureUrl);
+                getFakePicture(randomCorrectPicture);
             }
         });
     }
 
-    private void getFakePicture(int aleaCorrectPicture) {
+    private void getFakePicture(int randomCorrectPicture) {
         Random random = new Random();
-        int alea1;
-        int alea2;
-        int alea3;
+        int random1=0;
+        int random2=0;
+        int random3=0;
+        
+       while (random1 == randomCorrectPicture) {
+           random1 = random.nextInt(NUMBER_OF_WORDS);
+       } ;
         do {
-            alea1 = random.nextInt(NUMBER_OF_WORDS);
-        } while (alea1 == aleaCorrectPicture);
+            random2 = random.nextInt(NUMBER_OF_WORDS);
+        } while ((random2 == random1) || (random2 == randomCorrectPicture));
         do {
-            alea2 = random.nextInt(NUMBER_OF_WORDS);
-        } while ((alea2 == alea1) || (alea2 == aleaCorrectPicture));
-        do {
-            alea3 = random.nextInt(NUMBER_OF_WORDS);
-        } while ((alea3 == alea2) || (alea3 == alea1) || (alea3 == aleaCorrectPicture));
+            random3 = random.nextInt(NUMBER_OF_WORDS);
+        } while ((random3 == random2) || (random3 == random1) || (random3 == randomCorrectPicture));
 
         Task<QuerySnapshot> pictures = GetData.getPictures();
-        int finalAlea1 = alea1;
-        int finalAlea2 = alea2;
-        int finalAlea3 = alea3;
+        int finalAlea1 = random1;
+        int finalAlea2 = random2;
+        int finalAlea3 = random3;
         pictures.addOnCompleteListener(task ->
         {
             if (task.getResult() != null) {
@@ -80,10 +80,10 @@ public class FindTheWordViewModel extends ViewModel {
                 String fakePictureUrl1 = documents.get(finalAlea1).get("url").toString();
                 String fakePictureUrl2 = documents.get(finalAlea2).get("url").toString();
                 String fakePictureUrl3 = documents.get(finalAlea3).get("url").toString();
-                fakePictureUrl1_liveData.postValue(fakePictureUrl1);
-                fakePictureUrl2_liveData.postValue(fakePictureUrl2);
-                fakePictureUrl3_liveData.postValue(fakePictureUrl3);
-                Log.i("tag_alea_correctPicture", String.valueOf(aleaCorrectPicture));
+                topRightPictureLiveData.postValue(fakePictureUrl1);
+                bottomLeftPictureLiveData.postValue(fakePictureUrl2);
+                bottomRightPictureLiveData.postValue(fakePictureUrl3);
+                Log.i("tag_alea_correctPicture", String.valueOf(randomCorrectPicture));
                 Log.i("tag_alea1", String.valueOf(finalAlea1));
                 Log.i("tag_alea2", String.valueOf(finalAlea2));
                 Log.i("tag_alea3", String.valueOf(finalAlea3));

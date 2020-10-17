@@ -46,21 +46,21 @@ public class FindTheWordFragment extends Fragment {
         viewModel.englishWord_liveData.observe(getViewLifecycleOwner(),englishWord ->{
             wordText.setText(englishWord);
         });
-        viewModel.correctPictureUrl_liveData.observe(getViewLifecycleOwner(), correctPictureUrl -> {
+        viewModel.topLeftPictureLiveData.observe(getViewLifecycleOwner(), correctPictureUrl -> {
             Log.i("tag_correctPictureUrl", correctPictureUrl);
             displayPicture(correctPictureUrl, imageView1);
 
         });
-        viewModel.fakePictureUrl1_liveData.observe(getViewLifecycleOwner(),fakePictureUrl1 ->{
+        viewModel.topRightPictureLiveData.observe(getViewLifecycleOwner(), fakePictureUrl1 ->{
             Log.i("tag_fakePicture_Url1", fakePictureUrl1);
             displayPicture(fakePictureUrl1, imageView2);
         });
 
-        viewModel.fakePictureUrl2_liveData.observe(getViewLifecycleOwner(),fakePictureUrl2 ->{
+        viewModel.bottomLeftPictureLiveData.observe(getViewLifecycleOwner(), fakePictureUrl2 ->{
             Log.i("tag_fakePicture_Url2", fakePictureUrl2);
             displayPicture(fakePictureUrl2, imageView3);
         });
-        viewModel.fakePictureUrl3_liveData.observe(getViewLifecycleOwner(),fakePictureUrl3 ->{
+        viewModel.bottomRightPictureLiveData.observe(getViewLifecycleOwner(), fakePictureUrl3 ->{
             Log.i("tag_fakePicture_Url3", fakePictureUrl3);
             displayPicture(fakePictureUrl3, imageView4);
         });

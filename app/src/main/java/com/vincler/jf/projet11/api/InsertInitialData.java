@@ -3,7 +3,7 @@ package com.vincler.jf.projet11.api;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.vincler.jf.projet11.models.Picture_;
+import com.vincler.jf.projet11.models.PictureModel;
 import com.vincler.jf.projet11.models.Word;
 import com.vincler.jf.projet11.utils.GetStringUtils;
 
@@ -28,7 +28,7 @@ public class InsertInitialData {
             Word french_word = new Word(wordsList.get(t), "0", pictureId);
             Word english_word = new Word(wordsList.get(t + 1), "1", pictureId);
             Word spanish_word = new Word(wordsList.get(t + 2), "2", pictureId);
-            Picture_ picture_ = new Picture_(wordsList.get(t + 3));
+            PictureModel picture_ = new PictureModel(wordsList.get(t + 3));
 
             insertWord(french_word);
             insertWord(english_word);
@@ -39,7 +39,7 @@ public class InsertInitialData {
         }
     }
 
-    private static Task<Void> insertPicture(Picture_ picture_, String pictureId) {
+    private static Task<Void> insertPicture(PictureModel picture_, String pictureId) {
         return InsertInitialData.getCollection("pictures")
                 .document(pictureId)
                 .set(picture_);
