@@ -25,9 +25,10 @@ public class GetData {
                 .get();
     }
 
-    public static Task<QuerySnapshot> getWords(String langage_id) {
+    public static Task<QuerySnapshot> getWordByPicture(String langage_id, String picture_id) {
         return getCollection("words")
                 .whereEqualTo("langage_id",langage_id)
+                .whereEqualTo("picture_id",picture_id)
                 .get();
     }
 }
