@@ -10,7 +10,8 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.vincler.jf.projet11.R;
-import com.vincler.jf.projet11.ui.findTheWord.FindTheWordFragment;
+import com.vincler.jf.projet11.ui.findThePicture.FindThePictureFragment;
+import com.vincler.jf.projet11.ui.findThePicture.FindThePictureViewModel;
 import com.vincler.jf.projet11.utils.Utils;
 
 import java.util.Arrays;
@@ -18,6 +19,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 123; // For connect by Firebase
+    private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +29,12 @@ public class MainActivity extends AppCompatActivity {
         configureFirebase();
         // InsertInitialData.createInitialData();     // for insert initial data
 
-        Fragment findTheWordFragment = FindTheWordFragment.newInstance();
-        Utils.addFragment(this, findTheWordFragment);
+        Fragment findThePictureFragment = FindThePictureFragment.newInstance();
+        Utils.addFragment(this, findThePictureFragment);
     }
 
     private void configureFirebase() {
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),

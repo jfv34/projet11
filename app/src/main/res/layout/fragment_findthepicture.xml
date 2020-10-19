@@ -5,28 +5,28 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/fragment_findtheword_word_text"
+        android:id="@+id/fragment_findthepicture_word_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="40sp" />
 
     <ImageView
-        android:id="@+id/fragment_findtheword_imageView_1"
+        android:id="@+id/fragment_findthepicture_imageView_top_left"
         android:layout_width="100dp"
         android:layout_height="100dp" />
 
     <ImageView
-        android:id="@+id/fragment_findtheword_imageView_2"
+        android:id="@+id/fragment_findthepicture_imageView_top_right"
         android:layout_width="100dp"
         android:layout_height="100dp" />
 
     <ImageView
-        android:id="@+id/fragment_findtheword_imageView_3"
+        android:id="@+id/fragment_findthepicture_imageView_bottom_left"
         android:layout_width="100dp"
         android:layout_height="100dp" />
 
     <ImageView
-        android:id="@+id/fragment_findtheword_imageView_4"
+        android:id="@+id/fragment_findthepicture_imageView_bottom_right"
         android:layout_width="100dp"
         android:layout_height="100dp" />
 
