@@ -104,6 +104,31 @@ public class InsertInitialData {
         wordsList.add("Casa");// spanish
         wordsList.add("https://live.staticflickr.com/2422/3798463572_cc9b914af4_q_d.jpg");// picture
 
+        wordsList.add("fête");// french
+        wordsList.add("party");// english
+        wordsList.add("fiesta");// spanish
+        wordsList.add("https://live.staticflickr.com/2864/33969591002_9e4a38c2e4_q_d.jpg");// picture
+
+        wordsList.add("lettre");// french
+        wordsList.add("letter");// english
+        wordsList.add("letra");// spanish
+        wordsList.add("https://live.staticflickr.com/6191/6152637301_ed82292dbd_q_d.jpg");// picture
+
+        wordsList.add("ligne");// french
+        wordsList.add("line");// english
+        wordsList.add("linea");// spanish
+        wordsList.add("https://live.staticflickr.com/2422/3798463572_cc9b914af4_q_d.jpg");// picture
+//
+        wordsList.add("nuit");// french
+        wordsList.add("night");// english
+        wordsList.add("noche");// spanish
+        wordsList.add("https://live.staticflickr.com/4843/33143291508_76a5f8e0fd_q_d.jpg");// picture
+
+        wordsList.add("musique");// french
+        wordsList.add("music");// english
+        wordsList.add("música");// spanish
+        wordsList.add("https://live.staticflickr.com/159/390534244_3db9138593_q_d.jpg");// picture
+
         return wordsList;
     }
 }

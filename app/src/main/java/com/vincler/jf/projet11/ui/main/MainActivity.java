@@ -10,6 +10,7 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.vincler.jf.projet11.R;
+import com.vincler.jf.projet11.api.InsertInitialData;
 import com.vincler.jf.projet11.ui.findThePicture.FindThePictureFragment;
 import com.vincler.jf.projet11.ui.findThePicture.FindThePictureViewModel;
 import com.vincler.jf.projet11.utils.Utils;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         configureFirebase();
-        // InsertInitialData.createInitialData();     // for insert initial data
+        //InsertInitialData.createInitialData();     // for insert initial data
 
         Fragment findThePictureFragment = FindThePictureFragment.newInstance();
         Utils.addFragment(this, findThePictureFragment);

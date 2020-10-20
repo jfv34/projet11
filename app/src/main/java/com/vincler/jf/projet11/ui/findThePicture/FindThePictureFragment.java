@@ -77,7 +77,6 @@ public class FindThePictureFragment extends Fragment {
             public void onClick(View view) {
                 Log.i("tag_result_click ", String.valueOf(iscorrectPosition));
                 viewModel.play(iscorrectPosition,draw);
-
             }
         });
     }
