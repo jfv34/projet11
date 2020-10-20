@@ -7,24 +7,15 @@ public class FindThePictureModel {
     private String topRightPicture;
     private String bottomLeftPicture;
     private String bottomRightPicture;
-    private Result result;
 
     public FindThePictureModel(String word, int correctPositionPicture,
-                               String topLeftPicture, String topRightPicture, String bottomLeftPicture, String bottomRightPicture, Result result) {
+                               String topLeftPicture, String topRightPicture, String bottomLeftPicture, String bottomRightPicture) {
         this.word = word;
         this.correctPicturePosition = correctPositionPicture;
         this.topLeftPicture = topLeftPicture;
         this.topRightPicture = topRightPicture;
         this.bottomLeftPicture = bottomLeftPicture;
         this.bottomRightPicture = bottomRightPicture;
-    }
-
-    public Result getResult() {
-        return result;
-    }
-
-    public void setResult(Result result) {
-        this.result = result;
     }
 
     public String getWord() {

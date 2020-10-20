@@ -1,7 +1,6 @@
 package com.vincler.jf.projet11.ui.findThePicture;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.bumptech.glide.Glide;
 import com.vincler.jf.projet11.R;
 import com.vincler.jf.projet11.models.FindThePictureModel;
-import com.vincler.jf.projet11.models.Result;
+import com.vincler.jf.projet11.models.FindThePictureResultModel;
 
 public class FindThePictureFragment extends Fragment {
     FindThePictureViewModel viewModel;
@@ -47,38 +46,36 @@ public class FindThePictureFragment extends Fragment {
 
         viewModel.getData();
 
-        viewModel.findThePictureListLiveData.observe(getViewLifecycleOwner(), findThePictureList ->
+        viewModel.currentModel.observe(getViewLifecycleOwner(), model->
+                {
+                    wordText.setText(model.getWord());
+                    displayPicture(model.getTopLeftPicture(), imageViewTopLeft);
+                    displayPicture(model.getTopRightPicture(), imageViewTopRight);
+                    displayPicture(model.getBottomLeftPicture(), imageViewBottomLeft);
+                    displayPicture(model.getBottomRightPicture(), imageViewBottomRight);
+                }
+                );
+
+        viewModel.findThePictureList.observe(getViewLifecycleOwner(), findThePictureList ->
                 {
                     if (findThePictureList.size() > 0) {
                         for (int draw = 0; draw < findThePictureList.size(); draw++) {
                             FindThePictureModel findThePictureModel = findThePictureList.get(draw);
-                            if (findThePictureModel.getResult() == Result.NOT_YET_PLAYING) {
-                                wordText.setText(findThePictureModel.getWord());
-                                displayPicture(findThePictureModel.getTopLeftPicture(), imageViewTopLeft);
-                                displayPicture(findThePictureModel.getTopRightPicture(), imageViewTopRight);
-                                displayPicture(findThePictureModel.getBottomLeftPicture(), imageViewBottomLeft);
-                                displayPicture(findThePictureModel.getBottomRightPicture(), imageViewBottomRight);
-                                int correctPicturePosition = findThePictureModel.getCorrectPicturePosition();
-                                imageClickListener(imageViewTopLeft, 0 == correctPicturePosition,draw);
-                                imageClickListener(imageViewTopRight, 1 == correctPicturePosition,draw);
-                                imageClickListener(imageViewBottomLeft, 2 == correctPicturePosition,draw);
-                                imageClickListener(imageViewBottomRight, 3 == correctPicturePosition,draw);
-                                break;
+                            if (findThePictureModel.getResult() == FindThePictureResultModel.NOT_YET_PLAYING) {
+                               break;
                             }
                         }
                     }
                 }
         );
+        imageClickListener(imageViewTopLeft,0);
+        imageClickListener(imageViewTopRight, 1);
+        imageClickListener(imageViewBottomLeft, 2);
+        imageClickListener(imageViewBottomRight, 3);
     }
 
-    private void imageClickListener(ImageView imageView, boolean iscorrectPosition,int draw) {
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i("tag_result_click ", String.valueOf(iscorrectPosition));
-                viewModel.play(iscorrectPosition,draw);
-            }
-        });
+    private void imageClickListener(ImageView imageView, int draw) {
+        imageView.setOnClickListener(view -> viewModel.userChoosePictureAtIndex(draw));
     }
 
     private void displayPicture(String url, ImageView imageView) {
