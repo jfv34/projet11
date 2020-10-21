@@ -13,8 +13,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.vincler.jf.projet11.R;
-import com.vincler.jf.projet11.models.FindThePictureModel;
-import com.vincler.jf.projet11.models.FindThePictureResultModel;
 
 public class FindThePictureFragment extends Fragment {
     FindThePictureViewModel viewModel;
@@ -56,18 +54,6 @@ public class FindThePictureFragment extends Fragment {
                 }
                 );
 
-        viewModel.findThePictureList.observe(getViewLifecycleOwner(), findThePictureList ->
-                {
-                    if (findThePictureList.size() > 0) {
-                        for (int draw = 0; draw < findThePictureList.size(); draw++) {
-                            FindThePictureModel findThePictureModel = findThePictureList.get(draw);
-                            if (findThePictureModel.getResult() == FindThePictureResultModel.NOT_YET_PLAYING) {
-                               break;
-                            }
-                        }
-                    }
-                }
-        );
         imageClickListener(imageViewTopLeft,0);
         imageClickListener(imageViewTopRight, 1);
         imageClickListener(imageViewBottomLeft, 2);

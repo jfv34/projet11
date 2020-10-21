@@ -18,7 +18,7 @@ public class Utils {
         transaction.add(R.id.activity_main_constraintLayout, fragment).addToBackStack(fragment.getClass().getName()).commit();
     }
 
-    public static List<Integer> getListRandom(int sizeReturnedList, int maximalNumber) {
+    public static List<Integer> getListRandom(int maximalNumber) {
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i = 0; i < maximalNumber; i++) {
             list.add(new Integer(i));

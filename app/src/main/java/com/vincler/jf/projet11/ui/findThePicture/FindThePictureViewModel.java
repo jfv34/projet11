@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.vincler.jf.projet11.models.FindThePictureModel;
 import com.vincler.jf.projet11.models.FindThePictureResultModel;
-import com.vincler.jf.projet11.repositories.PicturesRepository;
+import com.vincler.jf.projet11.repositories.FindThePictureRepository;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ public class FindThePictureViewModel extends ViewModel {
 
     public void getData() {
 
-        PicturesRepository.getPictures(result -> {
+        FindThePictureRepository.getFindThePictureList(result -> {
             findThePictureList.clear();
             findThePictureList.addAll(result);
             currentModel.postValue(result.get(0));
