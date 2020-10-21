@@ -13,6 +13,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.vincler.jf.projet11.R;
+import com.vincler.jf.projet11.ui.resultGame.ResultGameFragment;
+import com.vincler.jf.projet11.utils.Utils;
 
 public class FindThePictureFragment extends Fragment {
     FindThePictureViewModel viewModel;
@@ -71,7 +73,8 @@ public class FindThePictureFragment extends Fragment {
     }
 
     private void gameOver() {
-        // todo...
+        Fragment resultGameFragment = ResultGameFragment.newInstance();
+        Utils.replaceFragment(getActivity(), resultGameFragment);
 
     }
 

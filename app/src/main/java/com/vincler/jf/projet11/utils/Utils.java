@@ -18,6 +18,11 @@ public class Utils {
         transaction.add(R.id.activity_main_constraintLayout, fragment).addToBackStack(fragment.getClass().getName()).commit();
     }
 
+    public static void replaceFragment(FragmentActivity activity, Fragment fragment) {
+        FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.activity_main_constraintLayout, fragment).addToBackStack(fragment.getClass().getName()).commit();
+    }
+
     public static List<Integer> getListRandom(int maximalNumber) {
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i = 0; i < maximalNumber; i++) {
