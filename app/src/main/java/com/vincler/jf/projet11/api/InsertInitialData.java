@@ -114,11 +114,6 @@ public class InsertInitialData {
         wordsList.add("letra");// spanish
         wordsList.add("https://live.staticflickr.com/6191/6152637301_ed82292dbd_q_d.jpg");// picture
 
-        wordsList.add("ligne");// french
-        wordsList.add("line");// english
-        wordsList.add("linea");// spanish
-        wordsList.add("https://live.staticflickr.com/2422/3798463572_cc9b914af4_q_d.jpg");// picture
-//
         wordsList.add("nuit");// french
         wordsList.add("night");// english
         wordsList.add("noche");// spanish
