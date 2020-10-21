@@ -52,12 +52,27 @@ public class FindThePictureFragment extends Fragment {
                     displayPicture(model.getBottomLeftPicture(), imageViewBottomLeft);
                     displayPicture(model.getBottomRightPicture(), imageViewBottomRight);
                 }
-                );
+        );
 
-        imageClickListener(imageViewTopLeft,0);
+        imageClickListener(imageViewTopLeft, 0);
         imageClickListener(imageViewTopRight, 1);
         imageClickListener(imageViewBottomLeft, 2);
         imageClickListener(imageViewBottomRight, 3);
+
+        viewModel.isGameOver.observe(getViewLifecycleOwner(), gameOver ->
+                {
+                    if (gameOver) {
+                        gameOver();
+                    }
+                    ;
+                }
+        );
+
+    }
+
+    private void gameOver() {
+        // todo...
+
     }
 
     private void imageClickListener(ImageView imageView, int draw) {

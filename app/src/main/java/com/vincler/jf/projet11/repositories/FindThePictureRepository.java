@@ -17,7 +17,6 @@ public class FindThePictureRepository {
     }
 
     public static void getFindThePictureList(Result<List<FindThePictureModel>> result) {
-        int NUMBER_OF_WORDS = 15;
         String LANGAGE = "1";  // langage English for testing
         getCollection("pictures")
                 .get()
@@ -34,9 +33,9 @@ public class FindThePictureRepository {
 
                                         ArrayList<FindThePictureModel> findThePictureModelArrayList = new ArrayList<>();
 
-                                        for (int i = 0; i < NUMBER_OF_WORDS; i++) {
+                                        for (int i = 0; i < wordsDocuments.size(); i++) {
 
-                                            List<Integer> randomList = Utils.getListRandom(NUMBER_OF_WORDS);
+                                            List<Integer> randomList = Utils.getListRandom(wordsDocuments.size());
 
                                             Random random = new Random();
                                             int correctPositionPicture = random.nextInt(4);
