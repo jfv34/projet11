@@ -11,6 +11,8 @@ import com.vincler.jf.projet11.models.FindThePictureResultModel;
 import com.vincler.jf.projet11.repositories.FindThePictureRepository;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class FindThePictureViewModel extends ViewModel {
 
@@ -34,23 +36,28 @@ public class FindThePictureViewModel extends ViewModel {
     }
 
     public void userChoosePictureAtIndex(int index) {
-        FindThePictureModel findThePicture = findThePictureList.get(index);
-        boolean iscorrectPosition = currentModel.getValue().getCorrectPicturePosition() == index;
-        if (iscorrectPosition) {
-            result.postValue(FindThePictureResultModel.WIN);
-            int newScore = score.getValue() + 1;
-            score.postValue(newScore);
-            Log.i("tag_result", "win");
-        } else {
-            result.postValue(FindThePictureResultModel.LOST);
-            Log.i("tag_result", "lost");
-        }
 
-        int newDraw = draw.getValue() + 1;
-        if (newDraw < Constants.NUMBER_OF_DRAWS) {
-            currentModel.postValue(findThePictureList.get(newDraw));
-            draw.postValue(newDraw);
-        }
-        else isGameOver.postValue(true);
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    //FindThePictureModel findThePicture = findThePictureList.get(index);
+                    boolean iscorrectPosition = currentModel.getValue().getCorrectPicturePosition() == index;
+                    if (iscorrectPosition) {
+                        result.postValue(FindThePictureResultModel.WIN);
+                        int newScore = score.getValue() + 1;
+                        score.postValue(newScore);
+                        Log.i("tag_result", "win");
+                    } else {
+                        result.postValue(FindThePictureResultModel.LOST);
+                        Log.i("tag_result", "lost");
+                    }
+                    int newDraw = draw.getValue() + 1;
+                    if (newDraw < Constants.NUMBER_OF_DRAWS) {
+                        currentModel.postValue(findThePictureList.get(newDraw));
+                        draw.postValue(newDraw);
+                    }
+                    else isGameOver.postValue(true);
+                }
+            }, 1500);
     }
 }
