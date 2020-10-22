@@ -11,6 +11,8 @@
         android:textSize="40sp" />
 
     <ImageView
+        android:background="@layout/image_border"
+        android:padding="7dp"
         android:id="@+id/fragment_findthepicture_imageView_top_left"
         android:layout_width="100dp"
         android:layout_height="100dp" />

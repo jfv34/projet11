@@ -1,9 +1,12 @@
 package com.vincler.jf.projet11.ui.findThePicture;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,8 +16,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.vincler.jf.projet11.R;
+import com.vincler.jf.projet11.models.FindThePictureResultModel;
 import com.vincler.jf.projet11.ui.resultGame.ResultGameFragment;
 import com.vincler.jf.projet11.utils.Utils;
+
+import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 public class FindThePictureFragment extends Fragment {
     FindThePictureViewModel viewModel;
@@ -46,7 +52,7 @@ public class FindThePictureFragment extends Fragment {
 
         viewModel.getData();
 
-        viewModel.currentModel.observe(getViewLifecycleOwner(), model->
+        viewModel.currentModel.observe(getViewLifecycleOwner(), model ->
                 {
                     wordText.setText(model.getWord());
                     displayPicture(model.getTopLeftPicture(), imageViewTopLeft);
@@ -73,14 +79,15 @@ public class FindThePictureFragment extends Fragment {
     }
 
     private void gameOver() {
+
         int score = viewModel.score.getValue();
         Fragment resultGameFragment = ResultGameFragment.newInstance(score);
         Utils.replaceFragment(getActivity(), resultGameFragment);
 
     }
 
-    private void imageClickListener(ImageView imageView, int draw) {
-        imageView.setOnClickListener(view -> viewModel.userChoosePictureAtIndex(draw));
+    private void imageClickListener(ImageView imageView, int index) {
+        imageView.setOnClickListener(view -> viewModel.userChoosePictureAtIndex(index));
     }
 
     private void displayPicture(String url, ImageView imageView) {

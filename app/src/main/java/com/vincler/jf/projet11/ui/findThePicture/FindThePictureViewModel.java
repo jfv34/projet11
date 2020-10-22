@@ -4,7 +4,6 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.vincler.jf.projet11.models.Constants;
 import com.vincler.jf.projet11.models.FindThePictureModel;
@@ -38,7 +37,7 @@ public class FindThePictureViewModel extends ViewModel {
         FindThePictureModel findThePicture = findThePictureList.get(index);
         boolean iscorrectPosition = currentModel.getValue().getCorrectPicturePosition() == index;
         if (iscorrectPosition) {
-            result.postValue(FindThePictureResultModel.WON);
+            result.postValue(FindThePictureResultModel.WIN);
             int newScore = score.getValue() + 1;
             score.postValue(newScore);
             Log.i("tag_result", "win");
@@ -46,6 +45,7 @@ public class FindThePictureViewModel extends ViewModel {
             result.postValue(FindThePictureResultModel.LOST);
             Log.i("tag_result", "lost");
         }
+
         int newDraw = draw.getValue() + 1;
         if (newDraw < Constants.NUMBER_OF_DRAWS) {
             currentModel.postValue(findThePictureList.get(newDraw));

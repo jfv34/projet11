@@ -1,7 +1,5 @@
 package com.vincler.jf.projet11.utils;
 
-import android.util.Log;
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -11,6 +9,9 @@ import com.vincler.jf.projet11.R;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Utils {
     public static void addFragment(FragmentActivity activity, Fragment fragment) {
@@ -29,6 +30,26 @@ public class Utils {
             list.add(new Integer(i));
         }
         Collections.shuffle(list);
-return list;
+        return list;
+    }
+
+    public static String random(int size) {
+        Random generator = new Random();
+        StringBuilder randomStringBuilder = new StringBuilder();
+        char tempChar;
+        for (int i = 0; i < size; i++) {
+            tempChar = (char) (generator.nextInt(26) + 65);
+            randomStringBuilder.append(tempChar);
+        }
+        return randomStringBuilder.toString();
+    }
+
+    public static void delay(int delayInMillisecond) {
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                // this code will be executed after 2 seconds
+            }
+        }, delayInMillisecond);
     }
 }
