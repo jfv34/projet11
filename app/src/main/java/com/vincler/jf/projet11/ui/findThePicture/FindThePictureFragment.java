@@ -1,12 +1,10 @@
 package com.vincler.jf.projet11.ui.findThePicture;
 
+import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,11 +14,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.vincler.jf.projet11.R;
-import com.vincler.jf.projet11.models.FindThePictureResultModel;
+import com.vincler.jf.projet11.models.BorderColorList;
+import com.vincler.jf.projet11.models.BorderColorModel;
 import com.vincler.jf.projet11.ui.resultGame.ResultGameFragment;
 import com.vincler.jf.projet11.utils.Utils;
-
-import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 public class FindThePictureFragment extends Fragment {
     FindThePictureViewModel viewModel;
@@ -72,7 +69,13 @@ public class FindThePictureFragment extends Fragment {
                     if (gameOver) {
                         gameOver();
                     }
-                    ;
+                }
+        );
+
+        viewModel.borderPictureColor.observe(getViewLifecycleOwner(), borderPictureColor ->
+                {
+                    // FindThePictureModel model = viewModel.currentModel.getValue();
+                    displayBorderPicture(borderPictureColor);
                 }
         );
 
@@ -90,7 +93,39 @@ public class FindThePictureFragment extends Fragment {
         imageView.setOnClickListener(view -> viewModel.userChoosePictureAtIndex(index));
     }
 
+    private void displayBorderPicture(BorderColorModel borderPictureColor) {
+
+        String colorBorder = "";
+
+        if (borderPictureColor.getBorderColor() == BorderColorList.GREEN) {
+            colorBorder = "#0AEA14";
+        }
+        if (borderPictureColor.getBorderColor() == BorderColorList.RED) {
+            colorBorder = "#E53935";
+        }
+        if (borderPictureColor.getBorderColor() == BorderColorList.TRANSPARENT) {
+            colorBorder = "#00000000";
+        }
+
+        ImageView imageView = null;
+        if (borderPictureColor.getPositionPicture() == 0) {
+            imageView = imageViewTopLeft;
+        }
+        if (borderPictureColor.getPositionPicture() == 1) {
+            imageView = imageViewTopRight;
+        }
+        if (borderPictureColor.getPositionPicture() == 2) {
+            imageView = imageViewBottomLeft;
+        }
+        if (borderPictureColor.getPositionPicture() == 3) {
+            imageView = imageViewBottomRight;
+        }
+
+        imageView.setBackgroundColor(Color.parseColor(colorBorder));
+    }
+
     private void displayPicture(String url, ImageView imageView) {
+
         Glide.with(this)
                 .load(url) // image url
                 //.placeholder(R.drawable.placeholder) // any placeholder to load at start
