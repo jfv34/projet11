@@ -13,15 +13,8 @@ public class BorderColorModel {
         return borderColorList;
     }
 
-    public void setBorderColorList(BorderColorList borderColorList) {
-        this.borderColorList = borderColorList;
-    }
-
     public int getPositionPicture() {
         return positionPicture;
     }
 
-    public void setPositionPicture(int positionPicture) {
-        this.positionPicture = positionPicture;
-    }
 }

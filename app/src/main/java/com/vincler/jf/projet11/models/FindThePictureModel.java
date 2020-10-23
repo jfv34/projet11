@@ -22,47 +22,23 @@ public class FindThePictureModel {
         return word;
     }
 
-    public void setWord(String word) {
-        this.word = word;
-    }
-
     public int getCorrectPicturePosition() {
         return correctPicturePosition;
-    }
-
-    public void setCorrectPicturePosition(int correctPicturePosition) {
-        this.correctPicturePosition = correctPicturePosition;
     }
 
     public String getTopLeftPicture() {
         return topLeftPicture;
     }
 
-    public void setTopLeftPicture(String topLeftPicture) {
-        this.topLeftPicture = topLeftPicture;
-    }
-
     public String getTopRightPicture() {
         return topRightPicture;
-    }
-
-    public void setTopRightPicture(String topRightPicture) {
-        this.topRightPicture = topRightPicture;
     }
 
     public String getBottomLeftPicture() {
         return bottomLeftPicture;
     }
 
-    public void setBottomLeftPicture(String bottomLeftPicture) {
-        this.bottomLeftPicture = bottomLeftPicture;
-    }
-
     public String getBottomRightPicture() {
         return bottomRightPicture;
-    }
-
-    public void setBottomRightPicture(String bottomRightPicture) {
-        this.bottomRightPicture = bottomRightPicture;
     }
     }
