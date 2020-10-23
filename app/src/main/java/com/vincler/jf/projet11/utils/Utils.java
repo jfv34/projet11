@@ -14,12 +14,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Utils {
-    public static void addFragment(FragmentActivity activity, Fragment fragment) {
+    public static void addFragmentInMainActivity(FragmentActivity activity, Fragment fragment) {
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.activity_main_constraintLayout, fragment).addToBackStack(fragment.getClass().getName()).commit();
     }
 
-    public static void replaceFragment(FragmentActivity activity, Fragment fragment) {
+    public static void replaceFragmentInMainActivity(FragmentActivity activity, Fragment fragment) {
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.activity_main_constraintLayout, fragment).addToBackStack(fragment.getClass().getName()).commit();
     }

@@ -74,7 +74,6 @@ public class FindThePictureFragment extends Fragment {
 
         viewModel.borderPictureColor.observe(getViewLifecycleOwner(), borderPictureColor ->
                 {
-                    // FindThePictureModel model = viewModel.currentModel.getValue();
                     displayBorderPicture(borderPictureColor);
                 }
         );
@@ -85,7 +84,7 @@ public class FindThePictureFragment extends Fragment {
 
         int score = viewModel.score.getValue();
         Fragment resultGameFragment = ResultGameFragment.newInstance(score);
-        Utils.replaceFragment(getActivity(), resultGameFragment);
+        Utils.replaceFragmentInMainActivity(getActivity(), resultGameFragment);
 
     }
 

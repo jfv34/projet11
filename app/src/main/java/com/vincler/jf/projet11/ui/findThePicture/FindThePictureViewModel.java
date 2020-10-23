@@ -1,7 +1,5 @@
 package com.vincler.jf.projet11.ui.findThePicture;
 
-import android.util.Log;
-
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -9,7 +7,6 @@ import com.vincler.jf.projet11.models.BorderColorList;
 import com.vincler.jf.projet11.models.BorderColorModel;
 import com.vincler.jf.projet11.models.Constants;
 import com.vincler.jf.projet11.models.FindThePictureModel;
-import com.vincler.jf.projet11.models.FindThePictureResultModel;
 import com.vincler.jf.projet11.repositories.FindThePictureRepository;
 
 import java.util.ArrayList;
@@ -20,7 +17,6 @@ public class FindThePictureViewModel extends ViewModel {
 
     ArrayList<FindThePictureModel> findThePictureList = new ArrayList<>();
     MutableLiveData<FindThePictureModel> currentModel = new MutableLiveData<>();
-    MutableLiveData<FindThePictureResultModel> result = new MutableLiveData<>();
     MutableLiveData<Integer> draw = new MutableLiveData<>();
     MutableLiveData<Boolean> isGameOver = new MutableLiveData<>();
     MutableLiveData<Integer> score = new MutableLiveData<>();
@@ -41,7 +37,10 @@ public class FindThePictureViewModel extends ViewModel {
     public void userChoosePictureAtIndex(int index) {
 
         boolean iscorrectPosition = currentModel.getValue().getCorrectPicturePosition() == index;
+
         if (iscorrectPosition) {
+            int newScore = score.getValue() + 1;
+            score.postValue(newScore);
             changeBorderPictureColor(BorderColorList.GREEN, index);
         }
         if (!iscorrectPosition) {
@@ -51,11 +50,9 @@ public class FindThePictureViewModel extends ViewModel {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                xxx(index, iscorrectPosition);
+                goToTheNextDraw(index, iscorrectPosition);
             }
         }, 800);
-
-
     }
 
     private void changeBorderPictureColor(BorderColorList borderColorList, int index) {
@@ -64,17 +61,8 @@ public class FindThePictureViewModel extends ViewModel {
         borderPictureColor.postValue(newBorderPictureColor);
     }
 
-    private void xxx(int index, boolean iscorrectPosition) {
+    private void goToTheNextDraw(int index, boolean iscorrectPosition) {
 
-        if (iscorrectPosition) {
-            result.postValue(FindThePictureResultModel.WIN);
-            int newScore = score.getValue() + 1;
-            score.postValue(newScore);
-            Log.i("tag_result", "win");
-        } else {
-            result.postValue(FindThePictureResultModel.LOST);
-            Log.i("tag_result", "lost");
-        }
         changeBorderPictureColor(BorderColorList.TRANSPARENT, index);
         int newDraw = draw.getValue() + 1;
         if (newDraw < Constants.NUMBER_OF_DRAWS) {
