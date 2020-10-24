@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:gravity="center"
         android:id="@+id/fragment_findthepicture_word_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

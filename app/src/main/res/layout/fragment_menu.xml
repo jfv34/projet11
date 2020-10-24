@@ -17,7 +17,7 @@
         tools:context=".ui.main.MainActivity">
 
         <TextView
-            android:id="@+id/fragment_menu_title_text_iv"
+            android:id="@+id/fragment_menu_title_text_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Choose your game"
@@ -34,13 +34,13 @@
             android:layout_height="0dp"
             android:src="@drawable/ic_game1"
             app:layout_constraintBottom_toTopOf="@id/fragment_menu_game2_iv"
-            app:layout_constraintEnd_toStartOf="@id/fragment_menu_text1_iv"
+            app:layout_constraintEnd_toStartOf="@id/fragment_menu_text1_tv"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragment_menu_title_text_iv"
+            app:layout_constraintTop_toBottomOf="@id/fragment_menu_title_text_tv"
             app:layout_constraintWidth_percent="0.25" />
 
         <TextView
-            android:id="@+id/fragment_menu_text1_iv"
+            android:id="@+id/fragment_menu_text1_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -58,13 +58,13 @@
             android:layout_height="0dp"
             android:src="@drawable/ic_game2"
             app:layout_constraintBottom_toTopOf="@id/fragment_menu_game3_iv"
-            app:layout_constraintEnd_toStartOf="@id/fragment_menu_text2_iv"
+            app:layout_constraintEnd_toStartOf="@id/fragment_menu_text2_tv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fragment_menu_game1_iv"
             app:layout_constraintWidth_percent="0.25" />
 
         <TextView
-            android:id="@+id/fragment_menu_text2_iv"
+            android:id="@+id/fragment_menu_text2_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -82,13 +82,13 @@
             android:layout_height="0dp"
             android:src="@drawable/ic_game3"
             app:layout_constraintBottom_toTopOf="@id/fragment_menu_game4_iv"
-            app:layout_constraintEnd_toStartOf="@id/fragment_menu_text3_iv"
+            app:layout_constraintEnd_toStartOf="@id/fragment_menu_text3_tv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fragment_menu_game2_iv"
             app:layout_constraintWidth_percent="0.25" />
 
         <TextView
-            android:id="@+id/fragment_menu_text3_iv"
+            android:id="@+id/fragment_menu_text3_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -106,13 +106,13 @@
             android:layout_height="0dp"
             android:src="@drawable/ic_game4"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/fragment_menu_text4_iv"
+            app:layout_constraintEnd_toStartOf="@id/fragment_menu_text4_tv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fragment_menu_game3_iv"
             app:layout_constraintWidth_percent="0.25" />
 
         <TextView
-            android:id="@+id/fragment_menu_text4_iv"
+            android:id="@+id/fragment_menu_text4_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"

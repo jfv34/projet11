@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -14,8 +15,6 @@ import com.vincler.jf.projet11.ui.findThePicture.FindThePictureFragment;
 import com.vincler.jf.projet11.utils.Utils;
 
 public class MenuFragment extends Fragment {
-
-    private ImageView game1ImageView;
 
     public static MenuFragment newInstance() {
         return new MenuFragment();
@@ -32,8 +31,10 @@ public class MenuFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        game1ImageView = view.findViewById(R.id.fragment_menu_game1_iv);
+        ImageView game1ImageView = view.findViewById(R.id.fragment_menu_game1_iv);
+        TextView game1TextView = view.findViewById(R.id.fragment_menu_text1_tv);
         game1ImageView.setOnClickListener(view1 -> callFragmentGame1());
+        game1TextView.setOnClickListener(view1 -> callFragmentGame1());
     }
 
     private void callFragmentGame1() {
