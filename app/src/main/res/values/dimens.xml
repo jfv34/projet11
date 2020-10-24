@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="text_word">50dp</dimen>
-    </resources>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_large">24dp</dimen>
+    <dimen name="bottomScreen">72dp</dimen>
+    <dimen name="viewPager">300dp</dimen>
+
+</resources>
