@@ -17,16 +17,67 @@
         tools:context=".ui.main.MainActivity">
 
         <TextView
-            android:id="@+id/fragment_menu_title_text_tv"
+            android:layout_marginTop="20dp"
+            android:id="@+id/fragment_menu_title1_text_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Choose your game"
+            android:text="Choose the language to learn:"
             android:textColor="#030E55"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@id/fragment_menu_game1_iv"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/fragment_menu_flag_kingdom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+              android:padding="@dimen/margin_small"
+                android:id="@+id/fragment_menu_flag_french"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/fragment_menu_title2_text_tv"
+                app:layout_constraintEnd_toStartOf="@id/fragment_menu_flag_kingdom"
+                android:src="@drawable/ic_france_flag"
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent="0.33"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:padding="@dimen/margin_small"
+                app:layout_constraintWidth_percent="0.33"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/fragment_menu_title2_text_tv"
+                app:layout_constraintEnd_toStartOf="@id/fragment_menu_flag_spain"
+                app:layout_constraintStart_toEndOf="@id/fragment_menu_flag_french"
+                android:id="@+id/fragment_menu_flag_kingdom"
+                android:src="@drawable/ic_kingdom_flag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:padding="@dimen/margin_small"
+                app:layout_constraintWidth_percent="0.33"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/fragment_menu_title2_text_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/fragment_menu_flag_kingdom"
+                android:id="@+id/fragment_menu_flag_spain"
+                android:src="@drawable/ic_spain3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/fragment_menu_title2_text_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose your game:"
+            android:textColor="#030E55"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/fragment_menu_game1_iv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_menu_flag_kingdom" />
 
         <ImageView
             android:id="@+id/fragment_menu_game1_iv"
@@ -36,7 +87,7 @@
             app:layout_constraintBottom_toTopOf="@id/fragment_menu_game2_iv"
             app:layout_constraintEnd_toStartOf="@id/fragment_menu_text1_tv"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragment_menu_title_text_tv"
+            app:layout_constraintTop_toBottomOf="@id/fragment_menu_title2_text_tv"
             app:layout_constraintWidth_percent="0.25" />
 
         <TextView
