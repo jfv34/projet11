@@ -16,8 +16,7 @@ public class FindThePictureRepository {
         return FirebaseFirestore.getInstance().collection(collection_name);
     }
 
-    public static void getFindThePictureList(Result<List<FindThePictureModel>> result) {
-        String LANGAGE = "1";  // langage English for testing
+    public static void getFindThePictureList(Result<List<FindThePictureModel>> result, String language) {
         getCollection("pictures")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
@@ -26,7 +25,7 @@ public class FindThePictureRepository {
                             queryDocumentSnapshots.getDocuments();
 
                     getCollection("words")
-                            .whereEqualTo("langage_id", LANGAGE)
+                            .whereEqualTo("langage_id", language)
                             .get()
                             .addOnSuccessListener(queryDocumentSnapshots2 -> {
                                         List<DocumentSnapshot> wordsDocuments = queryDocumentSnapshots2.getDocuments();

@@ -18,13 +18,14 @@ import com.vincler.jf.projet11.utils.Utils;
 
 public class MenuFragment extends Fragment {
 
-    ColorMatrixColorFilter filterBlackAndWhite;
-    ColorMatrixColorFilter filterColor;
-    ImageView frenchFlagImageView;
-    ImageView kingdomFlagImageView;
-    ImageView spainFlagImageView;
-    ImageView game1ImageView;
-    TextView game1TextView;
+    private String language = "";
+    private ColorMatrixColorFilter filterBlackAndWhite;
+    private ColorMatrixColorFilter filterColor;
+    private ImageView frenchFlagImageView;
+    private ImageView kingdomFlagImageView;
+    private ImageView spainFlagImageView;
+    private ImageView game1ImageView;
+    private TextView game1TextView;
 
     public static MenuFragment newInstance() {
         return new MenuFragment();
@@ -57,9 +58,18 @@ public class MenuFragment extends Fragment {
     private void setOnClickListeners() {
         game1ImageView.setOnClickListener(view1 -> callFragmentGame1());
         game1TextView.setOnClickListener(view1 -> callFragmentGame1());
-        frenchFlagImageView.setOnClickListener(view -> changeColorFlag(frenchFlagImageView));
-        kingdomFlagImageView.setOnClickListener(view -> changeColorFlag(kingdomFlagImageView));
-        spainFlagImageView.setOnClickListener(view -> changeColorFlag(spainFlagImageView));
+        frenchFlagImageView.setOnClickListener(view -> {
+            changeColorFlag(frenchFlagImageView);
+            language = "0";
+        });
+        kingdomFlagImageView.setOnClickListener(view -> {
+            changeColorFlag(kingdomFlagImageView);
+            language = "1";
+        });
+        spainFlagImageView.setOnClickListener(view -> {
+            changeColorFlag(spainFlagImageView);
+            language = "2";
+        });
     }
 
     private void changeColorFlag(ImageView imageViewClicked) {
@@ -85,7 +95,7 @@ public class MenuFragment extends Fragment {
 
 
     private void callFragmentGame1() {
-        Fragment findThePictureFragment = FindThePictureFragment.newInstance();
+        Fragment findThePictureFragment = FindThePictureFragment.newInstance(language);
         Utils.replaceFragmentInMainActivity(getActivity(), findThePictureFragment);
     }
 }

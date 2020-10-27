@@ -20,20 +20,28 @@ import com.vincler.jf.projet11.ui.resultGame.ResultGameFragment;
 import com.vincler.jf.projet11.utils.Utils;
 
 public class FindThePictureFragment extends Fragment {
-    FindThePictureViewModel viewModel;
-    TextView wordText;
-    ImageView imageViewTopLeft;
-    ImageView imageViewTopRight;
-    ImageView imageViewBottomLeft;
-    ImageView imageViewBottomRight;
 
-    public static FindThePictureFragment newInstance() {
-        return new FindThePictureFragment();
+    private String bundleLanguage;
+    private FindThePictureViewModel viewModel;
+    private TextView wordText;
+    private ImageView imageViewTopLeft;
+    private ImageView imageViewTopRight;
+    private ImageView imageViewBottomLeft;
+    private ImageView imageViewBottomRight;
+
+    public static FindThePictureFragment newInstance(String bundleLanguage) {
+        FindThePictureFragment findThePictureFragment = new FindThePictureFragment();
+
+        Bundle args = new Bundle();
+        args.putString("language", bundleLanguage);
+        findThePictureFragment.setArguments(args);
+        return findThePictureFragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_findthepicture, container, false);
+        bundleLanguage = getArguments().getString("language", "1");
         wordText = root.findViewById(R.id.fragment_findthepicture_word_text);
         imageViewTopLeft = root.findViewById(R.id.fragment_findthepicture_imageView_top_left);
         imageViewTopRight = root.findViewById(R.id.fragment_findthepicture_imageView_top_right);
@@ -46,8 +54,7 @@ public class FindThePictureFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         viewModel = new ViewModelProvider(this).get(FindThePictureViewModel.class);
-
-        viewModel.getData();
+        viewModel.getData(bundleLanguage);
 
         viewModel.currentModel.observe(getViewLifecycleOwner(), model ->
                 {

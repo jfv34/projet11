@@ -22,8 +22,7 @@ public class FindThePictureViewModel extends ViewModel {
     MutableLiveData<Integer> score = new MutableLiveData<>();
     MutableLiveData<BorderColorModel> borderPictureColor = new MutableLiveData<>();
 
-    public void getData() {
-
+    public void getData(String language) {
         FindThePictureRepository.getFindThePictureList(result -> {
             findThePictureList.clear();
             findThePictureList.addAll(result);
@@ -31,7 +30,7 @@ public class FindThePictureViewModel extends ViewModel {
             draw.postValue(0);
             isGameOver.postValue(false);
             score.postValue(0);
-        });
+        }, language);
     }
 
     public void userChoosePictureAtIndex(int index) {
@@ -50,7 +49,7 @@ public class FindThePictureViewModel extends ViewModel {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                goToTheNextDraw(index, iscorrectPosition);
+                goToTheNextDraw(index);
             }
         }, 800);
     }
@@ -61,7 +60,7 @@ public class FindThePictureViewModel extends ViewModel {
         borderPictureColor.postValue(newBorderPictureColor);
     }
 
-    private void goToTheNextDraw(int index, boolean iscorrectPosition) {
+    private void goToTheNextDraw(int index) {
 
         changeBorderPictureColor(BorderColorList.TRANSPARENT, index);
         int newDraw = draw.getValue() + 1;
