@@ -24,12 +24,14 @@ public class FindThePictureViewModel extends ViewModel {
 
     public void getData(String language) {
         FindThePictureRepository.getFindThePictureList(result -> {
-            findThePictureList.clear();
-            findThePictureList.addAll(result);
-            currentModel.postValue(result.get(0));
-            draw.postValue(0);
-            isGameOver.postValue(false);
-            score.postValue(0);
+            if (result.get(0) != null) {
+                findThePictureList.clear();
+                findThePictureList.addAll(result);
+                currentModel.postValue(result.get(0));
+                draw.postValue(0);
+                isGameOver.postValue(false);
+                score.postValue(0);
+            }
         }, language);
     }
 

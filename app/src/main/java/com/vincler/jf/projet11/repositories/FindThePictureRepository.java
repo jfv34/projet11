@@ -54,11 +54,13 @@ public class FindThePictureRepository {
                                                     picturesDocuments.get(randomList.get(1)).get("url").toString(),
                                                     picturesDocuments.get(randomList.get(2)).get("url").toString(),
                                                     picturesDocuments.get(randomList.get(3)).get("url").toString()
-                                                    );
+                                            );
 
                                             findThePictureModelArrayList.add(findThePictureModel);
                                         }
-                                        result.onResult(findThePictureModelArrayList);
+                                        if (result != null) {
+                                            result.onResult(findThePictureModelArrayList);
+                                        }
                                     }
                             );
                 });
