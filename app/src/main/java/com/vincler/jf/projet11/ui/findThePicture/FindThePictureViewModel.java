@@ -53,7 +53,7 @@ public class FindThePictureViewModel extends ViewModel {
             public void run() {
                 goToTheNextDraw(index);
             }
-        }, 800);
+        }, Constants.DELAY_BETWEEN_DRAWS);
     }
 
     private void changeBorderPictureColor(BorderColorList borderColorList, int index) {

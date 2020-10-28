@@ -1,5 +1,8 @@
 package com.vincler.jf.projet11.repositories;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -62,7 +65,13 @@ public class FindThePictureRepository {
                                             result.onResult(findThePictureModelArrayList);
                                         }
                                     }
-                            );
+                            )
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                }
+                            });
                 });
     }
 }
