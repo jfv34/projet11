@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void configureFirebase() {
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        //firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
