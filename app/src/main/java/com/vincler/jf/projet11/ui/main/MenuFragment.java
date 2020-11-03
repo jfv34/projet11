@@ -104,17 +104,6 @@ public class MenuFragment extends Fragment {
         spainFlagImageView.setColorFilter(filterBlackAndWhite);
     }
 
-
-/*    private void callFragmentGame1() {
-        Fragment findThePictureFragment = FindThePictureFragment.newInstance(language);
-        Utils.replaceFragmentInMainActivity(getActivity(), findThePictureFragment);
-    }*/
-
-    private void callFragmentGame2() {
-        Fragment findTheWordFragment = FindTheWordFragment.newInstance(language);
-        Utils.replaceFragmentInMainActivity(getActivity(), findTheWordFragment);
-    }
-
     private void callGameActivity(int gameId) {
         GameActivityDependency gameActivityDependency
                 = new GameActivityDependency(gameId, language);

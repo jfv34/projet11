@@ -16,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:text="Error in findtheword"
         android:id="@+id/fragment_findtheword_textView_top_left"
         android:layout_width="0dp"
         app:layout_constraintWidth_percent="0.50"
