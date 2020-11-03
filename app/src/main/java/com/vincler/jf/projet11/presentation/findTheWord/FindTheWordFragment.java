@@ -1,4 +1,4 @@
-package com.vincler.jf.projet11.ui.findTheWord;
+package com.vincler.jf.projet11.presentation.findTheWord;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,7 +16,7 @@ import com.bumptech.glide.Glide;
 import com.vincler.jf.projet11.R;
 import com.vincler.jf.projet11.models.BorderColorList;
 import com.vincler.jf.projet11.models.BorderColorModel;
-import com.vincler.jf.projet11.ui.resultGame.ResultGameFragment;
+import com.vincler.jf.projet11.presentation.resultGame.ResultGameFragment;
 import com.vincler.jf.projet11.utils.Utils;
 
 public class FindTheWordFragment extends Fragment {

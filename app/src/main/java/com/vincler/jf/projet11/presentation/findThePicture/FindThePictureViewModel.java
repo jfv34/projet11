@@ -1,4 +1,6 @@
-package com.vincler.jf.projet11.ui.findThePicture;
+package com.vincler.jf.projet11.presentation.findThePicture;
+
+import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -8,8 +10,10 @@ import com.vincler.jf.projet11.models.BorderColorModel;
 import com.vincler.jf.projet11.models.Constants;
 import com.vincler.jf.projet11.models.FindThePictureModel;
 import com.vincler.jf.projet11.repositories.FindThePictureRepository;
+import com.vincler.jf.projet11.repositories.Result;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -24,16 +28,27 @@ public class FindThePictureViewModel extends ViewModel {
 
     public void getData(String language) {
 
-        FindThePictureRepository.getFindThePictureList(result -> {
-            if (result != null && result.size() != 0 && result.get(0) != null) {
-                findThePictureList.clear();
-                findThePictureList.addAll(result);
-                currentModel.postValue(result.get(0));
-                draw.postValue(0);
-                isGameOver.postValue(false);
-                score.postValue(0);
-            }
-        }, language);
+        FindThePictureRepository.getFindThePictureList(
+                new Result<List<FindThePictureModel>>() {
+                    @Override
+                    public void onResult(List<FindThePictureModel> result) {
+                        if (result != null && result.size() != 0 && result.get(0) != null) {
+                            findThePictureList.clear();
+                            findThePictureList.addAll(result);
+                            currentModel.postValue(result.get(0));
+                            draw.postValue(0);
+                            isGameOver.postValue(false);
+                            score.postValue(0);
+                        }
+                        else {// todo
+                            ;}
+                    }
+
+                    @Override
+                    public void onError() {
+                        Log.i("error","error findthepicture");
+                    }
+                }, language);
     }
 
     public void userChoosePictureAtIndex(int index) {

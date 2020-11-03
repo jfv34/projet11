@@ -1,5 +1,8 @@
 package com.vincler.jf.projet11.repositories;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -27,6 +30,9 @@ public class FindTheWordRepository {
 
                             getCollection("pictures")
                                     .get()
+                                    .addOnFailureListener(e -> {
+                                        result.onError();
+                                    })
                                     .addOnSuccessListener(queryDocumentSnapshots1 ->
                                             {
                                                 List<DocumentSnapshot> picturesDocuments =
@@ -65,6 +71,8 @@ public class FindTheWordRepository {
                                             }
                                     )
                                     .addOnFailureListener(e -> {
+                                        e.printStackTrace();
+                                        result.onError();
                                     });
                         }
                 );

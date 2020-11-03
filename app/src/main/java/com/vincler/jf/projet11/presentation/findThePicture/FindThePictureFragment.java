@@ -1,4 +1,4 @@
-package com.vincler.jf.projet11.ui.findThePicture;
+package com.vincler.jf.projet11.presentation.findThePicture;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,15 +16,13 @@ import com.bumptech.glide.Glide;
 import com.vincler.jf.projet11.R;
 import com.vincler.jf.projet11.models.BorderColorList;
 import com.vincler.jf.projet11.models.BorderColorModel;
-import com.vincler.jf.projet11.models.LanguageSharedViewModel;
-import com.vincler.jf.projet11.ui.resultGame.ResultGameFragment;
+import com.vincler.jf.projet11.presentation.resultGame.ResultGameFragment;
 import com.vincler.jf.projet11.utils.Utils;
 
 public class FindThePictureFragment extends Fragment {
 
     private String bundleLanguage;
     private FindThePictureViewModel viewModel;
-    private LanguageSharedViewModel languageSharedViewModel;
     private TextView wordText;
     private ImageView imageViewTopLeft;
     private ImageView imageViewTopRight;
@@ -57,9 +55,6 @@ public class FindThePictureFragment extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(FindThePictureViewModel.class);
         viewModel.getData(bundleLanguage);
-
-        languageSharedViewModel = new ViewModelProvider(requireActivity()).get(LanguageSharedViewModel.class);
-        languageSharedViewModel.language.postValue(bundleLanguage);
 
         viewModel.currentModel.observe(getViewLifecycleOwner(), model ->
                 {

@@ -1,4 +1,4 @@
-package com.vincler.jf.projet11.ui.menu;
+package com.vincler.jf.projet11.presentation.menu;
 
 import android.content.Intent;
 import android.graphics.ColorMatrix;
@@ -14,12 +14,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.vincler.jf.projet11.R;
-import com.vincler.jf.projet11.models.GameActivityDependency;
-import com.vincler.jf.projet11.ui.GameActivity;
+import com.vincler.jf.projet11.presentation.gameActivity.GameActivityDependency;
+import com.vincler.jf.projet11.presentation.gameActivity.GameActivity;
 
 public class MenuFragment extends Fragment {
 
-    private String language = "";
+    private String language = "0";
     private ColorMatrixColorFilter filterBlackAndWhite;
     private ColorMatrixColorFilter filterColor;
     private ImageView frenchFlagImageView;

@@ -1,4 +1,4 @@
-package com.vincler.jf.projet11.ui.menu;
+package com.vincler.jf.projet11.presentation.menu;
 
 import android.os.Bundle;
 

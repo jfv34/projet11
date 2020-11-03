@@ -1,4 +1,6 @@
-package com.vincler.jf.projet11.ui.findTheWord;
+package com.vincler.jf.projet11.presentation.findTheWord;
+
+import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -6,11 +8,12 @@ import androidx.lifecycle.ViewModel;
 import com.vincler.jf.projet11.models.BorderColorList;
 import com.vincler.jf.projet11.models.BorderColorModel;
 import com.vincler.jf.projet11.models.Constants;
-import com.vincler.jf.projet11.models.FindThePictureModel;
 import com.vincler.jf.projet11.models.FindTheWordModel;
 import com.vincler.jf.projet11.repositories.FindTheWordRepository;
+import com.vincler.jf.projet11.repositories.Result;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -25,16 +28,26 @@ public class FindTheWordViewModel extends ViewModel {
 
     public void getData(String language) {
 
-        FindTheWordRepository.getFindTheWordList(result -> {
-            if (result != null && result.size() != 0 && result.get(0) != null) {
-                findTheWordList.clear();
-                findTheWordList.addAll(result);
-                currentModel.postValue(result.get(0));
-                draw.postValue(0);
-                isGameOver.postValue(false);
-                score.postValue(0);
-            }
-        }, language);
+        FindTheWordRepository.getFindTheWordList(
+                new Result<List<FindTheWordModel>>() {
+                    @Override
+                    public void onResult(List<FindTheWordModel> result) {
+                        if (result != null && result.size() != 0 && result.get(0) != null) {
+                            findTheWordList.clear();
+                            findTheWordList.addAll(result);
+                            currentModel.postValue(result.get(0));
+                            draw.postValue(0);
+                            isGameOver.postValue(false);
+                            score.postValue(0);
+                        }
+                    }
+
+                    @Override
+                    public void onError() {
+                        Log.i("Error", "Error loading");
+
+                    }
+                }, language);
     }
 
     public void userChooseWordAtIndex(int index) {

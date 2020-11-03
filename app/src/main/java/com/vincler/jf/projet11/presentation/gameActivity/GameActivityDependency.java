@@ -1,4 +1,4 @@
-package com.vincler.jf.projet11.models;
+package com.vincler.jf.projet11.presentation.gameActivity;
 
 import java.io.Serializable;
 
