@@ -45,11 +45,11 @@ public class FindTheWordRepository {
 
                                                     Random random = new Random();
                                                     int correctPositionWord = random.nextInt(4);
-                                                    String correctWordId = wordsDocuments.get(randomList.get(correctPositionWord)).getId();
+                                                    String correctWordpictureId = wordsDocuments.get(randomList.get(correctPositionWord)).get("picture_id").toString();
                                                     String picture = "";
                                                     for (int j = 0; j < picturesDocuments.size(); j++) {
                                                         String picture_id = picturesDocuments.get(j).getId();
-                                                        if (picture_id.equals(correctWordId)) {
+                                                        if (picture_id.equals(correctWordpictureId)) {
                                                             picture = picturesDocuments.get(j).get("url").toString();
                                                         }
                                                     }
