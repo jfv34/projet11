@@ -16,31 +16,37 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:layout_marginStart="30dp"
+        android:gravity="start"
         android:id="@+id/fragment_findtheword_textView_top_left"
         android:layout_width="0dp"
         app:layout_constraintWidth_percent="0.50"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:gravity="center"
+        android:padding="8dp"
         app:layout_constraintBottom_toTopOf="@id/fragment_findtheword_textView_bottom_left"
         app:layout_constraintEnd_toStartOf="@id/fragment_findtheword_textView_top_right"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fragment_findtheword_imageView" />
 
     <TextView
+        android:layout_marginStart="30dp"
+        android:gravity="start"
         android:id="@+id/fragment_findtheword_textView_top_right"
         android:layout_width="0dp"
         app:layout_constraintWidth_percent="0.50"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:padding="8dp"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/fragment_findtheword_textView_bottom_right"
         app:layout_constraintEnd_toStartOf="@id/fragment_findtheword_textView_top_right"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/fragment_findtheword_textView_top_left"
         app:layout_constraintTop_toBottomOf="@id/fragment_findtheword_imageView" />
 
     <TextView
-        android:gravity="center"
+        android:layout_marginStart="30dp"
+        android:gravity="start"
+        android:padding="8dp"
         android:id="@+id/fragment_findtheword_textView_bottom_left"
         android:layout_width="0dp"
         app:layout_constraintWidth_percent="0.50"
@@ -52,7 +58,9 @@
         app:layout_constraintTop_toBottomOf="@id/fragment_findtheword_textView_top_left" />
 
     <TextView
-        android:gravity="center"
+        android:layout_marginStart="30dp"
+        android:gravity="start"
+        android:padding="8dp"
         android:id="@+id/fragment_findtheword_textView_bottom_right"
         android:layout_width="0dp"
         app:layout_constraintWidth_percent="0.50"
