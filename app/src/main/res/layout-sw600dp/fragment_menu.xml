@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,70 +11,71 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_marginEnd="@dimen/margin_normal"
         android:layout_marginBottom="@dimen/bottomScreen"
         tools:context=".ui.main.MainActivity">
 
         <TextView
-            android:layout_marginTop="20dp"
+            android:paddingTop="@dimen/margin_normal"
+            android:paddingBottom="@dimen/margin_normal"
             android:id="@+id/fragment_menu_title1_text_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TABL Choose the language to learn:"
+            android:text="Choose the language to learn:"
             android:textColor="#030E55"
-            android:textSize="20sp"
+            android:textSize="40sp"
             app:layout_constraintBottom_toTopOf="@id/fragment_menu_flag_kingdom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:padding="@dimen/margin_small"
+            android:id="@+id/fragment_menu_flag_french"
+            app:layout_constraintTop_toBottomOf="@id/fragment_menu_title1_text_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/fragment_menu_title2_text_tv"
+            app:layout_constraintEnd_toStartOf="@id/fragment_menu_flag_kingdom"
+            android:src="@drawable/ic_france_flag"
+            android:layout_width="0dp"
+            app:layout_constraintWidth_percent="0.33"
+            android:layout_height="wrap_content"/>
 
         <ImageView
-              android:padding="@dimen/margin_small"
-                android:id="@+id/fragment_menu_flag_french"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/fragment_menu_title2_text_tv"
-                app:layout_constraintEnd_toStartOf="@id/fragment_menu_flag_kingdom"
-                android:src="@drawable/ic_france_flag"
-                android:layout_width="0dp"
-                app:layout_constraintWidth_percent="0.33"
-                android:layout_height="wrap_content"/>
+            android:padding="@dimen/margin_small"
+            app:layout_constraintWidth_percent="0.33"
+            app:layout_constraintTop_toBottomOf="@id/fragment_menu_title1_text_tv"
+            app:layout_constraintBottom_toTopOf="@id/fragment_menu_title2_text_tv"
+            app:layout_constraintEnd_toStartOf="@id/fragment_menu_flag_spain"
+            app:layout_constraintStart_toEndOf="@id/fragment_menu_flag_french"
+            android:id="@+id/fragment_menu_flag_kingdom"
+            android:src="@drawable/ic_kingdom_flag"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
 
-            <ImageView
-                android:padding="@dimen/margin_small"
-                app:layout_constraintWidth_percent="0.33"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/fragment_menu_title2_text_tv"
-                app:layout_constraintEnd_toStartOf="@id/fragment_menu_flag_spain"
-                app:layout_constraintStart_toEndOf="@id/fragment_menu_flag_french"
-                android:id="@+id/fragment_menu_flag_kingdom"
-                android:src="@drawable/ic_kingdom_flag"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"/>
-
-            <ImageView
-                android:padding="@dimen/margin_small"
-                app:layout_constraintWidth_percent="0.33"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/fragment_menu_title2_text_tv"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/fragment_menu_flag_kingdom"
-                android:id="@+id/fragment_menu_flag_spain"
-                android:src="@drawable/ic_spain3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"/>
+        <ImageView
+            android:padding="@dimen/margin_small"
+            app:layout_constraintWidth_percent="0.33"
+            app:layout_constraintTop_toBottomOf="@id/fragment_menu_title1_text_tv"
+            app:layout_constraintBottom_toTopOf="@id/fragment_menu_title2_text_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/fragment_menu_flag_kingdom"
+            android:id="@+id/fragment_menu_flag_spain"
+            android:src="@drawable/ic_spain3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
 
 
         <TextView
+            android:paddingTop="72dp"
             android:id="@+id/fragment_menu_title2_text_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Choose your game:"
             android:textColor="#030E55"
-            android:textSize="20sp"
+            android:textSize="40sp"
             app:layout_constraintBottom_toTopOf="@id/fragment_menu_game1_iv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="Find the picture among the four pictures."
-            android:textSize="20dp"
+            android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="@id/fragment_menu_game1_iv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/fragment_menu_game1_iv"
@@ -120,7 +122,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="Find the word among the four words."
-            android:textSize="20sp"
+            android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="@id/fragment_menu_game2_iv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/fragment_menu_game2_iv"
@@ -144,7 +146,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="Find the word with the first letter."
-            android:textSize="20sp"
+            android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="@id/fragment_menu_game3_iv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/fragment_menu_game3_iv"
@@ -168,7 +170,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="Find the word without the first letter."
-            android:textSize="20sp"
+            android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="@id/fragment_menu_game4_iv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/fragment_menu_game4_iv"

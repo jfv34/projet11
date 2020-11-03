@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B2EBF2">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_marginEnd="@dimen/margin_normal"
+        android:layout_marginBottom="@dimen/margin_normal"
+        tools:context=".ui.main.MainActivity">
+
+        <TextView
+            android:id="@+id/fragment_menu_title1_text_tv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/choose_the_language_to_learn"
+            android:textColor="#030E55"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@id/fragment_menu_flag_french"
+            app:layout_constraintHeight_percent="0.16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.40" />
+
+        <ImageView
+            android:id="@+id/fragment_menu_flag_french"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="@dimen/margin_small"
+            android:src="@drawable/ic_france_flag"
+            app:layout_constraintBottom_toTopOf="@id/fragment_menu_flag_kingdom"
+            app:layout_constraintHeight_percent="0.28"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_menu_title1_text_tv"
+            app:layout_constraintWidth_percent="0.40" />
+
+        <ImageView
+            android:id="@+id/fragment_menu_flag_kingdom"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="@dimen/margin_small"
+            android:src="@drawable/ic_kingdom_flag"
+            app:layout_constraintBottom_toTopOf="@id/fragment_menu_flag_spain"
+            app:layout_constraintHeight_percent="0.28"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_menu_flag_french"
+            app:layout_constraintWidth_percent="0.40" />
+
+        <ImageView
+            android:id="@+id/fragment_menu_flag_spain"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="@dimen/margin_small"
+            android:src="@drawable/ic_spain3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.28"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_menu_flag_kingdom"
+            app:layout_constraintWidth_percent="0.40" />
+
+        <TextView
+            android:id="@+id/fragment_menu_title2_text_tv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/choose_your_game"
+            android:textColor="#030E55"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@id/fragment_menu_box1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.16"
+            app:layout_constraintStart_toEndOf="@id/fragment_menu_title1_text_tv"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.60" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fragment_menu_box1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/fragment_menu_box2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.21"
+            app:layout_constraintStart_toEndOf="@id/fragment_menu_title1_text_tv"
+            app:layout_constraintTop_toBottomOf="@id/fragment_menu_title2_text_tv"
+            app:layout_constraintWidth_percent="0.60">
+
+            <ImageView
+                android:id="@+id/fragment_menu_game1_iv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_small"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_game1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="H,1:1"
+                app:layout_constraintEnd_toStartOf="@id/fragment_menu_text1_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/fragment_menu_text1_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:text="@string/find_the_picture_among_the_four_pictures"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/fragment_menu_game1_iv"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fragment_menu_box2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/fragment_menu_box3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.21"
+            app:layout_constraintStart_toEndOf="@id/fragment_menu_title1_text_tv"
+            app:layout_constraintTop_toBottomOf="@id/fragment_menu_box1"
+            app:layout_constraintWidth_percent="0.60">
+
+            <ImageView
+                android:id="@+id/fragment_menu_game2_iv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:padding="@dimen/margin_small"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_game2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="H,1:1"
+                app:layout_constraintEnd_toStartOf="@id/fragment_menu_text2_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/fragment_menu_text2_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:text="@string/find_the_word_among_the_four_words"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/fragment_menu_game2_iv"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fragment_menu_box3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/fragment_menu_box4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.21"
+            app:layout_constraintStart_toEndOf="@id/fragment_menu_title1_text_tv"
+            app:layout_constraintTop_toBottomOf="@id/fragment_menu_box2"
+            app:layout_constraintWidth_percent="0.60">
+
+            <ImageView
+                android:id="@+id/fragment_menu_game3_iv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:padding="@dimen/margin_small"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_game3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="H,1:1"
+                app:layout_constraintEnd_toStartOf="@id/fragment_menu_text3_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/fragment_menu_text3_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:text="@string/find_the_word_with_the_first_letter"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/fragment_menu_game3_iv"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:id="@+id/fragment_menu_box4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.21"
+            app:layout_constraintStart_toEndOf="@id/fragment_menu_title1_text_tv"
+            app:layout_constraintTop_toBottomOf="@id/fragment_menu_box3"
+            app:layout_constraintWidth_percent="0.60">
+
+            <ImageView
+                android:id="@+id/fragment_menu_game4_iv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:padding="@dimen/margin_small"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_game4"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="H,1:1"
+                app:layout_constraintEnd_toStartOf="@id/fragment_menu_text4_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/fragment_menu_text4_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:text="@string/find_the_word_without_the_first_letter"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/fragment_menu_game4_iv"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,10 +10,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.vincler.jf.projet11.R;
+import com.vincler.jf.projet11.ui.main.MenuFragment;
+import com.vincler.jf.projet11.utils.Utils;
 
 public class ResultGameFragment extends Fragment {
 
     TextView textview;
+    TextView returnToMenuTv;
     private int bundleScore;
 
     public static ResultGameFragment newInstance(int bundleScore) {
@@ -35,6 +38,7 @@ public class ResultGameFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_result_game, container, false);
         textview = root.findViewById(R.id.fragment_result_game_textview);
+        returnToMenuTv = root.findViewById(R.id.fragment_result_game_returnToMenu);
         return root;
     }
 
@@ -42,6 +46,11 @@ public class ResultGameFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         textview.setText("Votre score final est de " + bundleScore);
+
+        returnToMenuTv.setOnClickListener(view1 -> {
+            Fragment menuFragment = MenuFragment.newInstance();
+            Utils.replaceFragmentInMainActivity(getActivity(), menuFragment);
+        });
 
     }
 }

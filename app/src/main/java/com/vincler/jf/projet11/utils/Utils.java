@@ -44,12 +44,5 @@ public class Utils {
         return randomStringBuilder.toString();
     }
 
-    public static void delay(int delayInMillisecond) {
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                // this code will be executed after 2 seconds
-            }
-        }, delayInMillisecond);
-    }
+
 }

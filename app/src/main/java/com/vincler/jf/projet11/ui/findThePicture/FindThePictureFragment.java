@@ -114,16 +114,16 @@ public class FindThePictureFragment extends Fragment {
         }
 
         ImageView imageView = null;
-        if (borderPictureColor.getPositionPicture() == 0) {
+        if (borderPictureColor.getPositionWord() == 0) {
             imageView = imageViewTopLeft;
         }
-        if (borderPictureColor.getPositionPicture() == 1) {
+        if (borderPictureColor.getPositionWord() == 1) {
             imageView = imageViewTopRight;
         }
-        if (borderPictureColor.getPositionPicture() == 2) {
+        if (borderPictureColor.getPositionWord() == 2) {
             imageView = imageViewBottomLeft;
         }
-        if (borderPictureColor.getPositionPicture() == 3) {
+        if (borderPictureColor.getPositionWord() == 3) {
             imageView = imageViewBottomRight;
         }
 

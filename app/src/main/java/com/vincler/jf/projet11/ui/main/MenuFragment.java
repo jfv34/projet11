@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.vincler.jf.projet11.R;
 import com.vincler.jf.projet11.ui.findThePicture.FindThePictureFragment;
+import com.vincler.jf.projet11.ui.findTheWord.FindTheWordFragment;
 import com.vincler.jf.projet11.utils.Utils;
 
 public class MenuFragment extends Fragment {
@@ -26,6 +27,8 @@ public class MenuFragment extends Fragment {
     private ImageView spainFlagImageView;
     private ImageView game1ImageView;
     private TextView game1TextView;
+    private ImageView game2ImageView;
+    private TextView game2TextView;
 
     public static MenuFragment newInstance() {
         return new MenuFragment();
@@ -50,6 +53,8 @@ public class MenuFragment extends Fragment {
     private void views(View view) {
         game1ImageView = view.findViewById(R.id.fragment_menu_game1_iv);
         game1TextView = view.findViewById(R.id.fragment_menu_text1_tv);
+        game2ImageView = view.findViewById(R.id.fragment_menu_game2_iv);
+        game2TextView = view.findViewById(R.id.fragment_menu_text2_tv);
         frenchFlagImageView = view.findViewById(R.id.fragment_menu_flag_french);
         kingdomFlagImageView = view.findViewById(R.id.fragment_menu_flag_kingdom);
         spainFlagImageView = view.findViewById(R.id.fragment_menu_flag_spain);
@@ -58,6 +63,10 @@ public class MenuFragment extends Fragment {
     private void setOnClickListeners() {
         game1ImageView.setOnClickListener(view1 -> callFragmentGame1());
         game1TextView.setOnClickListener(view1 -> callFragmentGame1());
+
+        game2ImageView.setOnClickListener(view1 -> callFragmentGame2());
+        game2TextView.setOnClickListener(view1 -> callFragmentGame2());
+
         frenchFlagImageView.setOnClickListener(view -> {
             changeColorFlag(frenchFlagImageView);
             language = "0";
@@ -98,4 +107,10 @@ public class MenuFragment extends Fragment {
         Fragment findThePictureFragment = FindThePictureFragment.newInstance(language);
         Utils.replaceFragmentInMainActivity(getActivity(), findThePictureFragment);
     }
+
+    private void callFragmentGame2() {
+        Fragment findTheWordFragment = FindTheWordFragment.newInstance(language);
+        Utils.replaceFragmentInMainActivity(getActivity(), findTheWordFragment);
+    }
+
 }
