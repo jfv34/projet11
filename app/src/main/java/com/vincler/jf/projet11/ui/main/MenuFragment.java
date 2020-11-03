@@ -1,5 +1,6 @@
 package com.vincler.jf.projet11.ui.main;
 
+import android.content.Intent;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.os.Bundle;
@@ -13,7 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.vincler.jf.projet11.R;
-import com.vincler.jf.projet11.ui.findThePicture.FindThePictureFragment;
+import com.vincler.jf.projet11.models.GameActivityDependency;
+import com.vincler.jf.projet11.ui.GameActivity;
 import com.vincler.jf.projet11.ui.findTheWord.FindTheWordFragment;
 import com.vincler.jf.projet11.utils.Utils;
 
@@ -61,11 +63,11 @@ public class MenuFragment extends Fragment {
     }
 
     private void setOnClickListeners() {
-        game1ImageView.setOnClickListener(view1 -> callFragmentGame1());
-        game1TextView.setOnClickListener(view1 -> callFragmentGame1());
+        game1ImageView.setOnClickListener(view1 -> callGameActivity(1));
+        game1TextView.setOnClickListener(view1 -> callGameActivity(1));
 
-        game2ImageView.setOnClickListener(view1 -> callFragmentGame2());
-        game2TextView.setOnClickListener(view1 -> callFragmentGame2());
+        game2ImageView.setOnClickListener(view1 -> callGameActivity(2));
+        game2TextView.setOnClickListener(view1 -> callGameActivity(2));
 
         frenchFlagImageView.setOnClickListener(view -> {
             changeColorFlag(frenchFlagImageView);
@@ -103,14 +105,21 @@ public class MenuFragment extends Fragment {
     }
 
 
-    private void callFragmentGame1() {
+/*    private void callFragmentGame1() {
         Fragment findThePictureFragment = FindThePictureFragment.newInstance(language);
         Utils.replaceFragmentInMainActivity(getActivity(), findThePictureFragment);
-    }
+    }*/
 
     private void callFragmentGame2() {
         Fragment findTheWordFragment = FindTheWordFragment.newInstance(language);
         Utils.replaceFragmentInMainActivity(getActivity(), findTheWordFragment);
     }
 
+    private void callGameActivity(int gameId) {
+        GameActivityDependency gameActivityDependency
+                = new GameActivityDependency(gameId, language);
+        Intent intent = new Intent(getActivity(), GameActivity.class);
+        intent.putExtra("values", gameActivityDependency);
+        startActivity(intent);
+    }
 }
