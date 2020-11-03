@@ -91,7 +91,7 @@ public class FindThePictureFragment extends Fragment {
 
         int score = viewModel.score.getValue();
         Fragment resultGameFragment = ResultGameFragment.newInstance(score);
-        Utils.replaceFragmentInMainActivity(getActivity(), resultGameFragment);
+        Utils.replaceFragmentInGameActivity(getActivity(), resultGameFragment);
 
     }
 

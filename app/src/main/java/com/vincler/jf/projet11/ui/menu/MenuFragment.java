@@ -1,4 +1,4 @@
-package com.vincler.jf.projet11.ui.main;
+package com.vincler.jf.projet11.ui.menu;
 
 import android.content.Intent;
 import android.graphics.ColorMatrix;
@@ -16,8 +16,6 @@ import androidx.fragment.app.Fragment;
 import com.vincler.jf.projet11.R;
 import com.vincler.jf.projet11.models.GameActivityDependency;
 import com.vincler.jf.projet11.ui.GameActivity;
-import com.vincler.jf.projet11.ui.findTheWord.FindTheWordFragment;
-import com.vincler.jf.projet11.utils.Utils;
 
 public class MenuFragment extends Fragment {
 

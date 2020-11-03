@@ -1,4 +1,4 @@
-package com.vincler.jf.projet11.ui.main;
+package com.vincler.jf.projet11.ui.menu;
 
 import android.os.Bundle;
 
@@ -6,14 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.firebase.ui.auth.AuthUI;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.vincler.jf.projet11.R;
 import com.vincler.jf.projet11.utils.Utils;
 
 import java.util.Arrays;
 import java.util.List;
-public class MainActivity extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 123; // For connect by Firebase
     private FirebaseUser firebaseUser;
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void callMenuFragment() {
         Fragment menuFragment = MenuFragment.newInstance();
-        Utils.addFragmentInMainActivity(this, menuFragment);
+        Utils.addFragmentInMenuActivity(this, menuFragment);
     }
 
     private void configureFirebase() {

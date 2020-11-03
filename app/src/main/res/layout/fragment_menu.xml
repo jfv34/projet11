@@ -14,7 +14,7 @@
         android:layout_marginTop="@dimen/margin_normal"
         android:layout_marginEnd="@dimen/margin_normal"
         android:layout_marginBottom="@dimen/bottomScreen"
-        tools:context=".ui.main.MainActivity">
+        tools:context=".ui.menu.MenuActivity">
 
         <TextView
             android:id="@+id/fragment_menu_title1_text_tv"

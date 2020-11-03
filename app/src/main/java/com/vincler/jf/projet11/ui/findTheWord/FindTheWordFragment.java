@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -92,7 +91,7 @@ public class FindTheWordFragment extends Fragment {
     private void gameOver() {
         int score = viewModel.score.getValue();
         Fragment resultGameFragment = ResultGameFragment.newInstance(score);
-        Utils.replaceFragmentInMainActivity(getActivity(), resultGameFragment);
+        Utils.replaceFragmentInMenuActivity(getActivity(), resultGameFragment);
     }
 
     private void textClickListener(TextView textView, int index) {
