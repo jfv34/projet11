@@ -14,14 +14,15 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.vincler.jf.projet11.R;
-import com.vincler.jf.projet11.models.BorderColorList;
+import com.vincler.jf.projet11.models.BorderColorEnum;
 import com.vincler.jf.projet11.models.BorderColorModel;
+import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.presentation.resultGame.ResultGameFragment;
 import com.vincler.jf.projet11.utils.Utils;
 
 public class FindTheWordFragment extends Fragment {
 
-    private String bundleLanguage;
+    private LanguageEnum bundleLanguage;
     private FindTheWordViewModel viewModel;
     private ImageView pictureImageView;
     private TextView wordTopLeft;
@@ -29,11 +30,11 @@ public class FindTheWordFragment extends Fragment {
     private TextView wordBottomLeft;
     private TextView wordBottomRight;
 
-    public static FindTheWordFragment newInstance(String bundleLanguage) {
+    public static FindTheWordFragment newInstance(LanguageEnum bundleLanguage) {
         FindTheWordFragment findTheWordFragment = new FindTheWordFragment();
 
         Bundle args = new Bundle();
-        args.putString("language", bundleLanguage);
+        args.putSerializable("language", bundleLanguage);
         findTheWordFragment.setArguments(args);
         return findTheWordFragment;
     }
@@ -41,7 +42,7 @@ public class FindTheWordFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_findtheword, container, false);
-        bundleLanguage = getArguments().getString("language", "1");
+        bundleLanguage = (LanguageEnum) getArguments().getSerializable("language");
         pictureImageView = root.findViewById(R.id.fragment_findtheword_imageView);
         wordTopLeft = root.findViewById(R.id.fragment_findtheword_textView_top_left);
         wordTopRight = root.findViewById(R.id.fragment_findtheword_textView_top_right);
@@ -102,13 +103,13 @@ public class FindTheWordFragment extends Fragment {
 
         String colorBorder = "";
 
-        if (borderTextColor.getBorderColor() == BorderColorList.GREEN) {
+        if (borderTextColor.getBorderColor() == BorderColorEnum.GREEN) {
             colorBorder = "#0AEA14";
         }
-        if (borderTextColor.getBorderColor() == BorderColorList.RED) {
+        if (borderTextColor.getBorderColor() == BorderColorEnum.RED) {
             colorBorder = "#E53935";
         }
-        if (borderTextColor.getBorderColor() == BorderColorList.TRANSPARENT) {
+        if (borderTextColor.getBorderColor() == BorderColorEnum.TRANSPARENT) {
             colorBorder = "#00000000";
         }
 

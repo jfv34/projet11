@@ -14,14 +14,15 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.vincler.jf.projet11.R;
-import com.vincler.jf.projet11.models.BorderColorList;
+import com.vincler.jf.projet11.models.BorderColorEnum;
 import com.vincler.jf.projet11.models.BorderColorModel;
+import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.presentation.resultGame.ResultGameFragment;
 import com.vincler.jf.projet11.utils.Utils;
 
 public class FindThePictureFragment extends Fragment {
 
-    private String bundleLanguage;
+    private LanguageEnum bundleLanguage;
     private FindThePictureViewModel viewModel;
     private TextView wordText;
     private ImageView imageViewTopLeft;
@@ -29,11 +30,11 @@ public class FindThePictureFragment extends Fragment {
     private ImageView imageViewBottomLeft;
     private ImageView imageViewBottomRight;
 
-    public static FindThePictureFragment newInstance(String bundleLanguage) {
+    public static FindThePictureFragment newInstance(LanguageEnum bundleLanguage) {
         FindThePictureFragment findThePictureFragment = new FindThePictureFragment();
 
         Bundle args = new Bundle();
-        args.putString("language", bundleLanguage);
+        args.putSerializable("language", bundleLanguage);
         findThePictureFragment.setArguments(args);
         return findThePictureFragment;
     }
@@ -41,7 +42,7 @@ public class FindThePictureFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_findthepicture, container, false);
-        bundleLanguage = getArguments().getString("language", "1");
+        bundleLanguage = (LanguageEnum) getArguments().getSerializable("language");
         wordText = root.findViewById(R.id.fragment_findthepicture_word_text);
         imageViewTopLeft = root.findViewById(R.id.fragment_findthepicture_imageView_top_left);
         imageViewTopRight = root.findViewById(R.id.fragment_findthepicture_imageView_top_right);
@@ -103,13 +104,13 @@ public class FindThePictureFragment extends Fragment {
 
         String colorBorder = "";
 
-        if (borderPictureColor.getBorderColor() == BorderColorList.GREEN) {
+        if (borderPictureColor.getBorderColor() == BorderColorEnum.GREEN) {
             colorBorder = "#0AEA14";
         }
-        if (borderPictureColor.getBorderColor() == BorderColorList.RED) {
+        if (borderPictureColor.getBorderColor() == BorderColorEnum.RED) {
             colorBorder = "#E53935";
         }
-        if (borderPictureColor.getBorderColor() == BorderColorList.TRANSPARENT) {
+        if (borderPictureColor.getBorderColor() == BorderColorEnum.TRANSPARENT) {
             colorBorder = "#00000000";
         }
 

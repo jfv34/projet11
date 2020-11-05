@@ -5,10 +5,11 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.vincler.jf.projet11.models.BorderColorList;
+import com.vincler.jf.projet11.models.BorderColorEnum;
 import com.vincler.jf.projet11.models.BorderColorModel;
 import com.vincler.jf.projet11.models.Constants;
 import com.vincler.jf.projet11.models.FindTheWordModel;
+import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.repositories.FindTheWordRepository;
 import com.vincler.jf.projet11.repositories.Result;
 
@@ -26,7 +27,7 @@ public class FindTheWordViewModel extends ViewModel {
     MutableLiveData<Integer> score = new MutableLiveData<>();
     MutableLiveData<BorderColorModel> borderWordColor = new MutableLiveData<>();
 
-    public void getData(String language) {
+    public void getData(LanguageEnum language) {
 
         FindTheWordRepository.getFindTheWordList(
                 new Result<List<FindTheWordModel>>() {
@@ -57,10 +58,10 @@ public class FindTheWordViewModel extends ViewModel {
         if (iscorrectPosition) {
             int newScore = score.getValue() + 1;
             score.postValue(newScore);
-            changeBorderWordColor(BorderColorList.GREEN, index);
+            changeBorderWordColor(BorderColorEnum.GREEN, index);
         }
         if (!iscorrectPosition) {
-            changeBorderWordColor(BorderColorList.RED, index);
+            changeBorderWordColor(BorderColorEnum.RED, index);
         }
 
         new Timer().schedule(new TimerTask() {
@@ -71,7 +72,7 @@ public class FindTheWordViewModel extends ViewModel {
         }, Constants.DELAY_BETWEEN_DRAWS);
     }
 
-    private void changeBorderWordColor(BorderColorList borderColorList, int index) {
+    private void changeBorderWordColor(BorderColorEnum borderColorList, int index) {
 
         BorderColorModel newBorderWordColor = new BorderColorModel(borderColorList, index);
         borderWordColor.postValue(newBorderWordColor);
@@ -79,7 +80,7 @@ public class FindTheWordViewModel extends ViewModel {
 
     private void goToTheNextDraw(int index) {
 
-        changeBorderWordColor(BorderColorList.TRANSPARENT, index);
+        changeBorderWordColor(BorderColorEnum.TRANSPARENT, index);
         int newDraw = draw.getValue() + 1;
         if (newDraw < Constants.NUMBER_OF_DRAWS) {
             currentModel.postValue(findTheWordList.get(newDraw));

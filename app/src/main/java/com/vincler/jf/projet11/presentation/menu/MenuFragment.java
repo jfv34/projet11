@@ -14,12 +14,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.vincler.jf.projet11.R;
+import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.presentation.gameActivity.GameActivityDependency;
 import com.vincler.jf.projet11.presentation.gameActivity.GameActivity;
 
 public class MenuFragment extends Fragment {
 
-    private String language = "0";
+    private LanguageEnum language = LanguageEnum.NONE;
     private ColorMatrixColorFilter filterBlackAndWhite;
     private ColorMatrixColorFilter filterColor;
     private ImageView frenchFlagImageView;
@@ -69,15 +70,15 @@ public class MenuFragment extends Fragment {
 
         frenchFlagImageView.setOnClickListener(view -> {
             changeColorFlag(frenchFlagImageView);
-            language = "0";
+            language = LanguageEnum.FRENCH;
         });
         kingdomFlagImageView.setOnClickListener(view -> {
             changeColorFlag(kingdomFlagImageView);
-            language = "1";
+            language = LanguageEnum.ENGLISH;
         });
         spainFlagImageView.setOnClickListener(view -> {
             changeColorFlag(spainFlagImageView);
-            language = "2";
+            language = LanguageEnum.SPAIN;
         });
     }
 

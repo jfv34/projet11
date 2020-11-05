@@ -7,6 +7,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.vincler.jf.projet11.models.FindTheWordModel;
+import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.utils.Utils;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class FindTheWordRepository {
         return FirebaseFirestore.getInstance().collection(collection_name);
     }
 
-    public static void getFindTheWordList(Result<List<FindTheWordModel>> result, String language) {
+    public static void getFindTheWordList(Result<List<FindTheWordModel>> result, LanguageEnum language) {
         getCollection("words")
                 .whereEqualTo("langage_id", language)
                 .get()

@@ -3,6 +3,7 @@ package com.vincler.jf.projet11.api;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.models.PictureModel;
 import com.vincler.jf.projet11.models.WordModel;
 import com.vincler.jf.projet11.utils.Utils;
@@ -25,9 +26,9 @@ public class InsertInitialData {
 
         while (t + 3 <= wordsList.size()) {
             String pictureId = Utils.random(16);
-            WordModel french_word = new WordModel(wordsList.get(t), "0", pictureId);
-            WordModel english_word = new WordModel(wordsList.get(t + 1), "1", pictureId);
-            WordModel spanish_word = new WordModel(wordsList.get(t + 2), "2", pictureId);
+            WordModel french_word = new WordModel(wordsList.get(t), LanguageEnum.FRENCH, pictureId);
+            WordModel english_word = new WordModel(wordsList.get(t + 1), LanguageEnum.ENGLISH, pictureId);
+            WordModel spanish_word = new WordModel(wordsList.get(t + 2), LanguageEnum.SPAIN, pictureId);
             PictureModel picture_ = new PictureModel(wordsList.get(t + 3));
 
             insertWord(french_word);

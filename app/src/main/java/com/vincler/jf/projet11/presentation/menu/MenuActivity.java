@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseUser;
 import com.vincler.jf.projet11.R;
+import com.vincler.jf.projet11.api.InsertInitialData;
 import com.vincler.jf.projet11.utils.Utils;
 
 import java.util.Arrays;
@@ -23,7 +24,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         configureFirebase();
-        // InsertInitialData.createInitialData();     // for insert initial data
+        InsertInitialData.createInitialData();     // for insert initial data
         callMenuFragment();
     }
 

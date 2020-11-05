@@ -6,4 +6,12 @@ public class PictureModel {
     public PictureModel(String url) {
         this.url = url;
     }
+
+    // Requested by firebase
+    public String getUrl() {   // requested by firebase
+        return url;
+    }
+    public void setUrl(String url) {
+        this.url = url;
+    }
 }

@@ -5,10 +5,11 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.vincler.jf.projet11.models.BorderColorList;
+import com.vincler.jf.projet11.models.BorderColorEnum;
 import com.vincler.jf.projet11.models.BorderColorModel;
 import com.vincler.jf.projet11.models.Constants;
 import com.vincler.jf.projet11.models.FindThePictureModel;
+import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.repositories.FindThePictureRepository;
 import com.vincler.jf.projet11.repositories.Result;
 
@@ -26,7 +27,7 @@ public class FindThePictureViewModel extends ViewModel {
     MutableLiveData<Integer> score = new MutableLiveData<>();
     MutableLiveData<BorderColorModel> borderPictureColor = new MutableLiveData<>();
 
-    public void getData(String language) {
+    public void getData(LanguageEnum language) {
 
         FindThePictureRepository.getFindThePictureList(
                 new Result<List<FindThePictureModel>>() {
@@ -58,10 +59,10 @@ public class FindThePictureViewModel extends ViewModel {
         if (iscorrectPosition) {
             int newScore = score.getValue() + 1;
             score.postValue(newScore);
-            changeBorderPictureColor(BorderColorList.GREEN, index);
+            changeBorderPictureColor(BorderColorEnum.GREEN, index);
         }
         if (!iscorrectPosition) {
-            changeBorderPictureColor(BorderColorList.RED, index);
+            changeBorderPictureColor(BorderColorEnum.RED, index);
         }
 
         new Timer().schedule(new TimerTask() {
@@ -72,7 +73,7 @@ public class FindThePictureViewModel extends ViewModel {
         }, Constants.DELAY_BETWEEN_DRAWS);
     }
 
-    private void changeBorderPictureColor(BorderColorList borderColorList, int index) {
+    private void changeBorderPictureColor(BorderColorEnum borderColorList, int index) {
 
         BorderColorModel newBorderPictureColor = new BorderColorModel(borderColorList, index);
         borderPictureColor.postValue(newBorderPictureColor);
@@ -80,7 +81,7 @@ public class FindThePictureViewModel extends ViewModel {
 
     private void goToTheNextDraw(int index) {
 
-        changeBorderPictureColor(BorderColorList.TRANSPARENT, index);
+        changeBorderPictureColor(BorderColorEnum.TRANSPARENT, index);
         int newDraw = draw.getValue() + 1;
         if (newDraw < Constants.NUMBER_OF_DRAWS) {
             currentModel.postValue(findThePictureList.get(newDraw));

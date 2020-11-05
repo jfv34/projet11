@@ -4,6 +4,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.vincler.jf.projet11.models.FindThePictureModel;
+import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.utils.Utils;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class FindThePictureRepository {
         return FirebaseFirestore.getInstance().collection(collection_name);
     }
 
-    public static void getFindThePictureList(Result<List<FindThePictureModel>> result, String language) {
+    public static void getFindThePictureList(Result<List<FindThePictureModel>> result, LanguageEnum language) {
         getCollection("pictures")
                 .get()
                 .addOnFailureListener(e -> result.onError())
@@ -26,7 +27,7 @@ public class FindThePictureRepository {
                             queryDocumentSnapshots.getDocuments();
 
                     getCollection("words")
-                            .whereEqualTo("langage_id", language)
+                            .whereEqualTo("language", language)
                             .get()
                             .addOnSuccessListener(queryDocumentSnapshots2 -> {
                                         List<DocumentSnapshot> wordsDocuments = queryDocumentSnapshots2.getDocuments();
