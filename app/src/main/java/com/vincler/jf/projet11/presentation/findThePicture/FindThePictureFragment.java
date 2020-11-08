@@ -67,6 +67,14 @@ public class FindThePictureFragment extends Fragment {
                 }
         );
 
+        viewModel.isErrorLoading.observe(getViewLifecycleOwner(), errorLoading ->
+        {
+            if (errorLoading) {
+                Utils.toastErrorLoading(getContext());
+                viewModel.isErrorLoading.postValue(false);
+            }
+        });
+
         imageClickListener(imageViewTopLeft, 0);
         imageClickListener(imageViewTopRight, 1);
         imageClickListener(imageViewBottomLeft, 2);

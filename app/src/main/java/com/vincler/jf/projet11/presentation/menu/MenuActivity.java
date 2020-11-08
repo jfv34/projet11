@@ -24,7 +24,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         configureFirebase();
-        InsertInitialData.createInitialData();     // for insert initial data
+        //InsertInitialData.createInitialData();     // for insert initial data
         callMenuFragment();
     }
 

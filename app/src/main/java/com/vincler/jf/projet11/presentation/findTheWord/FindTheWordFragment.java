@@ -68,6 +68,14 @@ public class FindTheWordFragment extends Fragment {
                 }
         );
 
+        viewModel.isErrorLoading.observe(getViewLifecycleOwner(), errorLoading ->
+        {
+            if (errorLoading) {
+                Utils.toastErrorLoading(getContext());
+                viewModel.isErrorLoading.postValue(false);
+            }
+        });
+
         textClickListener(wordTopLeft, 0);
         textClickListener(wordTopRight, 1);
         textClickListener(wordBottomLeft, 2);

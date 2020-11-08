@@ -6,4 +6,5 @@
     <string name="find_the_word_among_the_four_words">Find the word among the four words.</string>
     <string name="find_the_word_with_the_first_letter">Find the word with the first letter.</string>
     <string name="find_the_word_without_the_first_letter">Find the word without the first letter.</string>
+    <string name="data_loading_error">Data loading error</string>
 </resources>

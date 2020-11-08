@@ -1,5 +1,8 @@
 package com.vincler.jf.projet11.utils;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -10,8 +13,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Utils {
     public static void addFragmentInMenuActivity(FragmentActivity activity, Fragment fragment) {
@@ -54,4 +55,13 @@ public class Utils {
     }
 
 
+    public static void toastErrorLoading(Context context) {
+        int message = R.string.data_loading_error;
+        toast(context, message);
+    }
+
+    public static void toast(Context context, int message) {
+        Toast toast = Toast.makeText(context, context.getString(message), Toast.LENGTH_LONG);
+        toast.show();
+    }
 }

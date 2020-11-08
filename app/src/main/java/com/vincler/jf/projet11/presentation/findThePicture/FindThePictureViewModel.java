@@ -25,6 +25,7 @@ public class FindThePictureViewModel extends ViewModel {
     MutableLiveData<FindThePictureModel> currentModel = new MutableLiveData<>();
     MutableLiveData<Integer> draw = new MutableLiveData<>();
     MutableLiveData<Boolean> isGameOver = new MutableLiveData<>();
+    MutableLiveData<Boolean> isErrorLoading = new MutableLiveData<>();
     MutableLiveData<Integer> score = new MutableLiveData<>();
     MutableLiveData<BorderColorModel> borderPictureColor = new MutableLiveData<>();
 
@@ -43,12 +44,13 @@ public class FindThePictureViewModel extends ViewModel {
                             score.postValue(0);
                         }
                         else {
+                            isErrorLoading.postValue(true);
                             ;}
                     }
 
                     @Override
                     public void onError() {
-                        Log.i("error","error findthepicture");
+                        isErrorLoading.postValue(true);
                     }
                 }, language);
     }

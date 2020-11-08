@@ -1,7 +1,5 @@
 package com.vincler.jf.projet11.presentation.findTheWord;
 
-import android.util.Log;
-
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -24,6 +22,7 @@ public class FindTheWordViewModel extends ViewModel {
     MutableLiveData<FindTheWordModel> currentModel = new MutableLiveData<>();
     MutableLiveData<Integer> draw = new MutableLiveData<>();
     MutableLiveData<Boolean> isGameOver = new MutableLiveData<>();
+    MutableLiveData<Boolean> isErrorLoading = new MutableLiveData<>();
     MutableLiveData<Integer> score = new MutableLiveData<>();
     MutableLiveData<BorderColorModel> borderWordColor = new MutableLiveData<>();
 
@@ -40,12 +39,14 @@ public class FindTheWordViewModel extends ViewModel {
                             draw.postValue(0);
                             isGameOver.postValue(false);
                             score.postValue(0);
+                        } else {
+                            isErrorLoading.postValue(true);
                         }
                     }
 
                     @Override
                     public void onError() {
-                        Log.i("Error", "Error loading");
+                        isErrorLoading.postValue(true);
 
                     }
                 }, language);
