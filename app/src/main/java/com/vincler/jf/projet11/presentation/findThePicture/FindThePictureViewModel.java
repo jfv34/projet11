@@ -12,6 +12,7 @@ import com.vincler.jf.projet11.models.FindThePictureModel;
 import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.repositories.FindThePictureRepository;
 import com.vincler.jf.projet11.repositories.Result;
+import com.vincler.jf.projet11.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +42,7 @@ public class FindThePictureViewModel extends ViewModel {
                             isGameOver.postValue(false);
                             score.postValue(0);
                         }
-                        else {// todo
+                        else {
                             ;}
                     }
 
