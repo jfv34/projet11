@@ -100,7 +100,7 @@ public class FindTheWordFragment extends Fragment {
     private void gameOver() {
         int score = viewModel.score.getValue();
         Fragment resultGameFragment = ResultGameFragment.newInstance(score);
-        Utils.replaceFragmentInMenuActivity(getActivity(), resultGameFragment);
+        Utils.replaceFragmentInGameActivity(getActivity(), resultGameFragment);
     }
 
     private void textClickListener(TextView textView, int index) {

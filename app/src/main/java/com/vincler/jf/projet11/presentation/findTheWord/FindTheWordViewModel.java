@@ -27,6 +27,9 @@ public class FindTheWordViewModel extends ViewModel {
     MutableLiveData<BorderColorModel> borderWordColor = new MutableLiveData<>();
 
     public void getData(LanguageEnum language) {
+        draw.postValue(0);
+        isGameOver.postValue(false);
+        score.postValue(0);
 
         FindTheWordRepository.getFindTheWordList(
                 new Result<List<FindTheWordModel>>() {
@@ -36,9 +39,6 @@ public class FindTheWordViewModel extends ViewModel {
                             findTheWordList.clear();
                             findTheWordList.addAll(result);
                             currentModel.postValue(result.get(0));
-                            draw.postValue(0);
-                            isGameOver.postValue(false);
-                            score.postValue(0);
                         } else {
                             isErrorLoading.postValue(true);
                         }

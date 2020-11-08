@@ -22,7 +22,7 @@ public class FindTheWordRepository {
 
     public static void getFindTheWordList(Result<List<FindTheWordModel>> result, LanguageEnum language) {
         getCollection("words")
-                .whereEqualTo("langage_id", language)
+                .whereEqualTo("language", language)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
 

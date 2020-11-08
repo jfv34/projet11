@@ -30,6 +30,9 @@ public class FindThePictureViewModel extends ViewModel {
     MutableLiveData<BorderColorModel> borderPictureColor = new MutableLiveData<>();
 
     public void getData(LanguageEnum language) {
+        draw.postValue(0);
+        isGameOver.postValue(false);
+        score.postValue(0);
 
         FindThePictureRepository.getFindThePictureList(
                 new Result<List<FindThePictureModel>>() {
@@ -39,9 +42,6 @@ public class FindThePictureViewModel extends ViewModel {
                             findThePictureList.clear();
                             findThePictureList.addAll(result);
                             currentModel.postValue(result.get(0));
-                            draw.postValue(0);
-                            isGameOver.postValue(false);
-                            score.postValue(0);
                         }
                         else {
                             isErrorLoading.postValue(true);
