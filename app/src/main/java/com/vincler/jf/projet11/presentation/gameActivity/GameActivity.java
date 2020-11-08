@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import com.vincler.jf.projet11.R;
 import com.vincler.jf.projet11.presentation.findThePicture.FindThePictureFragment;
 import com.vincler.jf.projet11.presentation.findTheWord.FindTheWordFragment;
+import com.vincler.jf.projet11.presentation.writetheword.WriteTheWordFragment;
 import com.vincler.jf.projet11.utils.Utils;
 
 public class GameActivity extends AppCompatActivity {
@@ -27,7 +28,9 @@ public class GameActivity extends AppCompatActivity {
                     break;
                 case 2:
                     callFragmentGame2();
-                    ;
+                    break;
+                case 3:
+                    callFragmentGame3();
             }
         }
     }
@@ -42,4 +45,8 @@ public class GameActivity extends AppCompatActivity {
         Utils.addFragmentInGameActivity(this, findTheWordFragment);
     }
 
+    private void callFragmentGame3() {
+        Fragment writeTheWordFragment = WriteTheWordFragment.newInstance(gameActivityDependency);
+        Utils.addFragmentInGameActivity(this, writeTheWordFragment);
+    }
 }

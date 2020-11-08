@@ -101,7 +101,6 @@ public class FindThePictureFragment extends Fragment {
         int score = viewModel.score.getValue();
         Fragment resultGameFragment = ResultGameFragment.newInstance(score);
         Utils.replaceFragmentInGameActivity(getActivity(), resultGameFragment);
-
     }
 
     private void imageClickListener(ImageView imageView, int index) {
