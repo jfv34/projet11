@@ -1,18 +1,22 @@
 package com.vincler.jf.projet11.presentation.writetheword;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.vincler.jf.projet11.R;
-import com.vincler.jf.projet11.presentation.findThePicture.FindThePictureViewModel;
+import com.vincler.jf.projet11.models.BorderColorEnum;
 import com.vincler.jf.projet11.presentation.gameActivity.GameActivityDependency;
 import com.vincler.jf.projet11.presentation.resultGame.ResultGameFragment;
 import com.vincler.jf.projet11.utils.Utils;
@@ -22,6 +26,10 @@ public class WriteTheWordFragment extends Fragment {
     private GameActivityDependency bundleGameActivityDependency;
     private WriteTheWordViewModel viewModel;
     private ImageView pictureImageView;
+    private EditText wordET;
+    private TextView correctWordTV;
+    private TextView firstLetterTV;
+    private ExtendedFloatingActionButton validateFab;
 
     public static WriteTheWordFragment newInstance(GameActivityDependency bundleGameActivityDependency) {
         WriteTheWordFragment writeTheWordFragment = new WriteTheWordFragment();
@@ -38,6 +46,10 @@ public class WriteTheWordFragment extends Fragment {
         bundleGameActivityDependency = (GameActivityDependency) getArguments().getSerializable("value");
 
         pictureImageView = root.findViewById(R.id.fragment_writetheword_imageView);
+        wordET = root.findViewById(R.id.fragment_writetheword_textInputEditText);
+        correctWordTV = root.findViewById(R.id.fragment_writetheword_correctWord_tv);
+        firstLetterTV = root.findViewById(R.id.fragment_writetheword_firstLetter_TV);
+        validateFab = root.findViewById(R.id.fragment_writetheword_validate_fab);
 
         return root;
     }
@@ -49,12 +61,15 @@ public class WriteTheWordFragment extends Fragment {
         viewModel = new ViewModelProvider(this).get(WriteTheWordViewModel.class);
         viewModel.getData(bundleGameActivityDependency.getLanguage());
 
-        viewModel.currentModel.observe(getViewLifecycleOwner(),model ->
+        viewModel.currentModel.observe(getViewLifecycleOwner(), model ->
                 {
-                    displayPicture(model.getPicture(),pictureImageView);
+                    displayPicture(model.getPicture(), pictureImageView);
+                    correctWordTV.setText("");
+                    wordET.getText().clear();
+                    if(bundleGameActivityDependency.getGameId()==3){displayFistLetter();}
                     ;
                 }
-                );
+        );
 
         viewModel.isGameOver.observe(getViewLifecycleOwner(), gameOver ->
                 {
@@ -63,6 +78,47 @@ public class WriteTheWordFragment extends Fragment {
                     }
                 }
         );
+
+        validateFab.setOnClickListener(view1 -> {
+            viewModel.userValidateWord(wordET.getText().toString(), bundleGameActivityDependency.getGameId());
+        });
+
+        viewModel.borderWordColor.observe(getViewLifecycleOwner(), this::displayBorderWord
+        );
+        viewModel.isIncorrectAnswer.observe(getViewLifecycleOwner(), isIncorrectAnswer ->
+                {
+                    if (isIncorrectAnswer) {
+                        displayCorrectWord();
+                    }
+                    ;
+                }
+        );
+
+    }
+
+    private void displayFistLetter() {
+        if(viewModel.currentModel.getValue()!=null){
+        firstLetterTV.setText(viewModel.currentModel.getValue().getWord().toUpperCase().substring(0,1));}
+    }
+
+    private void displayCorrectWord() {
+        correctWordTV.setText(viewModel.currentModel.getValue().getWord().toUpperCase());
+    }
+
+    private void displayBorderWord(BorderColorEnum borderWordColor) {
+        String colorBorder = "";
+
+        if (borderWordColor == BorderColorEnum.GREEN) {
+            colorBorder = "#0AEA14";
+        }
+        if (borderWordColor == BorderColorEnum.RED) {
+            colorBorder = "#E53935";
+        }
+        if (borderWordColor == BorderColorEnum.TRANSPARENT) {
+            colorBorder = "#00000000";
+        }
+
+        wordET.setBackgroundColor(Color.parseColor(colorBorder));
     }
 
     private void displayPicture(String url, ImageView imageView) {

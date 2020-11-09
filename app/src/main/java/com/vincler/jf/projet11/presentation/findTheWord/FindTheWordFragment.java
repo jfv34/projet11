@@ -89,10 +89,7 @@ public class FindTheWordFragment extends Fragment {
                 }
         );
 
-        viewModel.borderWordColor.observe(getViewLifecycleOwner(), borderWordColor ->
-                {
-                    displayBorderWord(borderWordColor);
-                }
+        viewModel.borderWordColor.observe(getViewLifecycleOwner(), this::displayBorderWord
         );
 
     }

@@ -30,7 +30,8 @@ public class GameActivity extends AppCompatActivity {
                     callFragmentGame2();
                     break;
                 case 3:
-                    callFragmentGame3();
+                case 4:
+                    callFragmentGame3_or_4();
             }
         }
     }
@@ -45,7 +46,7 @@ public class GameActivity extends AppCompatActivity {
         Utils.addFragmentInGameActivity(this, findTheWordFragment);
     }
 
-    private void callFragmentGame3() {
+    private void callFragmentGame3_or_4() {
         Fragment writeTheWordFragment = WriteTheWordFragment.newInstance(gameActivityDependency);
         Utils.addFragmentInGameActivity(this, writeTheWordFragment);
     }

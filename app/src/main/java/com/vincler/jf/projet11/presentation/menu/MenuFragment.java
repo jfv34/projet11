@@ -99,8 +99,8 @@ public class MenuFragment extends Fragment {
         game2TextView.setOnClickListener(v -> callGameActivity(2));
         game3ImageView.setOnClickListener(v -> callGameActivity(3));
         game3TextView.setOnClickListener(v -> callGameActivity(3));
-        game4ImageView.setOnClickListener(v -> callGameActivity(3));
-        game4TextView.setOnClickListener(v -> callGameActivity(3));
+        game4ImageView.setOnClickListener(v -> callGameActivity(4));
+        game4TextView.setOnClickListener(v -> callGameActivity(4));
 
         frenchFlagImageView.setOnClickListener(v -> viewModel.language.postValue(LanguageEnum.FRENCH));
         englishFlagImageView.setOnClickListener(v -> viewModel.language.postValue(LanguageEnum.ENGLISH));
