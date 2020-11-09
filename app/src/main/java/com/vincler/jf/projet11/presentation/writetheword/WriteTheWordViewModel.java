@@ -36,6 +36,7 @@ public class WriteTheWordViewModel extends ViewModel {
                             writeTheWordList.clear();
                             writeTheWordList.addAll(result);
                             currentModel.postValue(result.get(0));
+                            int i =0;
                         } else {
                             isErrorLoading.postValue(true);
                         }

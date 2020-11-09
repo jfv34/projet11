@@ -29,6 +29,10 @@ public class MenuFragment extends Fragment {
     private TextView game1TextView;
     private ImageView game2ImageView;
     private TextView game2TextView;
+    private ImageView game3ImageView;
+    private TextView game3TextView;
+    private ImageView game4ImageView;
+    private TextView game4TextView;
 
     public static MenuFragment newInstance() {
         return new MenuFragment();
@@ -71,7 +75,7 @@ public class MenuFragment extends Fragment {
             } else viewModel.language.postValue(LanguageEnum.ENGLISH);
         });
         views(view);
-        setOnClickListeners();
+        gamesSetOnClickListeners();
     }
 
     private void views(View view) {
@@ -79,16 +83,24 @@ public class MenuFragment extends Fragment {
         game1TextView = view.findViewById(R.id.fragment_menu_text1_tv);
         game2ImageView = view.findViewById(R.id.fragment_menu_game2_iv);
         game2TextView = view.findViewById(R.id.fragment_menu_text2_tv);
+        game3ImageView = view.findViewById(R.id.fragment_menu_game3_iv);
+        game3TextView = view.findViewById(R.id.fragment_menu_text3_tv);
+        game4ImageView = view.findViewById(R.id.fragment_menu_game4_iv);
+        game4TextView = view.findViewById(R.id.fragment_menu_text4_tv);
         frenchFlagImageView = view.findViewById(R.id.fragment_menu_flag_french);
         englishFlagImageView = view.findViewById(R.id.fragment_menu_flag_kingdom);
         spainFlagImageView = view.findViewById(R.id.fragment_menu_flag_spain);
     }
 
-    private void setOnClickListeners() {
+    private void gamesSetOnClickListeners() {
         game1ImageView.setOnClickListener(v -> callGameActivity(1));
         game1TextView.setOnClickListener(v -> callGameActivity(1));
         game2ImageView.setOnClickListener(v -> callGameActivity(2));
         game2TextView.setOnClickListener(v -> callGameActivity(2));
+        game3ImageView.setOnClickListener(v -> callGameActivity(3));
+        game3TextView.setOnClickListener(v -> callGameActivity(3));
+        game4ImageView.setOnClickListener(v -> callGameActivity(3));
+        game4TextView.setOnClickListener(v -> callGameActivity(3));
 
         frenchFlagImageView.setOnClickListener(v -> viewModel.language.postValue(LanguageEnum.FRENCH));
         englishFlagImageView.setOnClickListener(v -> viewModel.language.postValue(LanguageEnum.ENGLISH));

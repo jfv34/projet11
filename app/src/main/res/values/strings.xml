@@ -7,4 +7,6 @@
     <string name="find_the_word_with_the_first_letter">Find the word with the first letter.</string>
     <string name="find_the_word_without_the_first_letter">Find the word without the first letter.</string>
     <string name="data_loading_error">Data loading error</string>
+    <string name="write_the_word">Write the word</string>
+    <string name="validate">Validate</string>
 </resources>
