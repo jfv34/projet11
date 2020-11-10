@@ -2,6 +2,7 @@ package com.vincler.jf.projet11.presentation.writetheword;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,14 +61,20 @@ public class WriteTheWordFragment extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(WriteTheWordViewModel.class);
         viewModel.getData(bundleGameActivityDependency.getLanguage());
+        if (bundleGameActivityDependency.getGameId() == 3) {
+            wordET.setGravity(Gravity.START);
+        } else wordET.setGravity(Gravity.CENTER_HORIZONTAL);
 
         viewModel.currentModel.observe(getViewLifecycleOwner(), model ->
                 {
                     displayPicture(model.getPicture(), pictureImageView);
                     correctWordTV.setText("");
                     wordET.getText().clear();
-                    if(bundleGameActivityDependency.getGameId()==3){displayFistLetter();}
-                    ;
+                    if (bundleGameActivityDependency.getGameId() == 3) {
+                        displayFistLetter();
+                    } else {
+                        wordET.setHint("Write the word");
+                    }
                 }
         );
 

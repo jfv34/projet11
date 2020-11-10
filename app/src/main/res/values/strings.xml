@@ -9,4 +9,5 @@
     <string name="data_loading_error">Data loading error</string>
     <string name="write_the_word">Write the word</string>
     <string name="validate">Validate</string>
+    <string name="yourfinalscoreis">Your final score is</string>
 </resources>

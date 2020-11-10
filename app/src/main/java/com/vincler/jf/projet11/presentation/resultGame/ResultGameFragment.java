@@ -9,12 +9,13 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.vincler.jf.projet11.R;
 
 public class ResultGameFragment extends Fragment {
 
     TextView textview;
-    TextView returnToMenuTv;
+    ExtendedFloatingActionButton returnToMenuFab;
     private int bundleScore;
 
     public static ResultGameFragment newInstance(int bundleScore) {
@@ -36,16 +37,16 @@ public class ResultGameFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_result_game, container, false);
         textview = root.findViewById(R.id.fragment_result_game_textview);
-        returnToMenuTv = root.findViewById(R.id.fragment_result_game_returnToMenu);
+        returnToMenuFab = root.findViewById(R.id.fragment_result_game_return_menu_fab);
         return root;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        textview.setText("Votre score final est de " + bundleScore);
+        textview.setText(getString(R.string.yourfinalscoreis) + bundleScore);
 
-        returnToMenuTv.setOnClickListener(view1 -> {
+        returnToMenuFab.setOnClickListener(view1 -> {
             getActivity().finish();
         });
 

@@ -48,9 +48,7 @@
                 android:id="@+id/fragment_writetheword_textInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Write the word:"
                 android:inputType="textCapWords|textCapSentences"
-                android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textSize="30sp" />
         </com.google.android.material.textfield.TextInputLayout>

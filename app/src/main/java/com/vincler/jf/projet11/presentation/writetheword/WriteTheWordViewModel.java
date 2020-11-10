@@ -69,7 +69,7 @@ public class WriteTheWordViewModel extends ViewModel {
                 isIncorrectAnswer.postValue(false);
                 goToTheNextDraw();
             }
-        }, Constants.DELAY_BETWEEN_DRAWS);
+        }, Constants.DELAY_BETWEEN_DRAWS_GAME3_AND_GAME4);
     }
 
     private void changeBorderWordColor(BorderColorEnum borderColorEnum) {
