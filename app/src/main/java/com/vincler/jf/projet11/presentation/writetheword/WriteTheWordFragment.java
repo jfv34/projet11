@@ -97,10 +97,8 @@ public class WriteTheWordFragment extends Fragment {
                     if (isIncorrectAnswer) {
                         displayCorrectWord();
                     }
-                    ;
                 }
         );
-
     }
 
     private void displayFistLetter() {
