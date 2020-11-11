@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.vincler.jf.projet11.R;
 import com.vincler.jf.projet11.api.InsertInitialData;
@@ -24,7 +25,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         configureFirebase();
-        // InsertInitialData.createInitialData();     // for insert initial data
+        //InsertInitialData.createInitialData();     // for insert initial data
         callMenuFragment();
     }
 
@@ -34,7 +35,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void configureFirebase() {
-        //firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),

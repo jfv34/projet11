@@ -1,11 +1,12 @@
 package com.vincler.jf.projet11.repositories;
 
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.vincler.jf.projet11.models.Constants;
-import com.vincler.jf.projet11.models.FindTheWordModel;
 import com.vincler.jf.projet11.models.LanguageEnum;
+import com.vincler.jf.projet11.models.UserWordsModel;
 import com.vincler.jf.projet11.models.WriteTheWordModel;
 import com.vincler.jf.projet11.utils.Utils;
 
@@ -18,7 +19,7 @@ public class WriteTheWordRepository {
         return FirebaseFirestore.getInstance().collection(collection_name);
     }
 
-    public static void getWriteTheWordList(Result<List<WriteTheWordModel>> result, LanguageEnum language) {
+    public static void getWriteTheWordList(Result<List<WriteTheWordModel>> result, LanguageEnum language, ArrayList<UserWordsModel> userWordsModelArrayList) {
         getCollection("words")
                 .whereEqualTo("language", language)
                 .get()
@@ -51,7 +52,10 @@ public class WriteTheWordRepository {
                                                     }
                                                     WriteTheWordModel writeTheWordModel = new WriteTheWordModel(
                                                             picture,
-                                                            wordsDocuments.get(randomList.get(i)).get("word").toString());
+                                                            wordsDocuments.get(randomList.get(i)).get("word").toString(),
+                                                            wordsDocuments.get(randomList.get(i)).getId()
+                                                    );
+
                                                     writeTheWordModelList.add(writeTheWordModel);
                                                 }
                                                 if (result != null) {
@@ -65,5 +69,16 @@ public class WriteTheWordRepository {
                                     });
                         }
                 );
+    }
+
+    public static void addWord(UserWordsModel userWordsModel) {
+        insertWordUser(userWordsModel);
+    }
+
+    public static Task<Void> insertWordUser(UserWordsModel userWordsModel) {
+
+        return getCollection("users_words")
+                .document()
+                .set(userWordsModel);
     }
 }

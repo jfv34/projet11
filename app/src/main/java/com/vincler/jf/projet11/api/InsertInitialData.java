@@ -172,14 +172,14 @@ public class InsertInitialData {
         wordsList.add("https://live.staticflickr.com/1664/26722007756_35d6504302_q_d.jpg");// picture
 
         wordsList.add("livre");// french
-        wordsList.add("music");// english
+        wordsList.add("book");// english
         wordsList.add("entregado");// spanish
         wordsList.add("https://live.staticflickr.com/5149/5635864124_518eb0f151_q_d.jpg");// picture
 
         wordsList.add("arbre");// french
         wordsList.add("tree");// english
         wordsList.add("árbol");// spanish
-        wordsList.add("https://live.staticflickr.com/5149/5635864124_518eb0f151_q_d.jpg");// picture
+        wordsList.add("https://live.staticflickr.com/5336/8838398871_5c942214e6_q_d.jpg");// picture
 
         return wordsList;
     }
