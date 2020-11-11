@@ -44,7 +44,7 @@ public class ResultGameFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        textview.setText(getString(R.string.yourfinalscoreis) + bundleScore);
+        textview.setText(getString(R.string.yourfinalscoreis) + " "+bundleScore);
 
         returnToMenuFab.setOnClickListener(view1 -> {
             getActivity().finish();

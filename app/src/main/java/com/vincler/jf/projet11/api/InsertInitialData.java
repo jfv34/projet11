@@ -125,6 +125,62 @@ public class InsertInitialData {
         wordsList.add("música");// spanish
         wordsList.add("https://live.staticflickr.com/159/390534244_3db9138593_q_d.jpg");// picture
 
+
+        wordsList.add("pierre");// french
+        wordsList.add("stone");// english
+        wordsList.add("piedra");// spanish
+        wordsList.add("https://live.staticflickr.com/902/39279524390_c11e1b542c_q_d.jpg");// picture
+
+        wordsList.add("police");// french
+        wordsList.add("police");// english
+        wordsList.add("policia");// spanish
+        wordsList.add("https://live.staticflickr.com/6088/6034330235_3c2a83f0b7_q_d.jpg");// picture
+
+        wordsList.add("porte");// french
+        wordsList.add("door");// english
+        wordsList.add("puerta");// spanish
+        wordsList.add("https://live.staticflickr.com/6021/6002563983_b201ea754c_q_d.jpg");// picture
+
+        wordsList.add("musique");// french
+        wordsList.add("music");// english
+        wordsList.add("música");// spanish
+        wordsList.add("https://live.staticflickr.com/159/390534244_3db9138593_q_d.jpg");// picture
+
+        wordsList.add("route");// french
+        wordsList.add("road");// english
+        wordsList.add("carretera");// spanish
+        wordsList.add("https://live.staticflickr.com/4180/34182638200_c1b7834611_q_d.jpg");// picture
+
+        wordsList.add("table");// french
+        wordsList.add("table");// english
+        wordsList.add("mesa");// spanish
+        wordsList.add("https://live.staticflickr.com/2871/13255324613_991cd862ce_q_d.jpg");// picture
+
+        wordsList.add("voiture");// french
+        wordsList.add("car");// english
+        wordsList.add("carro");// spanish
+        wordsList.add("https://live.staticflickr.com/172/404523005_f50e859da7_q_d.jpg");// picture
+
+        wordsList.add("enfant");// french
+        wordsList.add("child");// english
+        wordsList.add("niño");// spanish
+        wordsList.add("https://live.staticflickr.com/5622/20632333716_0ffcccd80a_q_d.jpg");// picture
+
+        wordsList.add("garde");// french
+        wordsList.add("guardian");// english
+        wordsList.add("mantene");// spanish
+        wordsList.add("https://live.staticflickr.com/1664/26722007756_35d6504302_q_d.jpg");// picture
+
+        wordsList.add("livre");// french
+        wordsList.add("music");// english
+        wordsList.add("entregado");// spanish
+        wordsList.add("https://live.staticflickr.com/5149/5635864124_518eb0f151_q_d.jpg");// picture
+
+        wordsList.add("arbre");// french
+        wordsList.add("tree");// english
+        wordsList.add("árbol");// spanish
+        wordsList.add("https://live.staticflickr.com/5149/5635864124_518eb0f151_q_d.jpg");// picture
+
         return wordsList;
     }
 }
