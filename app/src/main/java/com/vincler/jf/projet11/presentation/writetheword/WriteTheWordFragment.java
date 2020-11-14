@@ -2,6 +2,7 @@ package com.vincler.jf.projet11.presentation.writetheword;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,6 +70,7 @@ public class WriteTheWordFragment extends Fragment {
                 {
                     displayPicture(model.getPicture(), pictureImageView);
                     correctWordTV.setText("");
+                    editTextinAllCaps();
                     wordET.getText().clear();
                     if (bundleGameActivityDependency.getGameId() == 3) {
                         displayFistLetter();
@@ -99,6 +101,10 @@ public class WriteTheWordFragment extends Fragment {
                     }
                 }
         );
+    }
+
+    private void editTextinAllCaps() {
+       wordET.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
     }
 
     private void displayFistLetter() {
