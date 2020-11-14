@@ -23,7 +23,6 @@ public class WriteTheWordViewModel extends ViewModel {
 
     String firebaseUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
     ArrayList<WriteTheWordModel> writeTheWordList = new ArrayList<>();
-    MutableLiveData<ArrayList<UserWordsModel>> userWordsModelsList = new MutableLiveData<>();
     MutableLiveData<WriteTheWordModel> currentModel = new MutableLiveData<>();
     MutableLiveData<Integer> draw = new MutableLiveData<>();
     MutableLiveData<Boolean> isGameOver = new MutableLiveData<>();
@@ -38,30 +37,6 @@ public class WriteTheWordViewModel extends ViewModel {
         score.postValue(0);
 
         getWriteTheWordList(language);
-        getUserWords();
-    }
-
-    private void getUserWords() {
-        UserWordsRepositories.getWordsUser(
-                new Result<ArrayList<UserWordsModel>>() {
-                    @Override
-                    public void onResult(ArrayList<UserWordsModel> result) {
-                        if (result != null && result.size() != 0 && result.get(0) != null) {
-
-                            userWordsModelsList.postValue(result);
-                            int test=1;
-
-                        } else {
-                            isErrorLoading.postValue(true);
-                        }
-                    }
-
-                    @Override
-                    public void onError() {
-                        isErrorLoading.postValue(true);
-
-                    }
-                });
     }
 
     private void getWriteTheWordList(LanguageEnum language) {
@@ -83,7 +58,7 @@ public class WriteTheWordViewModel extends ViewModel {
                     public void onError() {
                         isErrorLoading.postValue(true);
                     }
-                }, language,userWordsModelsList.getValue());
+                });
     }
 
     private void addWordInData(int gameId) {

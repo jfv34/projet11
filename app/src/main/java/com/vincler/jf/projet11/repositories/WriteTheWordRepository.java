@@ -1,12 +1,10 @@
 package com.vincler.jf.projet11.repositories;
 
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.vincler.jf.projet11.models.Constants;
 import com.vincler.jf.projet11.models.LanguageEnum;
-import com.vincler.jf.projet11.models.UserWordsModel;
 import com.vincler.jf.projet11.models.WriteTheWordModel;
 import com.vincler.jf.projet11.utils.Utils;
 
@@ -19,17 +17,17 @@ public class WriteTheWordRepository {
         return FirebaseFirestore.getInstance().collection(collection_name);
     }
 
-    public static void getWriteTheWordList(Result<List<WriteTheWordModel>> result, LanguageEnum language, ArrayList<UserWordsModel> userWordsModelArrayList) {
+    public static void getWriteTheWordList(Result<List<WriteTheWordModel>> result, LanguageEnum language) {
         getCollection("words")
                 .whereEqualTo("language", language)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
 
-                            List<DocumentSnapshot> wordsDocuments =
-                                    queryDocumentSnapshots.getDocuments();
+                    List<DocumentSnapshot> wordsDocuments =
+                            queryDocumentSnapshots.getDocuments();
 
-                            getCollection("pictures")
-                                    .get()
+                    getCollection("pictures")
+                            .get()
                                     .addOnFailureListener(e -> {
                                         result.onError();
                                     })
@@ -69,16 +67,5 @@ public class WriteTheWordRepository {
                                     });
                         }
                 );
-    }
-
-    public static void addWord(UserWordsModel userWordsModel) {
-        insertWordUser(userWordsModel);
-    }
-
-    public static Task<Void> insertWordUser(UserWordsModel userWordsModel) {
-
-        return getCollection("users_words")
-                .document()
-                .set(userWordsModel);
     }
 }
