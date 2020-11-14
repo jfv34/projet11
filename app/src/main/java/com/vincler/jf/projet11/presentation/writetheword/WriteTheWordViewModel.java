@@ -4,14 +4,11 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.vincler.jf.projet11.models.BorderColorEnum;
 import com.vincler.jf.projet11.models.Constants;
 import com.vincler.jf.projet11.models.LanguageEnum;
-import com.vincler.jf.projet11.models.UserWordsModel;
 import com.vincler.jf.projet11.models.WriteTheWordModel;
 import com.vincler.jf.projet11.repositories.Result;
-import com.vincler.jf.projet11.repositories.UserWordsRepositories;
 import com.vincler.jf.projet11.repositories.WriteTheWordRepository;
 
 import java.util.ArrayList;
@@ -21,7 +18,6 @@ import java.util.TimerTask;
 
 public class WriteTheWordViewModel extends ViewModel {
 
-    String firebaseUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
     ArrayList<WriteTheWordModel> writeTheWordList = new ArrayList<>();
     MutableLiveData<WriteTheWordModel> currentModel = new MutableLiveData<>();
     MutableLiveData<Integer> draw = new MutableLiveData<>();
@@ -58,16 +54,7 @@ public class WriteTheWordViewModel extends ViewModel {
                     public void onError() {
                         isErrorLoading.postValue(true);
                     }
-                });
-    }
-
-    private void addWordInData(int gameId) {
-        UserWordsModel userWordsModel = new UserWordsModel(
-                firebaseUser,
-                currentModel.getValue().getWordId(),
-                gameId
-        );
-        WriteTheWordRepository.addWord(userWordsModel);
+                }, language);
     }
 
     public void userValidateWord(String textValidate, int gameId) {
@@ -76,7 +63,6 @@ public class WriteTheWordViewModel extends ViewModel {
             int newScore = score.getValue() + 1;
             score.postValue(newScore);
             changeBorderWordColor(BorderColorEnum.GREEN);
-            addWordInData(gameId);
         } else {
             changeBorderWordColor(BorderColorEnum.RED);
             isIncorrectAnswer.postValue(true);
