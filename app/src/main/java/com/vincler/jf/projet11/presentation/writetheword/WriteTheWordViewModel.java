@@ -3,7 +3,6 @@ package com.vincler.jf.projet11.presentation.writetheword;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.vincler.jf.projet11.models.BorderColorEnum;
 import com.vincler.jf.projet11.models.Constants;
 import com.vincler.jf.projet11.models.LanguageEnum;
@@ -77,19 +76,20 @@ public class WriteTheWordViewModel extends ViewModel {
         }, Constants.DELAY_BETWEEN_DRAWS_GAME3_AND_GAME4);
     }
 
+    public String getFirstLetter() {
+        if (currentModel.getValue().getWord() != null) {
+            return currentModel.getValue().getWord().substring(0, 1);
+        } else return "";
+    }
+
     private void changeBorderWordColor(BorderColorEnum borderColorEnum) {
 
         borderWordColor.postValue(borderColorEnum);
     }
 
-    private boolean isWordCorrect(String textValidate, int gameId) {
+    private boolean isWordCorrect(String wordValidate, int gameId) {
         boolean iscorrect = false;
         String correctWord = currentModel.getValue().getWord();
-        String wordValidate = "";
-        if (gameId == 3) {
-            wordValidate = (currentModel.getValue().getWord().substring(0, 1)) + textValidate;
-        } else wordValidate = textValidate;
-
         if (wordValidate.toUpperCase().equals(correctWord.toUpperCase())) {
             iscorrect = true;
         }

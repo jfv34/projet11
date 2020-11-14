@@ -2,7 +2,9 @@ package com.vincler.jf.projet11.presentation.writetheword;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputFilter;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +32,6 @@ public class WriteTheWordFragment extends Fragment {
     private ImageView pictureImageView;
     private EditText wordET;
     private TextView correctWordTV;
-    private TextView firstLetterTV;
     private ExtendedFloatingActionButton validateFab;
 
     public static WriteTheWordFragment newInstance(GameActivityDependency bundleGameActivityDependency) {
@@ -50,7 +51,6 @@ public class WriteTheWordFragment extends Fragment {
         pictureImageView = root.findViewById(R.id.fragment_writetheword_imageView);
         wordET = root.findViewById(R.id.fragment_writetheword_textInputEditText);
         correctWordTV = root.findViewById(R.id.fragment_writetheword_correctWord_tv);
-        firstLetterTV = root.findViewById(R.id.fragment_writetheword_firstLetter_TV);
         validateFab = root.findViewById(R.id.fragment_writetheword_validate_fab);
 
         return root;
@@ -73,7 +73,10 @@ public class WriteTheWordFragment extends Fragment {
                     editTextinAllCaps();
                     wordET.getText().clear();
                     if (bundleGameActivityDependency.getGameId() == 3) {
-                        displayFistLetter();
+                        if (wordET.getText().length() == 0) {
+                            displayFistLetter();
+                        }
+
                     } else {
                         wordET.setHint("Write the word");
                     }
@@ -87,6 +90,35 @@ public class WriteTheWordFragment extends Fragment {
                     }
                 }
         );
+
+
+        wordET.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (bundleGameActivityDependency.getGameId() == 3) {
+                    String firstLetter = viewModel.getFirstLetter();
+                    if (!firstLetter.equals("")) {
+                        if (wordET.length() > 0) {
+                            String firstLetterInEditText = wordET.getText().toString().substring(0, 1);
+                            if (firstLetterInEditText.equals(firstLetter.toUpperCase())) {
+                                displayFistLetter();
+                            }
+                        } else {
+                            displayFistLetter();
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         validateFab.setOnClickListener(view1 -> {
             viewModel.userValidateWord(wordET.getText().toString(), bundleGameActivityDependency.getGameId());
@@ -108,9 +140,11 @@ public class WriteTheWordFragment extends Fragment {
     }
 
     private void displayFistLetter() {
-        if(viewModel.currentModel.getValue()!=null){
 
-        firstLetterTV.setText(viewModel.currentModel.getValue().getWord().toUpperCase().substring(0,1));}
+        String firstLetterInUpperCase = viewModel.getFirstLetter().toUpperCase();
+        wordET.setText(firstLetterInUpperCase);
+        wordET.setSelection(wordET.getText().length());
+
     }
 
     private void displayCorrectWord() {
