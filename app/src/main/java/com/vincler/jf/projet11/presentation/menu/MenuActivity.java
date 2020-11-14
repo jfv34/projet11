@@ -9,7 +9,6 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.vincler.jf.projet11.R;
-import com.vincler.jf.projet11.api.InsertInitialData;
 import com.vincler.jf.projet11.utils.Utils;
 
 import java.util.Arrays;
@@ -26,7 +25,9 @@ public class MenuActivity extends AppCompatActivity {
 
         configureFirebase();
         //InsertInitialData.createInitialData();     // for insert initial data
-        callMenuFragment();
+        if (savedInstanceState == null) {
+            callMenuFragment();
+        }
     }
 
     private void callMenuFragment() {
@@ -42,13 +43,15 @@ public class MenuActivity extends AppCompatActivity {
                 new AuthUI.IdpConfig.GoogleBuilder().build()
         );
 
-        startActivityForResult(
-                AuthUI.getInstance()
-                        .createSignInIntentBuilder()
-                        .setAvailableProviders(providers)
-                        .setTheme(R.style.LoginTheme)
-                        //.setLogo(R.drawable.logo)
-                        .build(),
-                RC_SIGN_IN);
+        if (firebaseUser == null) {
+            startActivityForResult(
+                    AuthUI.getInstance()
+                            .createSignInIntentBuilder()
+                            .setAvailableProviders(providers)
+                            .setTheme(R.style.LoginTheme)
+                            //.setLogo(R.drawable.logo)
+                            .build(),
+                    RC_SIGN_IN);
+        }
     }
 }

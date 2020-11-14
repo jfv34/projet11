@@ -28,7 +28,7 @@ public class InsertInitialData {
             String pictureId = Utils.random(16);
             WordModel french_word = new WordModel(wordsList.get(t), LanguageEnum.FRENCH, pictureId);
             WordModel english_word = new WordModel(wordsList.get(t + 1), LanguageEnum.ENGLISH, pictureId);
-            WordModel spanish_word = new WordModel(wordsList.get(t + 2), LanguageEnum.SPAIN, pictureId);
+            WordModel spanish_word = new WordModel(wordsList.get(t + 2), LanguageEnum.SPANISH, pictureId);
             PictureModel picture_ = new PictureModel(wordsList.get(t + 3));
 
             insertWord(french_word);

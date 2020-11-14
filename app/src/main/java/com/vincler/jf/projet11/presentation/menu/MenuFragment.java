@@ -39,6 +39,12 @@ public class MenuFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        viewModel = new ViewModelProvider(this).get(MenuFragmentViewModel.class);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_menu, container, false);
 
@@ -48,32 +54,6 @@ public class MenuFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(MenuFragmentViewModel.class);
-        if (viewModel.language.getValue() == null) {
-            viewModel.language.postValue(LanguageEnum.ENGLISH);
-        }
-
-        viewModel.language.observe(getViewLifecycleOwner(), languageEnum ->
-        {
-            if (languageEnum != null) {
-                switch (languageEnum) {
-                    case FRENCH:
-                        viewModel.isFrench.postValue(true);
-                        viewModel.isEnglish.postValue(false);
-                        viewModel.isSpain.postValue(false);
-                        break;
-                    case ENGLISH:
-                        viewModel.isFrench.postValue(false);
-                        viewModel.isEnglish.postValue(true);
-                        viewModel.isSpain.postValue(false);
-                        break;
-                    case SPAIN:
-                        viewModel.isFrench.postValue(false);
-                        viewModel.isEnglish.postValue(false);
-                        viewModel.isSpain.postValue(true);
-                }
-            } else viewModel.language.postValue(LanguageEnum.ENGLISH);
-        });
         views(view);
         gamesSetOnClickListeners();
     }
@@ -102,9 +82,9 @@ public class MenuFragment extends Fragment {
         game4ImageView.setOnClickListener(v -> callGameActivity(4));
         game4TextView.setOnClickListener(v -> callGameActivity(4));
 
-        frenchFlagImageView.setOnClickListener(v -> viewModel.language.postValue(LanguageEnum.FRENCH));
-        englishFlagImageView.setOnClickListener(v -> viewModel.language.postValue(LanguageEnum.ENGLISH));
-        spainFlagImageView.setOnClickListener(v -> viewModel.language.postValue(LanguageEnum.SPAIN));
+        frenchFlagImageView.setOnClickListener(v -> viewModel.changeLanguage(LanguageEnum.FRENCH));
+        englishFlagImageView.setOnClickListener(v -> viewModel.changeLanguage(LanguageEnum.ENGLISH));
+        spainFlagImageView.setOnClickListener(v -> viewModel.changeLanguage(LanguageEnum.SPANISH));
 
         viewModel.isFrench.observe(getViewLifecycleOwner(), isFrench ->
         {
@@ -118,7 +98,7 @@ public class MenuFragment extends Fragment {
                 changeColorFlag(englishFlagImageView);
             }
         });
-        viewModel.isSpain.observe(getViewLifecycleOwner(), isSpain ->
+        viewModel.isSpanish.observe(getViewLifecycleOwner(), isSpain ->
         {
             if (isSpain) {
                 changeColorFlag(spainFlagImageView);

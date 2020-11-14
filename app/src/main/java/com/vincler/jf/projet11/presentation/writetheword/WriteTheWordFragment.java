@@ -103,6 +103,7 @@ public class WriteTheWordFragment extends Fragment {
 
     private void displayFistLetter() {
         if(viewModel.currentModel.getValue()!=null){
+
         firstLetterTV.setText(viewModel.currentModel.getValue().getWord().toUpperCase().substring(0,1));}
     }
 

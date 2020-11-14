@@ -17,7 +17,7 @@ import java.util.Random;
 public class Utils {
     public static void addFragmentInMenuActivity(FragmentActivity activity, Fragment fragment) {
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.activity_main_constraintLayout, fragment).addToBackStack(fragment.getClass().getName()).commit();
+        transaction.add(R.id.activity_main_constraintLayout, fragment).commit();
     }
     public static void addFragmentInGameActivity(FragmentActivity activity, Fragment fragment) {
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
