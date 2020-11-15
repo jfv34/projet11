@@ -28,5 +28,5 @@
         android:layout_margin="@dimen/margin_normal"
         android:text="Menu"
         app:backgroundTint="@color/colorAccent"
-        app:icon="@drawable/ic_menu_24px"/>
+        app:icon="@drawable/ic_menu"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

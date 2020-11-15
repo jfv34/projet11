@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Projet11</string>
+    <string name="app_name">Language learning</string>
     <string name="choose_the_language_to_learn">Choose the language to learn:</string>
     <string name="choose_your_game">Choose your game:</string>
     <string name="find_the_picture_among_the_four_pictures">Find the picture among the four pictures.</string>
@@ -10,4 +10,6 @@
     <string name="write_the_word">Write the word</string>
     <string name="validate">Validate</string>
     <string name="yourfinalscoreis">Your final score is</string>
+    <string name="settings">Settings</string>
+    <string name="languagelearning">Language learning</string>
 </resources>

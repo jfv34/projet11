@@ -101,7 +101,7 @@ public class FindTheWordFragment extends Fragment {
     }
 
     private void textClickListener(TextView textView, int index) {
-        textView.setOnClickListener(view -> viewModel.userChooseWordAtIndex(index));
+        textView.setOnClickListener(view -> viewModel.userChooseWordAtIndex(index, getContext()));
     }
 
     private void displayBorderWord(BorderColorModel borderTextColor) {

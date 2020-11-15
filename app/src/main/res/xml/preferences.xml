@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="">
+
+        <SeekBarPreference
+            android:defaultValue="10"
+            android:key="drawsPerGame"
+            android:max="20"
+            android:title="Draws per game"
+            app:showSeekBarValue="true" />
+
+        <SeekBarPreference
+            android:defaultValue="10"
+            android:key="delay"
+            android:max="20"
+            android:title="Delay between each word (in milliseconds)"
+            app:showSeekBarValue="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

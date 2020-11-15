@@ -1,5 +1,7 @@
 package com.vincler.jf.projet11.presentation.menu;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +11,7 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.vincler.jf.projet11.R;
-import com.vincler.jf.projet11.api.InsertInitialData;
+import com.vincler.jf.projet11.models.Constants;
 import com.vincler.jf.projet11.utils.Utils;
 
 import java.util.Arrays;

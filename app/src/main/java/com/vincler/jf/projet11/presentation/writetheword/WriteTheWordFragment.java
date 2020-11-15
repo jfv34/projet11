@@ -61,7 +61,7 @@ public class WriteTheWordFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         viewModel = new ViewModelProvider(this).get(WriteTheWordViewModel.class);
-        viewModel.getData(bundleGameActivityDependency.getLanguage());
+        viewModel.getData(bundleGameActivityDependency.getLanguage(), getContext());
         if (bundleGameActivityDependency.getGameId() == 3) {
             wordET.setGravity(Gravity.START);
         } else wordET.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -121,7 +121,7 @@ public class WriteTheWordFragment extends Fragment {
         });
 
         validateFab.setOnClickListener(view1 -> {
-            viewModel.userValidateWord(wordET.getText().toString(), bundleGameActivityDependency.getGameId());
+            viewModel.userValidateWord(wordET.getText().toString(), bundleGameActivityDependency.getGameId(), getContext());
         });
 
         viewModel.borderWordColor.observe(getViewLifecycleOwner(), this::displayBorderWord

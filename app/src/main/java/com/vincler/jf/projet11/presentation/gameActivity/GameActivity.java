@@ -1,11 +1,14 @@
 package com.vincler.jf.projet11.presentation.gameActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.vincler.jf.projet11.R;
+import com.vincler.jf.projet11.models.Constants;
 import com.vincler.jf.projet11.presentation.findThePicture.FindThePictureFragment;
 import com.vincler.jf.projet11.presentation.findTheWord.FindTheWordFragment;
 import com.vincler.jf.projet11.presentation.writetheword.WriteTheWordFragment;
@@ -17,6 +20,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_game);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {

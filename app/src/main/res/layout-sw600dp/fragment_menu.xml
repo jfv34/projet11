@@ -63,7 +63,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/fragment_menu_flag_kingdom"
             android:id="@+id/fragment_menu_flag_spain"
-            android:src="@drawable/ic_spain3"
+            android:src="@drawable/ic_spain"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
 

@@ -104,7 +104,7 @@ public class FindThePictureFragment extends Fragment {
     }
 
     private void imageClickListener(ImageView imageView, int index) {
-        imageView.setOnClickListener(view -> viewModel.userChoosePictureAtIndex(index));
+        imageView.setOnClickListener(view -> viewModel.userChoosePictureAtIndex(index, getContext()));
     }
 
     private void displayBorderPicture(BorderColorModel borderPictureColor) {

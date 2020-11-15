@@ -1,5 +1,7 @@
 package com.vincler.jf.projet11.repositories;
 
+import android.content.Context;
+
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -17,7 +19,7 @@ public class WriteTheWordRepository {
         return FirebaseFirestore.getInstance().collection(collection_name);
     }
 
-    public static void getWriteTheWordList(Result<List<WriteTheWordModel>> result, LanguageEnum language) {
+    public static void getWriteTheWordList(Result<List<WriteTheWordModel>> result, LanguageEnum language, Context context) {
         getCollection("words")
                 .whereEqualTo("language", language)
                 .get()
@@ -38,7 +40,7 @@ public class WriteTheWordRepository {
 
                                                 ArrayList<WriteTheWordModel> writeTheWordModelList = new ArrayList<>();
                                                 List<Integer> randomList = Utils.getListRandom(wordsDocuments.size());
-                                                for (int i = 0; i < Constants.NUMBER_OF_DRAWS; i++) {
+                                                for (int i = 0; i < Utils.getDrawsPetGamePrefs(context); i++) {
 
                                                     String pictureId = wordsDocuments.get(randomList.get(i)).get("picture_id").toString();
                                                     String picture = "";

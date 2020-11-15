@@ -1,5 +1,7 @@
 package com.vincler.jf.projet11.presentation.findThePicture;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
@@ -55,7 +57,7 @@ public class FindThePictureViewModel extends ViewModel {
                 }, language);
     }
 
-    public void userChoosePictureAtIndex(int index) {
+    public void userChoosePictureAtIndex(int index,Context context) {
 
         boolean iscorrectPosition = currentModel.getValue().getCorrectPicturePosition() == index;
 
@@ -71,7 +73,7 @@ public class FindThePictureViewModel extends ViewModel {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                goToTheNextDraw(index);
+                goToTheNextDraw(index, context);
             }
         }, Constants.DELAY_BETWEEN_DRAWS);
     }
@@ -82,11 +84,12 @@ public class FindThePictureViewModel extends ViewModel {
         borderPictureColor.postValue(newBorderPictureColor);
     }
 
-    private void goToTheNextDraw(int index) {
+    private void goToTheNextDraw(int index, Context context) {
 
         changeBorderPictureColor(BorderColorEnum.TRANSPARENT, index);
         int newDraw = draw.getValue() + 1;
-        if (newDraw < Constants.NUMBER_OF_DRAWS) {
+        int numberOfDraw = Utils.getDrawsPetGamePrefs(context);
+        if (newDraw < numberOfDraw) {
             currentModel.postValue(findThePictureList.get(newDraw));
             draw.postValue(newDraw);
         } else isGameOver.postValue(true);

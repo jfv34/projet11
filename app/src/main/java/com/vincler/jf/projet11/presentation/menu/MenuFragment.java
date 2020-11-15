@@ -18,6 +18,7 @@ import com.vincler.jf.projet11.R;
 import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.presentation.gameActivity.GameActivity;
 import com.vincler.jf.projet11.presentation.gameActivity.GameActivityDependency;
+import com.vincler.jf.projet11.presentation.settings.SettingsActivity;
 
 public class MenuFragment extends Fragment {
 
@@ -33,6 +34,7 @@ public class MenuFragment extends Fragment {
     private TextView game3TextView;
     private ImageView game4ImageView;
     private TextView game4TextView;
+    private ImageView settingsButton;
 
     public static MenuFragment newInstance() {
         return new MenuFragment();
@@ -70,6 +72,7 @@ public class MenuFragment extends Fragment {
         frenchFlagImageView = view.findViewById(R.id.fragment_menu_flag_french);
         englishFlagImageView = view.findViewById(R.id.fragment_menu_flag_kingdom);
         spainFlagImageView = view.findViewById(R.id.fragment_menu_flag_spain);
+        settingsButton = view.findViewById(R.id.toolbar_settings_button);
     }
 
     private void gamesSetOnClickListeners() {
@@ -81,6 +84,7 @@ public class MenuFragment extends Fragment {
         game3TextView.setOnClickListener(v -> callGameActivity(3));
         game4ImageView.setOnClickListener(v -> callGameActivity(4));
         game4TextView.setOnClickListener(v -> callGameActivity(4));
+        settingsButton.setOnClickListener(v -> callSettingsActivity());
 
         frenchFlagImageView.setOnClickListener(v -> viewModel.changeLanguage(LanguageEnum.FRENCH));
         englishFlagImageView.setOnClickListener(v -> viewModel.changeLanguage(LanguageEnum.ENGLISH));
@@ -126,6 +130,11 @@ public class MenuFragment extends Fragment {
                 = new GameActivityDependency(gameId, viewModel.language.getValue());
         Intent intent = new Intent(getActivity(), GameActivity.class);
         intent.putExtra("values", gameActivityDependency);
+        startActivity(intent);
+    }
+
+    private void callSettingsActivity() {
+        Intent intent = new Intent(getActivity(), SettingsActivity.class);
         startActivity(intent);
     }
 }

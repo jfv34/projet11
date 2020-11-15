@@ -10,13 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".presentation.gameActivity.GameActivity" />
-        <activity android:name=".presentation.menu.MenuActivity">
+        <activity
+            android:name=".presentation.menu.MenuActivity"
+            android:label="@string/languagelearning"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".presentation.settings.SettingsActivity" />
     </application>
 
 </manifest>

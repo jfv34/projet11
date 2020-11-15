@@ -1,5 +1,7 @@
 package com.vincler.jf.projet11.presentation.writetheword;
 
+import android.content.Context;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -9,6 +11,7 @@ import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.models.WriteTheWordModel;
 import com.vincler.jf.projet11.repositories.Result;
 import com.vincler.jf.projet11.repositories.WriteTheWordRepository;
+import com.vincler.jf.projet11.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,15 +29,15 @@ public class WriteTheWordViewModel extends ViewModel {
     MutableLiveData<BorderColorEnum> borderWordColor = new MutableLiveData<>();
     MutableLiveData<Boolean> isIncorrectAnswer = new MutableLiveData<>();
 
-    public void getData(LanguageEnum language) {
+    public void getData(LanguageEnum language, Context context) {
         draw.postValue(0);
         isGameOver.postValue(false);
         score.postValue(0);
 
-        getWriteTheWordList(language);
+        getWriteTheWordList(language, context);
     }
 
-    private void getWriteTheWordList(LanguageEnum language) {
+    private void getWriteTheWordList(LanguageEnum language, Context context) {
         WriteTheWordRepository.getWriteTheWordList(
                 new Result<List<WriteTheWordModel>>() {
                     @Override
@@ -53,10 +56,10 @@ public class WriteTheWordViewModel extends ViewModel {
                     public void onError() {
                         isErrorLoading.postValue(true);
                     }
-                }, language);
+                }, language, context);
     }
 
-    public void userValidateWord(String textValidate, int gameId) {
+    public void userValidateWord(String textValidate, int gameId, Context context) {
 
         if (isWordCorrect(textValidate, gameId)) {
             int newScore = score.getValue() + 1;
@@ -71,7 +74,7 @@ public class WriteTheWordViewModel extends ViewModel {
             @Override
             public void run() {
                 isIncorrectAnswer.postValue(false);
-                goToTheNextDraw();
+                goToTheNextDraw(context);
             }
         }, Constants.DELAY_BETWEEN_DRAWS_GAME3_AND_GAME4);
     }
@@ -96,11 +99,12 @@ public class WriteTheWordViewModel extends ViewModel {
         return iscorrect;
     }
 
-    private void goToTheNextDraw() {
+    private void goToTheNextDraw(Context context) {
 
         changeBorderWordColor(BorderColorEnum.TRANSPARENT);
         int newDraw = draw.getValue() + 1;
-        if (newDraw < Constants.NUMBER_OF_DRAWS) {
+        int numberOfDraw = Utils.getDrawsPetGamePrefs(context);
+        if (newDraw < numberOfDraw) {
             currentModel.postValue(writeTheWordList.get(newDraw));
             draw.postValue(newDraw);
         } else isGameOver.postValue(true);

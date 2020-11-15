@@ -1,6 +1,7 @@
 package com.vincler.jf.projet11.utils;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +9,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.vincler.jf.projet11.R;
+import com.vincler.jf.projet11.models.Constants;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -63,5 +65,12 @@ public class Utils {
     public static void toast(Context context, int message) {
         Toast toast = Toast.makeText(context, context.getString(message), Toast.LENGTH_LONG);
         toast.show();
+    }
+
+    public static int getDrawsPetGamePrefs(Context context) {
+
+        SharedPreferences sharedPref = context.getSharedPreferences(
+                Constants.SHAREDPREFERENCES_SETTINGS, Context.MODE_PRIVATE);
+        return sharedPref.getInt("drawsPerGame", 7);
     }
 }

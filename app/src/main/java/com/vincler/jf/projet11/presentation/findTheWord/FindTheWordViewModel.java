@@ -1,5 +1,7 @@
 package com.vincler.jf.projet11.presentation.findTheWord;
 
+import android.content.Context;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -10,6 +12,7 @@ import com.vincler.jf.projet11.models.FindTheWordModel;
 import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.repositories.FindTheWordRepository;
 import com.vincler.jf.projet11.repositories.Result;
+import com.vincler.jf.projet11.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +55,7 @@ public class FindTheWordViewModel extends ViewModel {
                 }, language);
     }
 
-    public void userChooseWordAtIndex(int index) {
+    public void userChooseWordAtIndex(int index, Context context) {
 
         boolean iscorrectPosition = currentModel.getValue().getCorrectWordPosition() == index;
 
@@ -68,7 +71,7 @@ public class FindTheWordViewModel extends ViewModel {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                goToTheNextDraw(index);
+                goToTheNextDraw(index, context);
             }
         }, Constants.DELAY_BETWEEN_DRAWS);
     }
@@ -79,11 +82,12 @@ public class FindTheWordViewModel extends ViewModel {
         borderWordColor.postValue(newBorderWordColor);
     }
 
-    private void goToTheNextDraw(int index) {
+    private void goToTheNextDraw(int index, Context context) {
 
         changeBorderWordColor(BorderColorEnum.TRANSPARENT, index);
         int newDraw = draw.getValue() + 1;
-        if (newDraw < Constants.NUMBER_OF_DRAWS) {
+        int numberOfDraw = Utils.getDrawsPetGamePrefs(context);
+        if (newDraw < numberOfDraw) {
             currentModel.postValue(findTheWordList.get(newDraw));
             draw.postValue(newDraw);
         } else isGameOver.postValue(true);

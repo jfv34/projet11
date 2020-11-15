@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.vincler.jf.projet11.R;
-import com.vincler.jf.projet11.models.Constants;
+import com.vincler.jf.projet11.utils.Utils;
 
 public class ResultGameFragment extends Fragment {
 
@@ -50,7 +50,7 @@ public class ResultGameFragment extends Fragment {
                 .append(" ")
                 .append(bundleScore)
                 .append(" / ")
-                .append(Constants.NUMBER_OF_DRAWS)
+                .append(Utils.getDrawsPetGamePrefs(getContext()))
                 .toString());
 
         returnToMenuFab.setOnClickListener(view1 -> {
