@@ -104,7 +104,7 @@ public class WriteTheWordFragment extends Fragment {
                     if (!firstLetter.equals("")) {
                         if (wordET.length() > 0) {
                             String firstLetterInEditText = wordET.getText().toString().substring(0, 1);
-                            if (firstLetterInEditText.equals(firstLetter.toUpperCase())) {
+                            if (!firstLetterInEditText.equals(firstLetter.toUpperCase())) {
                                 displayFistLetter();
                             }
                         } else {
