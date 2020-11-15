@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.vincler.jf.projet11.R;
+import com.vincler.jf.projet11.models.Constants;
 
 public class ResultGameFragment extends Fragment {
 
@@ -44,11 +45,16 @@ public class ResultGameFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        textview.setText(getString(R.string.yourfinalscoreis) + " "+bundleScore);
+        textview.setText(new StringBuilder()
+                .append(getString(R.string.yourfinalscoreis))
+                .append(" ")
+                .append(bundleScore)
+                .append(" / ")
+                .append(Constants.NUMBER_OF_DRAWS)
+                .toString());
 
         returnToMenuFab.setOnClickListener(view1 -> {
             getActivity().finish();
         });
-
     }
 }
