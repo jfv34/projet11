@@ -40,7 +40,7 @@ public class WriteTheWordRepository {
 
                                                 ArrayList<WriteTheWordModel> writeTheWordModelList = new ArrayList<>();
                                                 List<Integer> randomList = Utils.getListRandom(wordsDocuments.size());
-                                                for (int i = 0; i < Utils.getDrawsPetGamePrefs(context); i++) {
+                                                for (int i = 0; i < Utils.getPrefs(context,"drawsPerGame",7); i++) {
 
                                                     String pictureId = wordsDocuments.get(randomList.get(i)).get("picture_id").toString();
                                                     String picture = "";

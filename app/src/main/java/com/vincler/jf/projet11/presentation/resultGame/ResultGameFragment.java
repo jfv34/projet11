@@ -50,7 +50,7 @@ public class ResultGameFragment extends Fragment {
                 .append(" ")
                 .append(bundleScore)
                 .append(" / ")
-                .append(Utils.getDrawsPetGamePrefs(getContext()))
+                .append(Utils.getPrefs(getContext(),"drawsPerGame",7))
                 .toString());
 
         returnToMenuFab.setOnClickListener(view1 -> {

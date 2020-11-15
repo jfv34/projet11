@@ -5,16 +5,18 @@
     <PreferenceCategory android:title="">
 
         <SeekBarPreference
-            android:defaultValue="10"
-            android:key="drawsPerGame"
+            android:defaultValue="7"
             android:max="20"
+            app:min="4"
+            android:key="drawsPerGame"
             android:title="Draws per game"
             app:showSeekBarValue="true" />
 
         <SeekBarPreference
-            android:defaultValue="10"
             android:key="delay"
-            android:max="20"
+            android:defaultValue="1500"
+            android:max="4000"
+            app:min="500"
             android:title="Delay between each word (in milliseconds)"
             app:showSeekBarValue="true" />
 

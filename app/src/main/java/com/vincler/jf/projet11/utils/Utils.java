@@ -67,10 +67,10 @@ public class Utils {
         toast.show();
     }
 
-    public static int getDrawsPetGamePrefs(Context context) {
+    public static int getPrefs(Context context, String key, int defaultValue) {
 
         SharedPreferences sharedPref = context.getSharedPreferences(
                 Constants.SHAREDPREFERENCES_SETTINGS, Context.MODE_PRIVATE);
-        return sharedPref.getInt("drawsPerGame", 7);
+        return sharedPref.getInt(key, defaultValue);
     }
 }

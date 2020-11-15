@@ -73,7 +73,7 @@ public class FindTheWordViewModel extends ViewModel {
             public void run() {
                 goToTheNextDraw(index, context);
             }
-        }, Constants.DELAY_BETWEEN_DRAWS);
+        }, Utils.getPrefs(context,"delay",1500));
     }
 
     private void changeBorderWordColor(BorderColorEnum borderColorList, int index) {
@@ -86,7 +86,7 @@ public class FindTheWordViewModel extends ViewModel {
 
         changeBorderWordColor(BorderColorEnum.TRANSPARENT, index);
         int newDraw = draw.getValue() + 1;
-        int numberOfDraw = Utils.getDrawsPetGamePrefs(context);
+        int numberOfDraw = Utils.getPrefs(context,"drawsPerGame",7);
         if (newDraw < numberOfDraw) {
             currentModel.postValue(findTheWordList.get(newDraw));
             draw.postValue(newDraw);

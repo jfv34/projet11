@@ -1,15 +1,12 @@
 package com.vincler.jf.projet11.presentation.findThePicture;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.vincler.jf.projet11.models.BorderColorEnum;
 import com.vincler.jf.projet11.models.BorderColorModel;
-import com.vincler.jf.projet11.models.Constants;
 import com.vincler.jf.projet11.models.FindThePictureModel;
 import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.repositories.FindThePictureRepository;
@@ -75,7 +72,7 @@ public class FindThePictureViewModel extends ViewModel {
             public void run() {
                 goToTheNextDraw(index, context);
             }
-        }, Constants.DELAY_BETWEEN_DRAWS);
+        }, Utils.getPrefs(context, "delay",1500));
     }
 
     private void changeBorderPictureColor(BorderColorEnum borderColorList, int index) {
@@ -88,7 +85,7 @@ public class FindThePictureViewModel extends ViewModel {
 
         changeBorderPictureColor(BorderColorEnum.TRANSPARENT, index);
         int newDraw = draw.getValue() + 1;
-        int numberOfDraw = Utils.getDrawsPetGamePrefs(context);
+        int numberOfDraw = Utils.getPrefs(context, "drawsPerGame",7);
         if (newDraw < numberOfDraw) {
             currentModel.postValue(findThePictureList.get(newDraw));
             draw.postValue(newDraw);

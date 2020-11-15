@@ -11,19 +11,35 @@ import com.vincler.jf.projet11.R;
 import com.vincler.jf.projet11.models.Constants;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
+    SharedPreferences sharedPreferences;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.preferences, rootKey);
         Context context = getActivity();
-        SharedPreferences sharedPref = context.getSharedPreferences(
+        sharedPreferences = context.getSharedPreferences(
                 Constants.SHAREDPREFERENCES_SETTINGS, Context.MODE_PRIVATE);
-        SeekBarPreference seekBarPreference = getPreferenceScreen().findPreference("drawsPerGame");
-        seekBarPreference.setMin(4);
-        seekBarPreference.setDefaultValue(7);
-        if (seekBarPreference != null) {
-            seekBarPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-                        sharedPref.edit().putInt("drawsPerGame", (int) newValue).apply();
+
+        drawPerGamePreference();
+        delayPreference();
+    }
+
+    private void delayPreference() {
+        SeekBarPreference delayPreference = getPreferenceScreen().findPreference("delay");
+        if (delayPreference != null) {
+            delayPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+                        sharedPreferences.edit().putInt("delay", (int) newValue).apply();
+                        return true;
+                    }
+            );
+        }
+    }
+
+    private void drawPerGamePreference() {
+        SeekBarPreference drawPerGamePreference = getPreferenceScreen().findPreference("drawsPerGame");
+        if (drawPerGamePreference != null) {
+            drawPerGamePreference.setOnPreferenceChangeListener((preference, newValue) -> {
+                        sharedPreferences.edit().putInt("drawsPerGame", (int) newValue).apply();
                         return true;
                     }
             );

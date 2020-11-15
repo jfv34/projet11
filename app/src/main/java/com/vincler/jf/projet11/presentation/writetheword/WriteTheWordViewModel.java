@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.vincler.jf.projet11.models.BorderColorEnum;
-import com.vincler.jf.projet11.models.Constants;
 import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.models.WriteTheWordModel;
 import com.vincler.jf.projet11.repositories.Result;
@@ -61,7 +60,7 @@ public class WriteTheWordViewModel extends ViewModel {
 
     public void userValidateWord(String textValidate, int gameId, Context context) {
 
-        if (isWordCorrect(textValidate, gameId)) {
+        if (isWordCorrect(textValidate)) {
             int newScore = score.getValue() + 1;
             score.postValue(newScore);
             changeBorderWordColor(BorderColorEnum.GREEN);
@@ -76,7 +75,7 @@ public class WriteTheWordViewModel extends ViewModel {
                 isIncorrectAnswer.postValue(false);
                 goToTheNextDraw(context);
             }
-        }, Constants.DELAY_BETWEEN_DRAWS_GAME3_AND_GAME4);
+        }, Utils.getPrefs(context, "delay", 1500));
     }
 
     public String getFirstLetter() {
@@ -90,7 +89,7 @@ public class WriteTheWordViewModel extends ViewModel {
         borderWordColor.postValue(borderColorEnum);
     }
 
-    private boolean isWordCorrect(String wordValidate, int gameId) {
+    private boolean isWordCorrect(String wordValidate) {
         boolean iscorrect = false;
         String correctWord = currentModel.getValue().getWord();
         if (wordValidate.toUpperCase().equals(correctWord.toUpperCase())) {
@@ -103,7 +102,7 @@ public class WriteTheWordViewModel extends ViewModel {
 
         changeBorderWordColor(BorderColorEnum.TRANSPARENT);
         int newDraw = draw.getValue() + 1;
-        int numberOfDraw = Utils.getDrawsPetGamePrefs(context);
+        int numberOfDraw = Utils.getPrefs(context, "drawsPerGame", 7);
         if (newDraw < numberOfDraw) {
             currentModel.postValue(writeTheWordList.get(newDraw));
             draw.postValue(newDraw);
