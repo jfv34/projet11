@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -15,7 +16,9 @@ import com.vincler.jf.projet11.utils.Utils;
 
 public class ResultGameFragment extends Fragment {
 
-    TextView textview;
+    TextView textview1;
+    TextView textview2;
+    ProgressBar progressBar;
     ExtendedFloatingActionButton returnToMenuFab;
     private int bundleScore;
 
@@ -37,7 +40,9 @@ public class ResultGameFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_result_game, container, false);
-        textview = root.findViewById(R.id.fragment_result_game_textview);
+        textview1 = root.findViewById(R.id.fragment_result_game_1_textview);
+        textview2 = root.findViewById(R.id.fragment_result_game_2_textview);
+        progressBar = root.findViewById(R.id.fragment_result_game_progressbar);
         returnToMenuFab = root.findViewById(R.id.fragment_result_game_return_menu_fab);
         return root;
     }
@@ -45,13 +50,14 @@ public class ResultGameFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        textview.setText(new StringBuilder()
-                .append(getString(R.string.yourfinalscoreis))
-                .append(" ")
+        textview1.setText(R.string.yourfinalscoreis);
+        textview2.setText(new StringBuilder()
                 .append(bundleScore)
                 .append(" / ")
                 .append(Utils.getPrefs(getContext(),"drawsPerGame",7))
                 .toString());
+        progressBar.setMax(Utils.getPrefs(getContext(),"drawsPerGame",7));
+        progressBar.setProgress(bundleScore);
 
         returnToMenuFab.setOnClickListener(view1 -> {
             getActivity().finish();

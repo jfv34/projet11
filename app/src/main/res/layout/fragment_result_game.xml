@@ -9,15 +9,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
     <TextView
-        android:id="@+id/fragment_result_game_textview"
+        android:textStyle="bold"
+        android:gravity="center|bottom"
+        app:layout_constraintHeight_percent="0.40"
+        android:id="@+id/fragment_result_game_1_textview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:textSize="50dp" />
+        android:textSize="30sp" />
 
-
+    <TextView
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        android:id="@+id/fragment_result_game_2_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/fragment_result_game_1_textview"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="60sp" />
+    <ProgressBar
+        android:layout_marginTop="@dimen/margin_large"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginEnd="@dimen/margin_large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_result_game_2_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_result_game_progressbar"
+        android:scaleY="8"
+        android:progressBackgroundTint="#C303DAC5"
+        android:progressTint="@color/colorAccent"
+        style="?android:attr/progressBarStyleHorizontal"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
