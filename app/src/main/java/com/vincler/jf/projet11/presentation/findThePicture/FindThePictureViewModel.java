@@ -29,7 +29,7 @@ public class FindThePictureViewModel extends ViewModel {
     MutableLiveData<BorderColorModel> borderPictureColor = new MutableLiveData<>();
 
     public void getData(LanguageEnum language) {
-        draw.postValue(0);
+       if(findThePictureList.isEmpty()){draw.postValue(0);
         isGameOver.postValue(false);
         score.postValue(0);
 
@@ -52,7 +52,7 @@ public class FindThePictureViewModel extends ViewModel {
                         isErrorLoading.postValue(true);
                     }
                 }, language);
-    }
+    }}
 
     public void userChoosePictureAtIndex(int index,Context context) {
 

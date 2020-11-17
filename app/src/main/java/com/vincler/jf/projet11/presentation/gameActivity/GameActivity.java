@@ -23,7 +23,7 @@ public class GameActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_game);
         Bundle extras = getIntent().getExtras();
-        if (extras != null) {
+        if (extras != null && savedInstanceState==null) {
             gameActivityDependency = (GameActivityDependency) getIntent().getSerializableExtra("values");
 
             switch (gameActivityDependency.getGameId()) {

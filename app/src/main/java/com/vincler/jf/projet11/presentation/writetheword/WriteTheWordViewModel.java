@@ -29,12 +29,13 @@ public class WriteTheWordViewModel extends ViewModel {
     MutableLiveData<Boolean> isIncorrectAnswer = new MutableLiveData<>();
 
     public void getData(LanguageEnum language, Context context) {
-        draw.postValue(0);
-        isGameOver.postValue(false);
-        score.postValue(0);
+        if(writeTheWordList.isEmpty()) {
+            draw.postValue(0);
+            isGameOver.postValue(false);
+            score.postValue(0);
 
-        getWriteTheWordList(language, context);
-    }
+            getWriteTheWordList(language, context);
+        }}
 
     private void getWriteTheWordList(LanguageEnum language, Context context) {
         WriteTheWordRepository.getWriteTheWordList(

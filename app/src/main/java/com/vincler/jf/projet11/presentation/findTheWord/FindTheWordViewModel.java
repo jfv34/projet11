@@ -29,29 +29,31 @@ public class FindTheWordViewModel extends ViewModel {
     MutableLiveData<BorderColorModel> borderWordColor = new MutableLiveData<>();
 
     public void getData(LanguageEnum language) {
-        draw.postValue(0);
-        isGameOver.postValue(false);
-        score.postValue(0);
+        if (findTheWordList.isEmpty()) {
+            draw.postValue(0);
+            isGameOver.postValue(false);
+            score.postValue(0);
 
-        FindTheWordRepository.getFindTheWordList(
-                new Result<List<FindTheWordModel>>() {
-                    @Override
-                    public void onResult(List<FindTheWordModel> result) {
-                        if (result != null && result.size() != 0 && result.get(0) != null) {
-                            findTheWordList.clear();
-                            findTheWordList.addAll(result);
-                            currentModel.postValue(result.get(0));
-                        } else {
-                            isErrorLoading.postValue(true);
+            FindTheWordRepository.getFindTheWordList(
+                    new Result<List<FindTheWordModel>>() {
+                        @Override
+                        public void onResult(List<FindTheWordModel> result) {
+                            if (result != null && result.size() != 0 && result.get(0) != null) {
+                                findTheWordList.clear();
+                                findTheWordList.addAll(result);
+                                currentModel.postValue(result.get(0));
+                            } else {
+                                isErrorLoading.postValue(true);
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onError() {
-                        isErrorLoading.postValue(true);
+                        @Override
+                        public void onError() {
+                            isErrorLoading.postValue(true);
 
-                    }
-                }, language);
+                        }
+                    }, language);
+        }
     }
 
     public void userChooseWordAtIndex(int index, Context context) {
