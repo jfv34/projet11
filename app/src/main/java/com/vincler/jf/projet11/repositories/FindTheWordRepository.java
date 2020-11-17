@@ -3,7 +3,6 @@ package com.vincler.jf.projet11.repositories;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.vincler.jf.projet11.models.FindThePictureModel;
 import com.vincler.jf.projet11.models.FindTheWordModel;
 import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.utils.Utils;
@@ -46,9 +45,15 @@ public class FindTheWordRepository {
                                                     picture = picturesDocuments.get(j).get("url").toString();
                                                 }
                                             }
+                                            List<Integer> random4wordsList;
+                                            do {
+                                                random4wordsList = Utils.getListRandom(wordsDocuments.size());
+                                            }
+                                            while ((wordsDocuments.get(random4wordsList.get(0)).get("word").equals(correctWord))
+                                                    || (wordsDocuments.get(random4wordsList.get(1)).get("word").equals(correctWord))
+                                                    || (wordsDocuments.get(random4wordsList.get(2)).get("word").equals(correctWord))
+                                                    || (wordsDocuments.get(random4wordsList.get(3)).get("word").equals(correctWord)));
 
-                                            Random random = new Random();
-                                            List<Integer> random4wordsList = Utils.getListRandom(wordsDocuments.size());
 
                                             ArrayList<String> words = new ArrayList<>();
                                             words.add(wordsDocuments.get(random4wordsList.get(0)).get("word").toString());
@@ -56,7 +61,7 @@ public class FindTheWordRepository {
                                             words.add(wordsDocuments.get(random4wordsList.get(2)).get("word").toString());
                                             words.add(wordsDocuments.get(random4wordsList.get(3)).get("word").toString());
 
-                                            random = new Random();
+                                            Random random = new Random();
                                             int correctPositionWord = random.nextInt(4);
                                             words.set(correctPositionWord, correctWord);
 
