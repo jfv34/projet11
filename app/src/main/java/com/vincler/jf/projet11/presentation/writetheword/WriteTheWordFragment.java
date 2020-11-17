@@ -160,7 +160,7 @@ public class WriteTheWordFragment extends Fragment {
         if (borderWordColor == BorderColorEnum.RED) {
             colorBorder = "#E53935";
         }
-        if (borderWordColor == BorderColorEnum.TRANSPARENT) {
+        if (borderWordColor == BorderColorEnum.NONE) {
             colorBorder = "#00000000";
         }
 

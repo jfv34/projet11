@@ -1,6 +1,7 @@
 package com.vincler.jf.projet11.presentation.findTheWord;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -106,21 +107,21 @@ public class FindTheWordFragment extends Fragment {
 
     private void displayBorderWord(BorderColorModel borderTextColor) {
 
-        String colorBorder = "";
+        String colorBorder = "#80000000";
 
         if (borderTextColor.getBorderColor() == BorderColorEnum.GREEN) {
-            colorBorder = "#0AEA14";
+            colorBorder = "#00FF00";
         }
         if (borderTextColor.getBorderColor() == BorderColorEnum.RED) {
-            colorBorder = "#E53935";
+            colorBorder = "#FF0000";
         }
-        if (borderTextColor.getBorderColor() == BorderColorEnum.TRANSPARENT) {
-            colorBorder = "#00000000";
+        if (borderTextColor.getBorderColor() == BorderColorEnum.NONE) {
+            colorBorder = "#80000000";
         }
 
         TextView textView = null;
         if (borderTextColor.getPositionWord() == 0) {
-            textView =  wordTopLeft;
+            textView = wordTopLeft;
         }
         if (borderTextColor.getPositionWord() == 1) {
             textView = wordTopRight;
@@ -129,10 +130,10 @@ public class FindTheWordFragment extends Fragment {
             textView = wordBottomLeft;
         }
         if (borderTextColor.getPositionWord() == 3) {
-           textView = wordBottomRight;
+            textView = wordBottomRight;
         }
 
-        textView.setBackgroundColor(Color.parseColor(colorBorder));
+        textView.setTextColor(Color.parseColor(colorBorder));
     }
 
     private void displayPicture(String url, ImageView imageView) {

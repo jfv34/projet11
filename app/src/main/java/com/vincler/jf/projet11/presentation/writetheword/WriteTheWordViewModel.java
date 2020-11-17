@@ -100,7 +100,7 @@ public class WriteTheWordViewModel extends ViewModel {
 
     private void goToTheNextDraw(Context context) {
 
-        changeBorderWordColor(BorderColorEnum.TRANSPARENT);
+        changeBorderWordColor(BorderColorEnum.NONE);
         int newDraw = draw.getValue() + 1;
         int numberOfDraw = Utils.getPrefs(context, "drawsPerGame", 7);
         if (newDraw < numberOfDraw) {

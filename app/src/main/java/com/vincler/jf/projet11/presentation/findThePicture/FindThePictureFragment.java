@@ -117,7 +117,7 @@ public class FindThePictureFragment extends Fragment {
         if (borderPictureColor.getBorderColor() == BorderColorEnum.RED) {
             colorBorder = "#E53935";
         }
-        if (borderPictureColor.getBorderColor() == BorderColorEnum.TRANSPARENT) {
+        if (borderPictureColor.getBorderColor() == BorderColorEnum.NONE) {
             colorBorder = "#00000000";
         }
 

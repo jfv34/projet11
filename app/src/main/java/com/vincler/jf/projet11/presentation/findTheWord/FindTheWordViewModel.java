@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel;
 
 import com.vincler.jf.projet11.models.BorderColorEnum;
 import com.vincler.jf.projet11.models.BorderColorModel;
-import com.vincler.jf.projet11.models.Constants;
 import com.vincler.jf.projet11.models.FindTheWordModel;
 import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.repositories.FindTheWordRepository;
@@ -84,7 +83,7 @@ public class FindTheWordViewModel extends ViewModel {
 
     private void goToTheNextDraw(int index, Context context) {
 
-        changeBorderWordColor(BorderColorEnum.TRANSPARENT, index);
+        changeBorderWordColor(BorderColorEnum.NONE, index);
         int newDraw = draw.getValue() + 1;
         int numberOfDraw = Utils.getPrefs(context,"drawsPerGame",7);
         if (newDraw < numberOfDraw) {

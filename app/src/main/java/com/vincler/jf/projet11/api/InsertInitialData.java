@@ -120,12 +120,6 @@ public class InsertInitialData {
         wordsList.add("noche");// spanish
         wordsList.add("https://live.staticflickr.com/4843/33143291508_76a5f8e0fd_q_d.jpg");// picture
 
-        wordsList.add("musique");// french
-        wordsList.add("music");// english
-        wordsList.add("música");// spanish
-        wordsList.add("https://live.staticflickr.com/159/390534244_3db9138593_q_d.jpg");// picture
-
-
         wordsList.add("pierre");// french
         wordsList.add("stone");// english
         wordsList.add("piedra");// spanish

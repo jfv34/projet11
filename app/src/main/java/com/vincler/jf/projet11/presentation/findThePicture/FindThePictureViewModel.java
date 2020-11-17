@@ -83,7 +83,7 @@ public class FindThePictureViewModel extends ViewModel {
 
     private void goToTheNextDraw(int index, Context context) {
 
-        changeBorderPictureColor(BorderColorEnum.TRANSPARENT, index);
+        changeBorderPictureColor(BorderColorEnum.NONE, index);
         int newDraw = draw.getValue() + 1;
         int numberOfDraw = Utils.getPrefs(context, "drawsPerGame",7);
         if (newDraw < numberOfDraw) {
