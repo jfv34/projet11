@@ -124,7 +124,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/fragment_menu_game1_iv"
             app:layout_constraintTop_toTopOf="@id/fragment_menu_game1_iv"
-            app:layout_constraintWidth_percent="0.75" />
+        />
 
         <ImageView
             android:id="@+id/fragment_menu_game2_iv"
@@ -147,8 +147,7 @@
             app:layout_constraintBottom_toBottomOf="@id/fragment_menu_game2_iv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/fragment_menu_game2_iv"
-            app:layout_constraintTop_toTopOf="@id/fragment_menu_game2_iv"
-            app:layout_constraintWidth_percent="0.75" />
+            app:layout_constraintTop_toTopOf="@id/fragment_menu_game2_iv" />
 
         <ImageView
             android:id="@+id/fragment_menu_game3_iv"
@@ -171,8 +170,7 @@
             app:layout_constraintBottom_toBottomOf="@id/fragment_menu_game3_iv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/fragment_menu_game3_iv"
-            app:layout_constraintTop_toTopOf="@id/fragment_menu_game3_iv"
-            app:layout_constraintWidth_percent="0.75" />
+            app:layout_constraintTop_toTopOf="@id/fragment_menu_game3_iv" />
 
         <ImageView
             android:id="@+id/fragment_menu_game4_iv"
@@ -195,7 +193,6 @@
             app:layout_constraintBottom_toBottomOf="@id/fragment_menu_game4_iv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/fragment_menu_game4_iv"
-            app:layout_constraintTop_toTopOf="@id/fragment_menu_game4_iv"
-            app:layout_constraintWidth_percent="0.75" />
+            app:layout_constraintTop_toTopOf="@id/fragment_menu_game4_iv" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
