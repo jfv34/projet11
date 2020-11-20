@@ -65,6 +65,7 @@ public class WriteTheWordFragment extends Fragment {
         if (bundleGameActivityDependency.getGameId() == 3) {
             wordET.setGravity(Gravity.START);
         } else wordET.setGravity(Gravity.CENTER_HORIZONTAL);
+        displayBorderWord(BorderColorEnum.NONE);
 
         viewModel.currentModel.observe(getViewLifecycleOwner(), model ->
                 {
@@ -161,7 +162,7 @@ public class WriteTheWordFragment extends Fragment {
             colorBorder = "#E53935";
         }
         if (borderWordColor == BorderColorEnum.NONE) {
-            colorBorder = "#00000000";
+            colorBorder = "#E1CDCDCD";
         }
 
         wordET.setBackgroundColor(Color.parseColor(colorBorder));
