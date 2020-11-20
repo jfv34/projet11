@@ -30,7 +30,7 @@ android {
 
 dependencies {
     false // for Firebase
-    implementation 'com.google.firebase:firebase-auth:20.0.0' // Firebase
+    implementation 'com.google.firebase:firebase-auth:20.0.1' // Firebase
     implementation 'com.firebaseui:firebase-ui-auth:4.3.1'  // FirebaseUI
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0' // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.2.0" // ViewModel
@@ -40,6 +40,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0' // Glide
     implementation 'com.google.android.material:material:1.2.1' // Material
     implementation 'androidx.preference:preference:1.1.1' // Preferences
+    implementation 'com.daimajia.numberprogressbar:library:1.4@aar' // daimajia-ProgressBar
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'

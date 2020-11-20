@@ -4,17 +4,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:custom="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
-
-    <TextView
-        android:textStyle="bold"
-        android:gravity="center|bottom"
-        app:layout_constraintHeight_percent="0.40"
+        <TextView
+            android:gravity="center|bottom"
+            android:textStyle="bold"
+            app:layout_constraintHeight_percent="0.40"
         android:id="@+id/fragment_result_game_1_textview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -22,30 +22,32 @@
         app:layout_constraintStart_toStartOf="parent"
         android:textSize="30sp" />
 
-    <TextView
-        android:textStyle="bold"
-        android:gravity="center_horizontal"
-        android:id="@+id/fragment_result_game_2_textview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/fragment_result_game_1_textview"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:textSize="60sp" />
-    <ProgressBar
-        android:layout_marginTop="@dimen/margin_large"
-        android:layout_marginStart="@dimen/margin_large"
-        android:layout_marginEnd="@dimen/margin_large"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_result_game_2_textview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fragment_result_game_progressbar"
-        android:scaleY="8"
-        android:progressBackgroundTint="#C303DAC5"
-        android:progressTint="@color/colorAccent"
-        style="?android:attr/progressBarStyleHorizontal"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/fragment_result_game_2_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="60sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_result_game_1_textview" />
+
+        <com.daimajia.numberprogressbar.NumberProgressBar
+            android:id="@+id/fragment_result_game_progressbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginEnd="@dimen/margin_large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_result_game_2_textview"
+            custom:progress_reached_bar_height="60dp"
+            custom:progress_text_size="20dp"
+            custom:progress_unreached_bar_height="40dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fragment_result_game_return_menu_fab"

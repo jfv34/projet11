@@ -4,12 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.vincler.jf.projet11.R;
 import com.vincler.jf.projet11.utils.Utils;
@@ -18,7 +18,7 @@ public class ResultGameFragment extends Fragment {
 
     TextView textview1;
     TextView textview2;
-    ProgressBar progressBar;
+    NumberProgressBar progressBar;
     ExtendedFloatingActionButton returnToMenuFab;
     private int bundleScore;
 
@@ -56,6 +56,9 @@ public class ResultGameFragment extends Fragment {
                 .append(" / ")
                 .append(Utils.getPrefs(getContext(),"drawsPerGame",7))
                 .toString());
+        progressBar.setProgressTextSize(60);
+        progressBar.setUnreachedBarHeight(10);
+        progressBar.setReachedBarHeight(15);
         progressBar.setMax(Utils.getPrefs(getContext(),"drawsPerGame",7));
         progressBar.setProgress(bundleScore);
 
