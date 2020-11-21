@@ -20,7 +20,7 @@
     <ImageView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@id/fragment_findthepicture_imageView_bottom_left"
         android:padding="7dp"
         app:layout_constraintEnd_toStartOf="@id/fragment_findthepicture_imageView_top_right"

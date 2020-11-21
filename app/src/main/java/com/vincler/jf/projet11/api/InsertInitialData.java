@@ -175,6 +175,56 @@ public class InsertInitialData {
         wordsList.add("árbol");// spanish
         wordsList.add("https://live.staticflickr.com/5336/8838398871_5c942214e6_q_d.jpg");// picture
 
+        wordsList.add("avion");// french
+        wordsList.add("plane");// english
+        wordsList.add("avión");// spanish
+        wordsList.add("https://live.staticflickr.com/1037/860874049_6c11166f4a_q_d.jpg");// picture
+
+        wordsList.add("bateau");// french
+        wordsList.add("boat");// english
+        wordsList.add("barco");// spanish
+        wordsList.add("https://live.staticflickr.com/3953/15572117155_a4b0bcd17c_q_d.jpg");// picture
+
+        wordsList.add("café");// french
+        wordsList.add("coffee");// english
+        wordsList.add("café");// spanish
+        wordsList.add("https://live.staticflickr.com/4523/38669697181_0ca51a191f_q_d.jpg");// picture
+
+        wordsList.add("chat");// french
+        wordsList.add("cat");// english
+        wordsList.add("gato");// spanish
+        wordsList.add("https://live.staticflickr.com/4676/25690386427_8c2b3eaf76_q_d.jpg");// picture
+
+        wordsList.add("cheval");// french
+        wordsList.add("horse");// english
+        wordsList.add("caballo");// spanish
+        wordsList.add("https://live.staticflickr.com/3512/4007091441_d02c13bac1_q_d.jpg");// picture
+
+        wordsList.add("journal");// french
+        wordsList.add("newspaper");// english
+        wordsList.add("periódico");// spanish
+        wordsList.add("https://live.staticflickr.com/5237/14213285010_6ec64ef5f0_q_d.jpg");// picture
+
+        wordsList.add("oiseau");// french
+        wordsList.add("bird");// english
+        wordsList.add("pájaro");// spanish
+        wordsList.add("https://live.staticflickr.com/7704/27911775312_53379417d0_q_d.jpg");// picture
+
+        wordsList.add("train");// french
+        wordsList.add("train");// english
+        wordsList.add("tren");// spanish
+        wordsList.add("https://live.staticflickr.com/39/116876334_b4d287c8c7_q_d.jpg");// picture
+
+        wordsList.add("verre");// french
+        wordsList.add("glass");// english
+        wordsList.add("vaso");// spanish
+        wordsList.add("https://live.staticflickr.com/3478/3792115989_63755d9b7b_q_d.jpg");// picture
+
+        wordsList.add("assiette");// french
+        wordsList.add("plate");// english
+        wordsList.add("plato");// spanish
+        wordsList.add("https://live.staticflickr.com/3266/2641768789_cde92c5d62_q_d.jpg");// picture
+
         return wordsList;
     }
 }
