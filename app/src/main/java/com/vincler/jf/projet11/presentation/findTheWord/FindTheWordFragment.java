@@ -1,7 +1,6 @@
 package com.vincler.jf.projet11.presentation.findTheWord;
 
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,21 +20,24 @@ import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.presentation.resultGame.ResultGameFragment;
 import com.vincler.jf.projet11.utils.Utils;
 
+// This class displays the view of the game "Find the word"
+// The user must choose from four words the one that corresponds to the picture.
 public class FindTheWordFragment extends Fragment {
 
-    private LanguageEnum bundleLanguage;
-    private FindTheWordViewModel viewModel;
-    private ImageView pictureImageView;
-    private TextView wordTopLeft;
-    private TextView wordTopRight;
-    private TextView wordBottomLeft;
-    private TextView wordBottomRight;
+    private LanguageEnum bundleLanguage;        // Language to learn, chosen in the menu
+    private FindTheWordViewModel viewModel;     // ViewModel
+    private ImageView pictureImageView;         // Picture to find
+    private TextView wordTopLeft;               // Picture top left
+    private TextView wordTopRight;              // Picture top right
+    private TextView wordBottomLeft;            // Picture bottom left
+    private TextView wordBottomRight;           // Picture bottom right
 
+    // instanciate this fragment
     public static FindTheWordFragment newInstance(LanguageEnum bundleLanguage) {
         FindTheWordFragment findTheWordFragment = new FindTheWordFragment();
 
         Bundle args = new Bundle();
-        args.putSerializable("language", bundleLanguage);
+        args.putSerializable("language", bundleLanguage); // Gets langage from the menu
         findTheWordFragment.setArguments(args);
         return findTheWordFragment;
     }
@@ -51,13 +53,15 @@ public class FindTheWordFragment extends Fragment {
         wordBottomRight = root.findViewById(R.id.fragment_findtheword_textView_bottom_right);
         return root;
     }
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         viewModel = new ViewModelProvider(this).get(FindTheWordViewModel.class);
-        viewModel.getData(bundleLanguage);
+        viewModel.getData(bundleLanguage);  // Gets the list of draws and add the first draw in viewModel.currentModel
 
+        // Displays the current draw (viewModel.currentModel):
         viewModel.currentModel.observe(getViewLifecycleOwner(), model ->
                 {
                     displayPicture(model.getPicture(),pictureImageView);
@@ -69,6 +73,7 @@ public class FindTheWordFragment extends Fragment {
                 }
         );
 
+        // Displays a error message in toast when no data is loading:
         viewModel.isErrorLoading.observe(getViewLifecycleOwner(), errorLoading ->
         {
             if (errorLoading) {
@@ -77,11 +82,13 @@ public class FindTheWordFragment extends Fragment {
             }
         });
 
+        // When user clicks an image: call imageClickListener:
         textClickListener(wordTopLeft, 0);
         textClickListener(wordTopRight, 1);
         textClickListener(wordBottomLeft, 2);
         textClickListener(wordBottomRight, 3);
 
+        // When all draws have been played: call gameOver:
         viewModel.isGameOver.observe(getViewLifecycleOwner(), gameOver ->
                 {
                     if (gameOver) {
@@ -90,59 +97,63 @@ public class FindTheWordFragment extends Fragment {
                 }
         );
 
+        // When border picture color must change: call displayBorderPicture:
         viewModel.borderWordColor.observe(getViewLifecycleOwner(), this::displayBorderWord
         );
 
     }
 
+    // When the game is over, gets the score and replace this fragment by ResultGameFragment
     private void gameOver() {
         int score = viewModel.score.getValue();
         Fragment resultGameFragment = ResultGameFragment.newInstance(score);
         Utils.replaceFragmentInGameActivity(getActivity(), resultGameFragment);
     }
 
+    // When a word is clicked, call viewModel.userChooseWordAtIndex and send him the word position (index)
     private void textClickListener(TextView textView, int index) {
         textView.setOnClickListener(view -> viewModel.userChooseWordAtIndex(index, getContext()));
     }
 
+    // Displays word color when user clicks on it.
+    // BorderColorModel contains colors and words positions
     private void displayBorderWord(BorderColorModel borderTextColor) {
 
         String colorBorder = "#80000000";
 
-        if (borderTextColor.getBorderColor() == BorderColorEnum.GREEN) {
+        if (borderTextColor.getBorderColor() == BorderColorEnum.GREEN) {    // GREED for correct answer
             colorBorder = "#00FF00";
         }
-        if (borderTextColor.getBorderColor() == BorderColorEnum.RED) {
+        if (borderTextColor.getBorderColor() == BorderColorEnum.RED) {      // RED for wrong answer
             colorBorder = "#FF0000";
         }
-        if (borderTextColor.getBorderColor() == BorderColorEnum.NONE) {
+        if (borderTextColor.getBorderColor() == BorderColorEnum.NONE) {     // NONE for color of the word by default (grey)
             colorBorder = "#80000000";
         }
 
         TextView textView = null;
-        if (borderTextColor.getPositionWord() == 0) {
-            textView = wordTopLeft;
+        if (borderTextColor.getPositionPicture() == 0) {
+            textView = wordTopLeft;                                         // Textview is one at the top left
         }
-        if (borderTextColor.getPositionWord() == 1) {
-            textView = wordTopRight;
+        if (borderTextColor.getPositionPicture() == 1) {
+            textView = wordTopRight;                                        // TextView is one at the top right
         }
-        if (borderTextColor.getPositionWord() == 2) {
-            textView = wordBottomLeft;
+        if (borderTextColor.getPositionPicture() == 2) {
+            textView = wordBottomLeft;                                      // TextView is one at the bottom left
         }
-        if (borderTextColor.getPositionWord() == 3) {
-            textView = wordBottomRight;
+        if (borderTextColor.getPositionPicture() == 3) {
+            textView = wordBottomRight;                                     // TextView is one at the bottom right
         }
 
-        textView.setTextColor(Color.parseColor(colorBorder));
+        textView.setTextColor(Color.parseColor(colorBorder));                // Coloring word of the textView attributed
     }
 
+    // Displays picture (loading by url) using Glide library.
     private void displayPicture(String url, ImageView imageView) {
 
         Glide.with(this)
                 .load(url) // image url
-                //.placeholder(R.drawable.placeholder) // any placeholder to load at start
-                //.error(R.drawable.imagenotfound)  // any image in case of error
-                .override(100, 100) // resizing
+                .override(500, 500) // resizing
                 .centerCrop()
                 .into(imageView);  // imageview object
     }

@@ -13,7 +13,7 @@ public class BorderColorModel {
         return borderColorList;
     }
 
-    public int getPositionWord() {
+    public int getPositionPicture() {
         return position;
     }
 

@@ -120,7 +120,6 @@ public class FindThePictureFragment extends Fragment {
 
     // Displays border picture when user clicks on it.
     // BorderColorModel contains colors and words positions
-
     private void displayBorderPicture(BorderColorModel borderPictureColor) {
 
         String colorBorder = "";
@@ -136,16 +135,16 @@ public class FindThePictureFragment extends Fragment {
         }
 
         ImageView imageView = null;
-        if (borderPictureColor.getPositionWord() == 0) {
+        if (borderPictureColor.getPositionPicture() == 0) {
             imageView = imageViewTopLeft;                                       // imageView is one at the top left
         }
-        if (borderPictureColor.getPositionWord() == 1) {
+        if (borderPictureColor.getPositionPicture() == 1) {
             imageView = imageViewTopRight;                                      // ImageView is one at the top right
         }
-        if (borderPictureColor.getPositionWord() == 2) {                        // ImageView is one at the bottom left
+        if (borderPictureColor.getPositionPicture() == 2) {                     // ImageView is one at the bottom left
             imageView = imageViewBottomLeft;
         }
-        if (borderPictureColor.getPositionWord() == 3) {                        // ImageView is one at the bottom right
+        if (borderPictureColor.getPositionPicture() == 3) {                     // ImageView is one at the bottom right
             imageView = imageViewBottomRight;
         }
 
