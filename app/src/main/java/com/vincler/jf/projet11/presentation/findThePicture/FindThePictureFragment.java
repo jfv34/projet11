@@ -20,21 +20,25 @@ import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.presentation.resultGame.ResultGameFragment;
 import com.vincler.jf.projet11.utils.Utils;
 
+// This class displays the view of the game "Find the pictures"
+// The user must choose from four images the one that corresponds to the word.
+
 public class FindThePictureFragment extends Fragment {
 
-    private LanguageEnum bundleLanguage;
-    private FindThePictureViewModel viewModel;
-    private TextView wordText;
-    private ImageView imageViewTopLeft;
-    private ImageView imageViewTopRight;
-    private ImageView imageViewBottomLeft;
-    private ImageView imageViewBottomRight;
+    private LanguageEnum bundleLanguage;            // Language to learn, chosen in the menu
+    private FindThePictureViewModel viewModel;      // ViewModel
+    private TextView wordText;                      // Word to find
+    private ImageView imageViewTopLeft;             // Image top left
+    private ImageView imageViewTopRight;            // Image top right
+    private ImageView imageViewBottomLeft;          // Image bottom left
+    private ImageView imageViewBottomRight;         // Image bottom right
 
+    // instanciate this fragment
     public static FindThePictureFragment newInstance(LanguageEnum bundleLanguage) {
         FindThePictureFragment findThePictureFragment = new FindThePictureFragment();
 
         Bundle args = new Bundle();
-        args.putSerializable("language", bundleLanguage);
+        args.putSerializable("language", bundleLanguage); // Gets langage from the menu
         findThePictureFragment.setArguments(args);
         return findThePictureFragment;
     }
@@ -55,8 +59,9 @@ public class FindThePictureFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         viewModel = new ViewModelProvider(this).get(FindThePictureViewModel.class);
-        viewModel.getData(bundleLanguage);
+        viewModel.getData(bundleLanguage);  // Gets the list of draws and add the first draw in viewModel.currentModel
 
+        // Displays the current draw (viewModel.currentModel):
         viewModel.currentModel.observe(getViewLifecycleOwner(), model ->
                 {
                     wordText.setText(model.getWord());
@@ -67,6 +72,7 @@ public class FindThePictureFragment extends Fragment {
                 }
         );
 
+        // Displays a error message in toast when no data is loading:
         viewModel.isErrorLoading.observe(getViewLifecycleOwner(), errorLoading ->
         {
             if (errorLoading) {
@@ -75,11 +81,13 @@ public class FindThePictureFragment extends Fragment {
             }
         });
 
+        // When user clicks an image: call imageClickListener:
         imageClickListener(imageViewTopLeft, 0);
         imageClickListener(imageViewTopRight, 1);
         imageClickListener(imageViewBottomLeft, 2);
         imageClickListener(imageViewBottomRight, 3);
 
+        // When all draws have been played: call gameOver:
         viewModel.isGameOver.observe(getViewLifecycleOwner(), gameOver ->
                 {
                     if (gameOver) {
@@ -88,6 +96,7 @@ public class FindThePictureFragment extends Fragment {
                 }
         );
 
+        // When border picture color must change: call displayBorderPicture:
         viewModel.borderPictureColor.observe(getViewLifecycleOwner(), borderPictureColor ->
                 {
                     displayBorderPicture(borderPictureColor);
@@ -96,6 +105,7 @@ public class FindThePictureFragment extends Fragment {
 
     }
 
+    // When the game is over, gets the score and replace this fragment by ResultGameFragment
     private void gameOver() {
 
         int score = viewModel.score.getValue();
@@ -103,48 +113,51 @@ public class FindThePictureFragment extends Fragment {
         Utils.replaceFragmentInGameActivity(getActivity(), resultGameFragment);
     }
 
+    // When an image is clicked, call viewModel.userChoosePictureAtIndex and send him the image position (index)
     private void imageClickListener(ImageView imageView, int index) {
         imageView.setOnClickListener(view -> viewModel.userChoosePictureAtIndex(index, getContext()));
     }
+
+    // Displays border picture when user clicks on it.
+    // BorderColorModel contains colors and words positions
 
     private void displayBorderPicture(BorderColorModel borderPictureColor) {
 
         String colorBorder = "";
 
         if (borderPictureColor.getBorderColor() == BorderColorEnum.GREEN) {
-            colorBorder = "#0AEA14";
+            colorBorder = "#0AEA14";                                            // GREED for correct answer
         }
         if (borderPictureColor.getBorderColor() == BorderColorEnum.RED) {
-            colorBorder = "#E53935";
+            colorBorder = "#E53935";                                            // RED for wrong answer
         }
         if (borderPictureColor.getBorderColor() == BorderColorEnum.NONE) {
-            colorBorder = "#00000000";
+            colorBorder = "#00000000";                                          // By default: color of the background for invisible border
         }
 
         ImageView imageView = null;
         if (borderPictureColor.getPositionWord() == 0) {
-            imageView = imageViewTopLeft;
+            imageView = imageViewTopLeft;                                       // imageView is one at the top left
         }
         if (borderPictureColor.getPositionWord() == 1) {
-            imageView = imageViewTopRight;
+            imageView = imageViewTopRight;                                      // ImageView is one at the top right
         }
-        if (borderPictureColor.getPositionWord() == 2) {
+        if (borderPictureColor.getPositionWord() == 2) {                        // ImageView is one at the bottom left
             imageView = imageViewBottomLeft;
         }
-        if (borderPictureColor.getPositionWord() == 3) {
+        if (borderPictureColor.getPositionWord() == 3) {                        // ImageView is one at the bottom right
             imageView = imageViewBottomRight;
         }
 
-        imageView.setBackgroundColor(Color.parseColor(colorBorder));
+        imageView.setBackgroundColor(Color.parseColor(colorBorder));            // Displays border picture for the imageView and color attributed
     }
 
+    // Displays picture (loading by url) in imageView attributed, using Glide library.
     private void displayPicture(String url, ImageView imageView) {
 
         Glide.with(this)
                 .load(url) // image url
-                //.placeholder(R.drawable.placeholder) // any placeholder to load at start
-                //.error(R.drawable.imagenotfound)  // any image in case of error
-                .override(100, 100) // resizing
+                .override(500, 500) // resizing
                 .centerCrop()
                 .into(imageView);  // imageview object
     }
