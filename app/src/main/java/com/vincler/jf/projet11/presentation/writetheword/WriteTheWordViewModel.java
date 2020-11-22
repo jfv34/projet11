@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.vincler.jf.projet11.models.BorderColorEnum;
+import com.vincler.jf.projet11.models.ColorEnum;
 import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.models.WriteTheWordModel;
 import com.vincler.jf.projet11.repositories.Result;
@@ -25,7 +25,7 @@ public class WriteTheWordViewModel extends ViewModel {
     MutableLiveData<Boolean> isGameOver = new MutableLiveData<>();
     MutableLiveData<Boolean> isErrorLoading = new MutableLiveData<>();
     MutableLiveData<Integer> score = new MutableLiveData<>();
-    MutableLiveData<BorderColorEnum> borderWordColor = new MutableLiveData<>();
+    MutableLiveData<ColorEnum> borderWordColor = new MutableLiveData<>();
     MutableLiveData<Boolean> isIncorrectAnswer = new MutableLiveData<>();
 
     public void getData(LanguageEnum language, Context context) {
@@ -64,9 +64,9 @@ public class WriteTheWordViewModel extends ViewModel {
         if (isWordCorrect(textValidate)) {
             int newScore = score.getValue() + 1;
             score.postValue(newScore);
-            changeBorderWordColor(BorderColorEnum.GREEN);
+            changeBorderWordColor(ColorEnum.GREEN);
         } else {
-            changeBorderWordColor(BorderColorEnum.RED);
+            changeBorderWordColor(ColorEnum.RED);
             isIncorrectAnswer.postValue(true);
         }
 
@@ -85,7 +85,7 @@ public class WriteTheWordViewModel extends ViewModel {
         } else return "";
     }
 
-    private void changeBorderWordColor(BorderColorEnum borderColorEnum) {
+    private void changeBorderWordColor(ColorEnum borderColorEnum) {
 
         borderWordColor.postValue(borderColorEnum);
     }
@@ -101,7 +101,7 @@ public class WriteTheWordViewModel extends ViewModel {
 
     private void goToTheNextDraw(Context context) {
 
-        changeBorderWordColor(BorderColorEnum.NONE);
+        changeBorderWordColor(ColorEnum.NONE);
         int newDraw = draw.getValue() + 1;
         int numberOfDraw = Utils.getPrefs(context, "drawsPerGame", 7);
         if (newDraw < numberOfDraw) {

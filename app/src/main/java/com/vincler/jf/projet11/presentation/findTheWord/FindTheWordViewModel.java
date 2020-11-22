@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.vincler.jf.projet11.models.BorderColorEnum;
+import com.vincler.jf.projet11.models.ColorEnum;
 import com.vincler.jf.projet11.models.BorderColorModel;
 import com.vincler.jf.projet11.models.FindTheWordModel;
 import com.vincler.jf.projet11.models.LanguageEnum;
@@ -63,10 +63,10 @@ public class FindTheWordViewModel extends ViewModel {
         if (iscorrectPosition) {
             int newScore = score.getValue() + 1;
             score.postValue(newScore);
-            changeBorderWordColor(BorderColorEnum.GREEN, index);
+            changeBorderWordColor(ColorEnum.GREEN, index);
         }
         if (!iscorrectPosition) {
-            changeBorderWordColor(BorderColorEnum.RED, index);
+            changeBorderWordColor(ColorEnum.RED, index);
         }
 
         new Timer().schedule(new TimerTask() {
@@ -77,7 +77,7 @@ public class FindTheWordViewModel extends ViewModel {
         }, Utils.getPrefs(context,"delay",1500));
     }
 
-    private void changeBorderWordColor(BorderColorEnum borderColorList, int index) {
+    private void changeBorderWordColor(ColorEnum borderColorList, int index) {
 
         BorderColorModel newBorderWordColor = new BorderColorModel(borderColorList, index);
         borderWordColor.postValue(newBorderWordColor);
@@ -85,7 +85,7 @@ public class FindTheWordViewModel extends ViewModel {
 
     private void goToTheNextDraw(int index, Context context) {
 
-        changeBorderWordColor(BorderColorEnum.NONE, index);
+        changeBorderWordColor(ColorEnum.NONE, index);
         int newDraw = draw.getValue() + 1;
         int numberOfDraw = Utils.getPrefs(context,"drawsPerGame",7);
         if (newDraw < numberOfDraw) {

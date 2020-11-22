@@ -1,6 +1,6 @@
 package com.vincler.jf.projet11.models;
 
-public enum BorderColorEnum {
+public enum ColorEnum {
     NONE,
     GREEN,
     RED

@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.vincler.jf.projet11.R;
-import com.vincler.jf.projet11.models.BorderColorEnum;
+import com.vincler.jf.projet11.models.ColorEnum;
 import com.vincler.jf.projet11.models.BorderColorModel;
 import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.presentation.resultGame.ResultGameFragment;
@@ -26,13 +26,13 @@ public class FindTheWordFragment extends Fragment {
 
     private LanguageEnum bundleLanguage;        // Language to learn, chosen in the menu
     private FindTheWordViewModel viewModel;     // ViewModel
-    private ImageView pictureImageView;         // Picture to find
-    private TextView wordTopLeft;               // Picture top left
-    private TextView wordTopRight;              // Picture top right
-    private TextView wordBottomLeft;            // Picture bottom left
-    private TextView wordBottomRight;           // Picture bottom right
+    private ImageView pictureImageView;         // The picture
+    private TextView wordTopLeft;               // Word top left
+    private TextView wordTopRight;              // Word top right
+    private TextView wordBottomLeft;            // Word bottom left
+    private TextView wordBottomRight;           // Word bottom right
 
-    // instanciate this fragment
+    // instantiate this fragment
     public static FindTheWordFragment newInstance(LanguageEnum bundleLanguage) {
         FindTheWordFragment findTheWordFragment = new FindTheWordFragment();
 
@@ -97,7 +97,7 @@ public class FindTheWordFragment extends Fragment {
                 }
         );
 
-        // When border picture color must change: call displayBorderPicture:
+        // When border picture color must change: call displayBorderWord:
         viewModel.borderWordColor.observe(getViewLifecycleOwner(), this::displayBorderWord
         );
 
@@ -121,13 +121,13 @@ public class FindTheWordFragment extends Fragment {
 
         String colorBorder = "#80000000";
 
-        if (borderTextColor.getBorderColor() == BorderColorEnum.GREEN) {    // GREED for correct answer
+        if (borderTextColor.getBorderColor() == ColorEnum.GREEN) {    // GREED for correct answer
             colorBorder = "#00FF00";
         }
-        if (borderTextColor.getBorderColor() == BorderColorEnum.RED) {      // RED for wrong answer
+        if (borderTextColor.getBorderColor() == ColorEnum.RED) {      // RED for wrong answer
             colorBorder = "#FF0000";
         }
-        if (borderTextColor.getBorderColor() == BorderColorEnum.NONE) {     // NONE for color of the word by default (grey)
+        if (borderTextColor.getBorderColor() == ColorEnum.NONE) {     // NONE for color of the word by default (grey)
             colorBorder = "#80000000";
         }
 

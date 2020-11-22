@@ -20,25 +20,31 @@ import androidx.lifecycle.ViewModelProvider;
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.vincler.jf.projet11.R;
-import com.vincler.jf.projet11.models.BorderColorEnum;
+import com.vincler.jf.projet11.models.ColorEnum;
 import com.vincler.jf.projet11.presentation.gameActivity.GameActivityDependency;
 import com.vincler.jf.projet11.presentation.resultGame.ResultGameFragment;
 import com.vincler.jf.projet11.utils.Utils;
 
+// This class displays the view of the games
+// "Write the word with the first letter"
+// and "Write the word without the first letter"
+// The user must write the words that corresponds to the picture.
+
 public class WriteTheWordFragment extends Fragment {
 
-    private GameActivityDependency bundleGameActivityDependency;
-    private WriteTheWordViewModel viewModel;
-    private ImageView pictureImageView;
-    private EditText wordET;
-    private TextView correctWordTV;
-    private ExtendedFloatingActionButton validateFab;
+    private GameActivityDependency bundleGameActivityDependency;  // Game and Language to learn, chosen in the menu
+    private WriteTheWordViewModel viewModel;                      // ViewModel
+    private ImageView pictureImageView;                           // The picture
+    private EditText wordET;                                      // To write the word find
+    private TextView correctWordTV;                               // To display the correct answer
+    private ExtendedFloatingActionButton validateFab;             // User validates his choice
 
+    // instantiate this fragment
     public static WriteTheWordFragment newInstance(GameActivityDependency bundleGameActivityDependency) {
         WriteTheWordFragment writeTheWordFragment = new WriteTheWordFragment();
 
         Bundle args = new Bundle();
-        args.putSerializable("value", bundleGameActivityDependency);
+        args.putSerializable("value", bundleGameActivityDependency);  // Gets game and langage from the menu
         writeTheWordFragment.setArguments(args);
         return writeTheWordFragment;
     }
@@ -62,28 +68,40 @@ public class WriteTheWordFragment extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(WriteTheWordViewModel.class);
         viewModel.getData(bundleGameActivityDependency.getLanguage(), getContext());
-        if (bundleGameActivityDependency.getGameId() == 3) {
+        if (bundleGameActivityDependency.getGameId() == 3) { // gravity start for word with first letter
             wordET.setGravity(Gravity.START);
-        } else wordET.setGravity(Gravity.CENTER_HORIZONTAL);
-        displayBorderWord(BorderColorEnum.NONE);
+        } else
+            wordET.setGravity(Gravity.CENTER_HORIZONTAL); // gravity center for word without first letter
+        displayBackgroundWord(ColorEnum.NONE);
 
+        // Displays the current draw (viewModel.currentModel):
         viewModel.currentModel.observe(getViewLifecycleOwner(), model ->
                 {
-                    displayPicture(model.getPicture(), pictureImageView);
-                    correctWordTV.setText("");
-                    editTextinAllCaps();
-                    wordET.getText().clear();
+                    displayPicture(model.getPicture(), pictureImageView); // displays the picture
+                    correctWordTV.setText("");                  // clear the correctWord TextView
+                    editTextinAllCaps();                        // EditText in all caps
+                    wordET.getText().clear();                   // clear the EditText
                     if (bundleGameActivityDependency.getGameId() == 3) {
                         if (wordET.getText().length() == 0) {
-                            displayFistLetter();
+                            displayFistLetter();                // displays first letter for the game 3
                         }
 
                     } else {
-                        wordET.setHint("Write the word");
+                        wordET.setHint("Write the word");       // displays hint for the game 4
                     }
                 }
         );
 
+        // Displays a error message in toast when no data is loading:
+        viewModel.isErrorLoading.observe(getViewLifecycleOwner(), errorLoading ->
+        {
+            if (errorLoading) {
+                Utils.toastErrorLoading(getContext());
+                viewModel.isErrorLoading.postValue(false);
+            }
+        });
+
+        // When all draws have been played: call gameOver:
         viewModel.isGameOver.observe(getViewLifecycleOwner(), gameOver ->
                 {
                     if (gameOver) {
@@ -92,41 +110,21 @@ public class WriteTheWordFragment extends Fragment {
                 }
         );
 
+        // When game is the 3, add textChangedListener to always keep displayed the first letter
+        if (bundleGameActivityDependency.getGameId() == 3) {
+            addTextChangedListener();
+        }
 
-        wordET.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (bundleGameActivityDependency.getGameId() == 3) {
-                    String firstLetter = viewModel.getFirstLetter();
-                    if (!firstLetter.equals("")) {
-                        if (wordET.length() > 0) {
-                            String firstLetterInEditText = wordET.getText().toString().substring(0, 1);
-                            if (!firstLetterInEditText.equals(firstLetter.toUpperCase())) {
-                                displayFistLetter();
-                            }
-                        } else {
-                            displayFistLetter();
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
+        // When user clicks on floating button to validate his word, call viewModel.userValidateWord
         validateFab.setOnClickListener(view1 -> {
             viewModel.userValidateWord(wordET.getText().toString(), bundleGameActivityDependency.getGameId(), getContext());
         });
 
-        viewModel.borderWordColor.observe(getViewLifecycleOwner(), this::displayBorderWord
+        // When border picture color must change: call displayBorderWord
+        viewModel.borderWordColor.observe(getViewLifecycleOwner(), this::displayBackgroundWord
         );
+
+        // When the answer is wrong, displays the correct word
         viewModel.isIncorrectAnswer.observe(getViewLifecycleOwner(), isIncorrectAnswer ->
                 {
                     if (isIncorrectAnswer) {
@@ -136,49 +134,84 @@ public class WriteTheWordFragment extends Fragment {
         );
     }
 
-    private void editTextinAllCaps() {
-       wordET.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
+    // textChangedListener to always keep displayed the first letter in the game 3
+    private void addTextChangedListener() {
+        wordET.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String firstLetter = viewModel.getFirstLetter();
+                if (!firstLetter.equals("")) {
+                    // if there are the first letter in viewModel...
+                    if (wordET.length() > 0) {
+                        // if first letter in EditText if wrong, displays the correct first letter
+                        String firstLetterInEditText = wordET.getText().toString().substring(0, 1);
+                        if (!firstLetterInEditText.equals(firstLetter.toUpperCase())) {
+                            displayFistLetter();
+                        }
+                    } else {
+                        // if EditText is empty, displays the first letter
+                        displayFistLetter();
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 
-    private void displayFistLetter() {
+    // Displays the user word in all caps
+    private void editTextinAllCaps() {
+        wordET.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
+    }
 
+    // Displays the first letter of the word
+    private void displayFistLetter() {
         String firstLetterInUpperCase = viewModel.getFirstLetter().toUpperCase();
         wordET.setText(firstLetterInUpperCase);
         wordET.setSelection(wordET.getText().length());
 
     }
 
+    // Displays the correct word
     private void displayCorrectWord() {
         correctWordTV.setText(viewModel.currentModel.getValue().getWord().toUpperCase());
     }
 
-    private void displayBorderWord(BorderColorEnum borderWordColor) {
-        String colorBorder = "";
+    // Displays the word background when user validate his word
+    private void displayBackgroundWord(ColorEnum borderWordColor) {
+        String color = "";
 
-        if (borderWordColor == BorderColorEnum.GREEN) {
-            colorBorder = "#0AEA14";
+        if (borderWordColor == ColorEnum.GREEN) {
+            color = "#0AEA14";                          // Background GREEN for a correct word
         }
-        if (borderWordColor == BorderColorEnum.RED) {
-            colorBorder = "#E53935";
+        if (borderWordColor == ColorEnum.RED) {
+            color = "#E53935";                          // Background RED for a wrong word
         }
-        if (borderWordColor == BorderColorEnum.NONE) {
-            colorBorder = "#E1CDCDCD";
+        if (borderWordColor == ColorEnum.NONE) {
+            color = "#E1CDCDCD";                        // Background NONE (grey) before the choice
         }
 
-        wordET.setBackgroundColor(Color.parseColor(colorBorder));
+        wordET.setBackgroundColor(Color.parseColor(color));  // Display background word
     }
 
+    // Displays picture (loading by url) in imageView attributed, using Glide library.
     private void displayPicture(String url, ImageView imageView) {
 
         Glide.with(this)
                 .load(url) // image url
-                //.placeholder(R.drawable.placeholder) // any placeholder to load at start
-                //.error(R.drawable.imagenotfound)  // any image in case of error
-                .override(100, 100) // resizing
+                .override(500, 500) // resizing
                 .centerCrop()
                 .into(imageView);  // imageview object
     }
 
+    // When the game is over, gets the score and replace this fragment by ResultGameFragment
     private void gameOver() {
 
         int score = viewModel.score.getValue();

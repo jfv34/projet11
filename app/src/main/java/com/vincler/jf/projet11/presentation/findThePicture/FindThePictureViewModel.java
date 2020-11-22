@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.vincler.jf.projet11.models.BorderColorEnum;
+import com.vincler.jf.projet11.models.ColorEnum;
 import com.vincler.jf.projet11.models.BorderColorModel;
 import com.vincler.jf.projet11.models.FindThePictureModel;
 import com.vincler.jf.projet11.models.LanguageEnum;
@@ -61,10 +61,10 @@ public class FindThePictureViewModel extends ViewModel {
         if (iscorrectPosition) {
             int newScore = score.getValue() + 1;
             score.postValue(newScore);
-            changeBorderPictureColor(BorderColorEnum.GREEN, index);
+            changeBorderPictureColor(ColorEnum.GREEN, index);
         }
         if (!iscorrectPosition) {
-            changeBorderPictureColor(BorderColorEnum.RED, index);
+            changeBorderPictureColor(ColorEnum.RED, index);
         }
 
         new Timer().schedule(new TimerTask() {
@@ -75,7 +75,7 @@ public class FindThePictureViewModel extends ViewModel {
         }, Utils.getPrefs(context, "delay",1500));
     }
 
-    private void changeBorderPictureColor(BorderColorEnum borderColorList, int index) {
+    private void changeBorderPictureColor(ColorEnum borderColorList, int index) {
 
         BorderColorModel newBorderPictureColor = new BorderColorModel(borderColorList, index);
         borderPictureColor.postValue(newBorderPictureColor);
@@ -83,7 +83,7 @@ public class FindThePictureViewModel extends ViewModel {
 
     private void goToTheNextDraw(int index, Context context) {
 
-        changeBorderPictureColor(BorderColorEnum.NONE, index);
+        changeBorderPictureColor(ColorEnum.NONE, index);
         int newDraw = draw.getValue() + 1;
         int numberOfDraw = Utils.getPrefs(context, "drawsPerGame",7);
         if (newDraw < numberOfDraw) {

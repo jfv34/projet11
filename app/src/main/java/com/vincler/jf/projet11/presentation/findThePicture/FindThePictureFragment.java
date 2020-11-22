@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.vincler.jf.projet11.R;
-import com.vincler.jf.projet11.models.BorderColorEnum;
+import com.vincler.jf.projet11.models.ColorEnum;
 import com.vincler.jf.projet11.models.BorderColorModel;
 import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.presentation.resultGame.ResultGameFragment;
@@ -27,13 +27,13 @@ public class FindThePictureFragment extends Fragment {
 
     private LanguageEnum bundleLanguage;            // Language to learn, chosen in the menu
     private FindThePictureViewModel viewModel;      // ViewModel
-    private TextView wordText;                      // Word to find
+    private TextView wordText;                      // The word
     private ImageView imageViewTopLeft;             // Image top left
     private ImageView imageViewTopRight;            // Image top right
     private ImageView imageViewBottomLeft;          // Image bottom left
     private ImageView imageViewBottomRight;         // Image bottom right
 
-    // instanciate this fragment
+    // instantiate this fragment
     public static FindThePictureFragment newInstance(LanguageEnum bundleLanguage) {
         FindThePictureFragment findThePictureFragment = new FindThePictureFragment();
 
@@ -124,13 +124,13 @@ public class FindThePictureFragment extends Fragment {
 
         String colorBorder = "";
 
-        if (borderPictureColor.getBorderColor() == BorderColorEnum.GREEN) {
+        if (borderPictureColor.getBorderColor() == ColorEnum.GREEN) {
             colorBorder = "#0AEA14";                                            // GREED for correct answer
         }
-        if (borderPictureColor.getBorderColor() == BorderColorEnum.RED) {
+        if (borderPictureColor.getBorderColor() == ColorEnum.RED) {
             colorBorder = "#E53935";                                            // RED for wrong answer
         }
-        if (borderPictureColor.getBorderColor() == BorderColorEnum.NONE) {
+        if (borderPictureColor.getBorderColor() == ColorEnum.NONE) {
             colorBorder = "#00000000";                                          // By default: color of the background for invisible border
         }
 
