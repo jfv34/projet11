@@ -27,7 +27,7 @@ public class FindThePictureViewModel extends ViewModel {
     MutableLiveData<Boolean> isGameOver = new MutableLiveData<>();                  // true if game is over
     MutableLiveData<Boolean> isErrorLoading = new MutableLiveData<>();              // true if the data has not loaded correctly
     MutableLiveData<Integer> score = new MutableLiveData<>();                       // counter of the correct answer by the user
-    MutableLiveData<BorderColorModel> borderPictureColor = new MutableLiveData<>(); // picture border color
+    public MutableLiveData<BorderColorModel> borderPictureColor = new MutableLiveData<>(); // picture border color
 
     // Gets the list of draws in findThePictureList,
     // initializes score, draw and isGameOver,
@@ -90,7 +90,7 @@ public class FindThePictureViewModel extends ViewModel {
     // changes border picture color
     // index = the image's position to change
     // borderColor  = the border color to displays
-    private void changeBorderPictureColor(ColorEnum borderColor, int index) {
+    public void changeBorderPictureColor(ColorEnum borderColor, int index) {
 
         BorderColorModel newBorderPictureColor = new BorderColorModel(borderColor, index);
         borderPictureColor.postValue(newBorderPictureColor);
@@ -101,7 +101,7 @@ public class FindThePictureViewModel extends ViewModel {
     // changes color picture border in invible,
     // and increase the counter of draw by 1.
     // If it's the last draw, go to the Result.
-    private void goToTheNextDraw(int index, Context context) {
+    public void goToTheNextDraw(int index, Context context) {
 
         changeBorderPictureColor(ColorEnum.NONE, index);
         int newDraw = draw.getValue() + 1;

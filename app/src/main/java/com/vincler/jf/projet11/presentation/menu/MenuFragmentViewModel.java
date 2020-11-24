@@ -9,7 +9,7 @@ import com.vincler.jf.projet11.models.LanguageEnum;
 
 public class MenuFragmentViewModel extends ViewModel {
 
-    MutableLiveData<LanguageEnum> language = new MutableLiveData<>(LanguageEnum.ENGLISH);
+    public MutableLiveData<LanguageEnum> language = new MutableLiveData<>(LanguageEnum.ENGLISH);
     LiveData<Boolean> isFrench = Transformations.map(language, input -> input==LanguageEnum.FRENCH);
     LiveData<Boolean> isEnglish =Transformations.map(language, input -> input==LanguageEnum.ENGLISH);
     LiveData<Boolean> isSpanish = Transformations.map(language, input -> input==LanguageEnum.SPANISH);

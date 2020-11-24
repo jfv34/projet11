@@ -117,7 +117,7 @@ public class WriteTheWordFragment extends Fragment {
 
         // When user clicks on floating button to validate his word, call viewModel.userValidateWord
         validateFab.setOnClickListener(view1 -> {
-            viewModel.userValidateWord(wordET.getText().toString(), bundleGameActivityDependency.getGameId(), getContext());
+            viewModel.userValidateWord(wordET.getText().toString(), getContext());
         });
 
         // When border picture color must change: call displayBorderWord

@@ -20,7 +20,7 @@ import java.util.TimerTask;
 public class WriteTheWordViewModel extends ViewModel {
 
     ArrayList<WriteTheWordModel> writeTheWordList = new ArrayList<>();
-    MutableLiveData<WriteTheWordModel> currentModel = new MutableLiveData<>();
+    public MutableLiveData<WriteTheWordModel> currentModel = new MutableLiveData<>();
     MutableLiveData<Integer> draw = new MutableLiveData<>();
     MutableLiveData<Boolean> isGameOver = new MutableLiveData<>();
     MutableLiveData<Boolean> isErrorLoading = new MutableLiveData<>();
@@ -59,7 +59,7 @@ public class WriteTheWordViewModel extends ViewModel {
                 }, language, context);
     }
 
-    public void userValidateWord(String textValidate, int gameId, Context context) {
+    public void userValidateWord(String textValidate, Context context) {
 
         if (isWordCorrect(textValidate)) {
             int newScore = score.getValue() + 1;

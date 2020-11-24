@@ -132,16 +132,16 @@ public class FindTheWordFragment extends Fragment {
         }
 
         TextView textView = null;
-        if (borderTextColor.getPositionPicture() == 0) {
+        if (borderTextColor.getPosition() == 0) {
             textView = wordTopLeft;                                         // Textview is one at the top left
         }
-        if (borderTextColor.getPositionPicture() == 1) {
+        if (borderTextColor.getPosition() == 1) {
             textView = wordTopRight;                                        // TextView is one at the top right
         }
-        if (borderTextColor.getPositionPicture() == 2) {
+        if (borderTextColor.getPosition() == 2) {
             textView = wordBottomLeft;                                      // TextView is one at the bottom left
         }
-        if (borderTextColor.getPositionPicture() == 3) {
+        if (borderTextColor.getPosition() == 3) {
             textView = wordBottomRight;                                     // TextView is one at the bottom right
         }
 

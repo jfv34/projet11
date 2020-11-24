@@ -26,7 +26,7 @@ public class FindTheWordViewModel extends ViewModel {
     MutableLiveData<Boolean> isGameOver = new MutableLiveData<>();
     MutableLiveData<Boolean> isErrorLoading = new MutableLiveData<>();
     MutableLiveData<Integer> score = new MutableLiveData<>();
-    MutableLiveData<BorderColorModel> borderWordColor = new MutableLiveData<>();
+    public MutableLiveData<BorderColorModel> borderWordColor = new MutableLiveData<>();
 
     public void getData(LanguageEnum language) {
         if (findTheWordList.isEmpty()) {
@@ -77,7 +77,7 @@ public class FindTheWordViewModel extends ViewModel {
         }, Utils.getPrefs(context,"delay",1500));
     }
 
-    private void changeBorderWordColor(ColorEnum borderColorList, int index) {
+    public void changeBorderWordColor(ColorEnum borderColorList, int index) {
 
         BorderColorModel newBorderWordColor = new BorderColorModel(borderColorList, index);
         borderWordColor.postValue(newBorderWordColor);

@@ -26,11 +26,6 @@ public class Utils {
         transaction.add(R.id.activity_game_constraintLayout, fragment).addToBackStack(fragment.getClass().getName()).commit();
     }
 
-
-    public static void replaceFragmentInMenuActivity(FragmentActivity activity, Fragment fragment) {
-        FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.activity_main_constraintLayout, fragment).addToBackStack(fragment.getClass().getName()).commit();
-    }
     public static void replaceFragmentInGameActivity(FragmentActivity activity, Fragment fragment) {
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.activity_game_constraintLayout, fragment).addToBackStack(fragment.getClass().getName()).commit();

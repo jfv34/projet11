@@ -135,16 +135,16 @@ public class FindThePictureFragment extends Fragment {
         }
 
         ImageView imageView = null;
-        if (borderPictureColor.getPositionPicture() == 0) {
+        if (borderPictureColor.getPosition() == 0) {
             imageView = imageViewTopLeft;                                       // imageView is one at the top left
         }
-        if (borderPictureColor.getPositionPicture() == 1) {
+        if (borderPictureColor.getPosition() == 1) {
             imageView = imageViewTopRight;                                      // ImageView is one at the top right
         }
-        if (borderPictureColor.getPositionPicture() == 2) {                     // ImageView is one at the bottom left
+        if (borderPictureColor.getPosition() == 2) {                     // ImageView is one at the bottom left
             imageView = imageViewBottomLeft;
         }
-        if (borderPictureColor.getPositionPicture() == 3) {                     // ImageView is one at the bottom right
+        if (borderPictureColor.getPosition() == 3) {                     // ImageView is one at the bottom right
             imageView = imageViewBottomRight;
         }
 
