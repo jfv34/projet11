@@ -24,6 +24,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         delayPreference();
     }
 
+    // prefences for the delay between two draw
     private void delayPreference() {
         SeekBarPreference delayPreference = getPreferenceScreen().findPreference("delay");
         if (delayPreference != null) {
@@ -35,6 +36,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         }
     }
 
+    // prefences for the number of draws by game
     private void drawPerGamePreference() {
         SeekBarPreference drawPerGamePreference = getPreferenceScreen().findPreference("drawsPerGame");
         if (drawPerGamePreference != null) {

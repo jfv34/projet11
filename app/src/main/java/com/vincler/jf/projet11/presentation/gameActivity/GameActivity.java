@@ -1,21 +1,18 @@
 package com.vincler.jf.projet11.presentation.gameActivity;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.vincler.jf.projet11.R;
-import com.vincler.jf.projet11.models.Constants;
 import com.vincler.jf.projet11.presentation.findThePicture.FindThePictureFragment;
 import com.vincler.jf.projet11.presentation.findTheWord.FindTheWordFragment;
 import com.vincler.jf.projet11.presentation.writetheword.WriteTheWordFragment;
 import com.vincler.jf.projet11.utils.Utils;
 
 public class GameActivity extends AppCompatActivity {
-    private GameActivityDependency gameActivityDependency;
+    private GameActivityDependency gameActivityDependency;  // Langage and gameId chosen by the user
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,28 +25,32 @@ public class GameActivity extends AppCompatActivity {
 
             switch (gameActivityDependency.getGameId()) {
                 case 1:
-                    callFragmentGame1();
+                    callFragmentGame1();                    // Game "find the picture"
                     break;
                 case 2:
-                    callFragmentGame2();
+                    callFragmentGame2();                    // Game "find the word"
                     break;
-                case 3:
-                case 4:
-                    callFragmentGame3_or_4();
+                case 3:                                     // Game "write the word with first letter"
+                case 4:                                     // Game "write the word without first letter"
+                    callFragmentGame3_or_4();               // The same fragment for games 3 and 4
             }
         }
     }
 
+    // Game "find the picture"
     private void callFragmentGame1() {
         Fragment findThePictureFragment = FindThePictureFragment.newInstance(gameActivityDependency.getLanguage());
         Utils.addFragmentInGameActivity(this, findThePictureFragment);
     }
 
+    // Game "find the word"
     private void callFragmentGame2() {
         Fragment findTheWordFragment = FindTheWordFragment.newInstance(gameActivityDependency.getLanguage());
         Utils.addFragmentInGameActivity(this, findTheWordFragment);
     }
 
+    // Game "write the word with first letter" or "write the word without first letter"
+    // Same fragment for the two games
     private void callFragmentGame3_or_4() {
         Fragment writeTheWordFragment = WriteTheWordFragment.newInstance(gameActivityDependency);
         Utils.addFragmentInGameActivity(this, writeTheWordFragment);
