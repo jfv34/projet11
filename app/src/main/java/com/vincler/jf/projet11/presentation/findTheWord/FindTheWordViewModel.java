@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.vincler.jf.projet11.models.ColorEnum;
-import com.vincler.jf.projet11.models.BorderColorModel;
+import com.vincler.jf.projet11.models.ColorModel;
 import com.vincler.jf.projet11.models.FindTheWordModel;
 import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.repositories.FindTheWordRepository;
@@ -18,30 +18,34 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+// Prepares and manages the data for FindTheWordFragment
 public class FindTheWordViewModel extends ViewModel {
 
-    ArrayList<FindTheWordModel> findTheWordList = new ArrayList<>();
-    MutableLiveData<FindTheWordModel> currentModel = new MutableLiveData<>();
-    MutableLiveData<Integer> draw = new MutableLiveData<>();
-    MutableLiveData<Boolean> isGameOver = new MutableLiveData<>();
-    MutableLiveData<Boolean> isErrorLoading = new MutableLiveData<>();
-    MutableLiveData<Integer> score = new MutableLiveData<>();
-    public MutableLiveData<BorderColorModel> borderWordColor = new MutableLiveData<>();
+    ArrayList<FindTheWordModel> findTheWordList = new ArrayList<>();                    // list of the draws (pictures, words and the correct positions of the words)
+    MutableLiveData<FindTheWordModel> currentModel = new MutableLiveData<>();           // current draw (picture, the four words and the correct position of the word)
+    MutableLiveData<Integer> draw = new MutableLiveData<>();                            // counter of the draws
+    MutableLiveData<Boolean> isGameOver = new MutableLiveData<>();                      // true if game is over
+    MutableLiveData<Boolean> isErrorLoading = new MutableLiveData<>();                  // true if the data has not loaded correctly
+    MutableLiveData<Integer> score = new MutableLiveData<>();                           // counter of the correct answer by the user
+    public MutableLiveData<ColorModel> wordColor = new MutableLiveData<>();             // color for chosen word
 
+    // Gets the list of draws in findTheWordList,
+    // initializes score, draw and isGameOver,
+    // and gets the first draw in currentModel
     public void getData(LanguageEnum language) {
-        if (findTheWordList.isEmpty()) {
-            draw.postValue(0);
-            isGameOver.postValue(false);
+        if (findTheWordList.isEmpty()) {    // initializes counter of draws
+            draw.postValue(0);              // initializes isGameOver
+            isGameOver.postValue(false);    // initializes the score
             score.postValue(0);
 
-            FindTheWordRepository.getFindTheWordList(
+            FindTheWordRepository.getFindTheWordList(   // gets the list of draw from the repository, filtered by the chosen language
                     new Result<List<FindTheWordModel>>() {
                         @Override
                         public void onResult(List<FindTheWordModel> result) {
                             if (result != null && result.size() != 0 && result.get(0) != null) {
                                 findTheWordList.clear();
-                                findTheWordList.addAll(result);
-                                currentModel.postValue(result.get(0));
+                                findTheWordList.addAll(result);         // puts the list of draws in findTheWordList
+                                currentModel.postValue(result.get(0));  // puts the first draw in currentModel
                             } else {
                                 isErrorLoading.postValue(true);
                             }
@@ -56,36 +60,50 @@ public class FindTheWordViewModel extends ViewModel {
         }
     }
 
+    // when user choose a word,
+    // checks if it's a correct answer,
+    // display the color word appropriate during some delay,
+    // and go to the new draw
+    // index = the word position clicked by the user
     public void userChooseWordAtIndex(int index, Context context) {
 
+        //check if the word position clicked is correct
         boolean iscorrectPosition = currentModel.getValue().getCorrectWordPosition() == index;
 
         if (iscorrectPosition) {
             int newScore = score.getValue() + 1;
-            score.postValue(newScore);
-            changeBorderWordColor(ColorEnum.GREEN, index);
+            score.postValue(newScore);                // if result is correct, score increases by 1
+            changeWordColor(ColorEnum.GREEN, index);  // and word color displays in GREEN
         }
         if (!iscorrectPosition) {
-            changeBorderWordColor(ColorEnum.RED, index);
+            changeWordColor(ColorEnum.RED, index);    // if result is incorrect, word color displays in RED
         }
 
         new Timer().schedule(new TimerTask() {
             @Override
-            public void run() {
-                goToTheNextDraw(index, context);
+            public void run() {                   // A delay after displaying of the word color
+                goToTheNextDraw(index, context);      // After the delay, goes to the next draw
             }
         }, Utils.getPrefs(context,"delay",1500));
     }
 
-    public void changeBorderWordColor(ColorEnum borderColorList, int index) {
+    // changes word color
+    // index = the word position to change
+    // chosenWordColor  = the color for the chosen word
+    public void changeWordColor(ColorEnum chosenWordColor, int index) {
 
-        BorderColorModel newBorderWordColor = new BorderColorModel(borderColorList, index);
-        borderWordColor.postValue(newBorderWordColor);
+        ColorModel newChosenWordColor = new ColorModel(chosenWordColor, index);
+        wordColor.postValue(newChosenWordColor);
     }
 
+    // goes to the next draw
+    // Increase the counter of draws by 1,
+    // changes color word in default color (grey),
+    // and increase the counter of draw by 1.
+    // If it's the last draw, go to the Result.
     private void goToTheNextDraw(int index, Context context) {
 
-        changeBorderWordColor(ColorEnum.NONE, index);
+        changeWordColor(ColorEnum.NONE, index);
         int newDraw = draw.getValue() + 1;
         int numberOfDraw = Utils.getPrefs(context,"drawsPerGame",7);
         if (newDraw < numberOfDraw) {

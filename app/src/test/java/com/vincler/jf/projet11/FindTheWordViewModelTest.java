@@ -22,10 +22,10 @@ public class FindTheWordViewModelTest {
 
         FindTheWordViewModel findTheWordViewModel = new FindTheWordViewModel();
 
-        findTheWordViewModel.changeBorderWordColor(ColorEnum.RED,3);
+        findTheWordViewModel.changeWordColor(ColorEnum.RED,3);
 
-        ColorEnum wordColor = findTheWordViewModel.borderWordColor.getValue().getBorderColor();
-        int position = findTheWordViewModel.borderWordColor.getValue().getPosition();
+        ColorEnum wordColor = findTheWordViewModel.wordColor.getValue().getColorEnum();
+        int position = findTheWordViewModel.wordColor.getValue().getPosition();
         Assertions.assertThat(wordColor).isEqualByComparingTo(ColorEnum.RED);
         Assertions.assertThat(position).isEqualTo(3);
     }

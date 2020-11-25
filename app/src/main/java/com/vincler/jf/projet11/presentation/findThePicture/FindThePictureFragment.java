@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.bumptech.glide.Glide;
 import com.vincler.jf.projet11.R;
 import com.vincler.jf.projet11.models.ColorEnum;
-import com.vincler.jf.projet11.models.BorderColorModel;
+import com.vincler.jf.projet11.models.ColorModel;
 import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.presentation.resultGame.ResultGameFragment;
 import com.vincler.jf.projet11.utils.Utils;
@@ -120,17 +120,17 @@ public class FindThePictureFragment extends Fragment {
 
     // Displays border picture when user clicks on it.
     // BorderColorModel contains colors and words positions
-    private void displayBorderPicture(BorderColorModel borderPictureColor) {
+    private void displayBorderPicture(ColorModel borderPictureColor) {
 
         String colorBorder = "";
 
-        if (borderPictureColor.getBorderColor() == ColorEnum.GREEN) {
+        if (borderPictureColor.getColorEnum() == ColorEnum.GREEN) {
             colorBorder = "#0AEA14";                                            // GREED for correct answer
         }
-        if (borderPictureColor.getBorderColor() == ColorEnum.RED) {
+        if (borderPictureColor.getColorEnum() == ColorEnum.RED) {
             colorBorder = "#E53935";                                            // RED for wrong answer
         }
-        if (borderPictureColor.getBorderColor() == ColorEnum.NONE) {
+        if (borderPictureColor.getColorEnum() == ColorEnum.NONE) {
             colorBorder = "#00000000";                                          // By default: color of the background for invisible border
         }
 

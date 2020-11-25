@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.vincler.jf.projet11.models.BorderColorModel;
+import com.vincler.jf.projet11.models.ColorModel;
 import com.vincler.jf.projet11.models.ColorEnum;
 import com.vincler.jf.projet11.models.FindThePictureModel;
 import com.vincler.jf.projet11.models.LanguageEnum;
@@ -21,20 +21,20 @@ import java.util.TimerTask;
 // Prepares and manages the data for FindThePictureFragment
 public class FindThePictureViewModel extends ViewModel {
 
-    ArrayList<FindThePictureModel> findThePictureList = new ArrayList<>();          //
-    MutableLiveData<FindThePictureModel> currentModel = new MutableLiveData<>();    // current draw (word, the four pictures, the correct position of the picture
+    ArrayList<FindThePictureModel> findThePictureList = new ArrayList<>();          // list of the draws (words, pictures and correct position)
+    MutableLiveData<FindThePictureModel> currentModel = new MutableLiveData<>();    // current draw (word, the four pictures, the correct position of the picture)
     MutableLiveData<Integer> draw = new MutableLiveData<>();                        // counter of the draws
     MutableLiveData<Boolean> isGameOver = new MutableLiveData<>();                  // true if game is over
     MutableLiveData<Boolean> isErrorLoading = new MutableLiveData<>();              // true if the data has not loaded correctly
     MutableLiveData<Integer> score = new MutableLiveData<>();                       // counter of the correct answer by the user
-    public MutableLiveData<BorderColorModel> borderPictureColor = new MutableLiveData<>(); // picture border color
+    public MutableLiveData<ColorModel> borderPictureColor = new MutableLiveData<>(); // border color for the chosen picture
 
     // Gets the list of draws in findThePictureList,
     // initializes score, draw and isGameOver,
     // and gets the first draw in currentModel
     public void getData(LanguageEnum language) {
         if (findThePictureList.isEmpty()) {
-            draw.postValue(0);  // initializes counter of draws
+            draw.postValue(0);                                  // initializes counter of draws
             isGameOver.postValue(false);                        // initializes isGameOver
             score.postValue(0);                                 // initializes the score
 
@@ -64,19 +64,19 @@ public class FindThePictureViewModel extends ViewModel {
     // checks if it's a correct answer,
     // display the border color appropriate during some delay,
     // and go to the new draw
-    // index = the picture's position clicked by the user
+    // index = the picture position clicked by the user
     public void userChoosePictureAtIndex(int index, Context context) {
 
-        //check if the picture's position clicked is correct
+        //check if the picture position clicked is correct
         boolean iscorrectPosition = currentModel.getValue().getCorrectPicturePosition() == index;
 
         if (iscorrectPosition) {
             int newScore = score.getValue() + 1;
             score.postValue(newScore);                          // if result is correct, score increases by 1
-            changeBorderPictureColor(ColorEnum.GREEN, index);   // and border picture displays in GREEN
+            changeBorderPictureColor(ColorEnum.GREEN, index);   // and picture border displays in GREEN
         }
         if (!iscorrectPosition) {
-            changeBorderPictureColor(ColorEnum.RED, index);     // if result is incorrect, border picture displays in RED
+            changeBorderPictureColor(ColorEnum.RED, index);     // if result is incorrect, picture border displays in RED
         }
 
         new Timer().schedule(new TimerTask() {
@@ -88,11 +88,11 @@ public class FindThePictureViewModel extends ViewModel {
     }
 
     // changes border picture color
-    // index = the image's position to change
+    // index = the image position to change
     // borderColor  = the border color to displays
     public void changeBorderPictureColor(ColorEnum borderColor, int index) {
 
-        BorderColorModel newBorderPictureColor = new BorderColorModel(borderColor, index);
+        ColorModel newBorderPictureColor = new ColorModel(borderColor, index);
         borderPictureColor.postValue(newBorderPictureColor);
     }
 

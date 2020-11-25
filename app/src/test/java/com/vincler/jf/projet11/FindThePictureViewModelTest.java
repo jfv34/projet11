@@ -23,7 +23,7 @@ public class FindThePictureViewModelTest {
         FindThePictureViewModel findThePictureViewModel = new FindThePictureViewModel();
 
         findThePictureViewModel.changeBorderPictureColor(ColorEnum.GREEN, 2);
-        ColorEnum borderColor = findThePictureViewModel.borderPictureColor.getValue().getBorderColor();
+        ColorEnum borderColor = findThePictureViewModel.borderPictureColor.getValue().getColorEnum();
         int positionPicture = findThePictureViewModel.borderPictureColor.getValue().getPosition();
         Assertions.assertThat(borderColor).isEqualByComparingTo(ColorEnum.GREEN);
         Assertions.assertThat(positionPicture).isEqualTo(2);

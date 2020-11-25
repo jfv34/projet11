@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.bumptech.glide.Glide;
 import com.vincler.jf.projet11.R;
 import com.vincler.jf.projet11.models.ColorEnum;
-import com.vincler.jf.projet11.models.BorderColorModel;
+import com.vincler.jf.projet11.models.ColorModel;
 import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.presentation.resultGame.ResultGameFragment;
 import com.vincler.jf.projet11.utils.Utils;
@@ -98,7 +98,7 @@ public class FindTheWordFragment extends Fragment {
         );
 
         // When border picture color must change: call displayBorderWord:
-        viewModel.borderWordColor.observe(getViewLifecycleOwner(), this::displayBorderWord
+        viewModel.wordColor.observe(getViewLifecycleOwner(), this::displayBorderWord
         );
 
     }
@@ -117,17 +117,17 @@ public class FindTheWordFragment extends Fragment {
 
     // Displays word color when user clicks on it.
     // BorderColorModel contains colors and words positions
-    private void displayBorderWord(BorderColorModel borderTextColor) {
+    private void displayBorderWord(ColorModel borderTextColor) {
 
         String colorBorder = "#80000000";
 
-        if (borderTextColor.getBorderColor() == ColorEnum.GREEN) {    // GREED for correct answer
+        if (borderTextColor.getColorEnum() == ColorEnum.GREEN) {    // GREED for correct answer
             colorBorder = "#00FF00";
         }
-        if (borderTextColor.getBorderColor() == ColorEnum.RED) {      // RED for wrong answer
+        if (borderTextColor.getColorEnum() == ColorEnum.RED) {      // RED for wrong answer
             colorBorder = "#FF0000";
         }
-        if (borderTextColor.getBorderColor() == ColorEnum.NONE) {     // NONE for color of the word by default (grey)
+        if (borderTextColor.getColorEnum() == ColorEnum.NONE) {     // NONE for color of the word by default (grey)
             colorBorder = "#80000000";
         }
 
