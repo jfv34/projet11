@@ -5,8 +5,8 @@ import android.content.Context;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.vincler.jf.projet11.models.ColorModel;
 import com.vincler.jf.projet11.models.ColorEnum;
+import com.vincler.jf.projet11.models.ColorModel;
 import com.vincler.jf.projet11.models.FindThePictureModel;
 import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.repositories.FindThePictureRepository;
@@ -20,14 +20,19 @@ import java.util.TimerTask;
 
 // Prepares and manages the data for FindThePictureFragment
 public class FindThePictureViewModel extends ViewModel {
+    // List of the draws (words, pictures and correct position)
+    ArrayList<FindThePictureModel> findThePictureList = new ArrayList<>();
 
-    ArrayList<FindThePictureModel> findThePictureList = new ArrayList<>();          // list of the draws (words, pictures and correct position)
-    MutableLiveData<FindThePictureModel> currentModel = new MutableLiveData<>();    // current draw (word, the four pictures, the correct position of the picture)
-    MutableLiveData<Integer> draw = new MutableLiveData<>();                        // counter of the draws
-    MutableLiveData<Boolean> isGameOver = new MutableLiveData<>();                  // true if game is over
-    MutableLiveData<Boolean> isErrorLoading = new MutableLiveData<>();              // true if the data has not loaded correctly
-    MutableLiveData<Integer> score = new MutableLiveData<>();                       // counter of the correct answer by the user
-    public MutableLiveData<ColorModel> borderPictureColor = new MutableLiveData<>(); // border color for the chosen picture
+    // Current draw (word, the four pictures, the correct position of the picture)
+    MutableLiveData<FindThePictureModel> currentModel = new MutableLiveData<>();
+
+    // Counter of the draws
+    MutableLiveData<Integer> draw = new MutableLiveData<>();
+
+    MutableLiveData<Boolean> isGameOver = new MutableLiveData<>();
+    MutableLiveData<Boolean> isErrorLoading = new MutableLiveData<>();
+    MutableLiveData<Integer> score = new MutableLiveData<>();
+    public MutableLiveData<ColorModel> borderPictureColor = new MutableLiveData<>();
 
     /* Gets the list of draws in findThePictureList,
     initializes score, draw and isGameOver,
@@ -39,14 +44,15 @@ public class FindThePictureViewModel extends ViewModel {
             isGameOver.postValue(false);
             score.postValue(0);
 
-            FindThePictureRepository.getFindThePictureList(    // gets the list of draw from the repository, filtered by the chosen language
+            // gets the list of draw from the repository, filtered by the chosen language
+            FindThePictureRepository.getFindThePictureList(
                     new Result<List<FindThePictureModel>>() {
                         @Override
                         public void onResult(List<FindThePictureModel> result) {
                             if (result != null && result.size() != 0 && result.get(0) != null) {
                                 findThePictureList.clear();
-                                findThePictureList.addAll(result);      // puts the list of draws in findThePictureList
-                                currentModel.postValue(result.get(0));  // puts the first draw in currentModel
+                                findThePictureList.addAll(result);
+                                currentModel.postValue(result.get(0));
                             } else {
                                 isErrorLoading.postValue(true);
                                 ;
@@ -68,22 +74,21 @@ public class FindThePictureViewModel extends ViewModel {
     // index = the picture position clicked by the user
     public void userChoosePictureAtIndex(int index, Context context) {
 
-        //check if the picture position clicked is correct
         boolean iscorrectPosition = currentModel.getValue().getCorrectPicturePosition() == index;
 
         if (iscorrectPosition) {
             int newScore = score.getValue() + 1;
-            score.postValue(newScore);                          // if result is correct, score increases by 1
-            changeBorderPictureColor(ColorEnum.GREEN, index);   // and picture border displays in GREEN
+            score.postValue(newScore);
+            changeBorderPictureColor(ColorEnum.GREEN, index);
         }
         if (!iscorrectPosition) {
-            changeBorderPictureColor(ColorEnum.RED, index);     // if result is incorrect, picture border displays in RED
+            changeBorderPictureColor(ColorEnum.RED, index);
         }
 
         new Timer().schedule(new TimerTask() {
             @Override
-            public void run() {                             // A delay after displaying of the border color
-                goToTheNextDraw(index, context);                // After the delay, goes to the next draw
+            public void run() {
+                goToTheNextDraw(index, context);
             }
         }, Utils.getPrefs(context, "delay", 1500));
     }

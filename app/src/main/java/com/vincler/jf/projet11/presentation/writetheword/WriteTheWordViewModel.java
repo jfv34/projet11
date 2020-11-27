@@ -20,22 +20,29 @@ import java.util.TimerTask;
 // Prepares and manages the data for WriteTheWordFragment
 public class WriteTheWordViewModel extends ViewModel {
 
-    ArrayList<WriteTheWordModel> writeTheWordList = new ArrayList<>();                  // list of the draws (pictures and words)
-    public MutableLiveData<WriteTheWordModel> currentModel = new MutableLiveData<>();   // current draw (the picture and the word)
-    MutableLiveData<Integer> draw = new MutableLiveData<>();                            // counter of the draws
-    MutableLiveData<Boolean> isGameOver = new MutableLiveData<>();                      // true if game is over
-    MutableLiveData<Boolean> isErrorLoading = new MutableLiveData<>();                  // true if the data has not loaded correctly
-    MutableLiveData<Integer> score = new MutableLiveData<>();                           // counter of the correct answer by the user
-    MutableLiveData<ColorEnum> borderWordColor = new MutableLiveData<>();               // word color when it's clicked
-    MutableLiveData<Boolean> isIncorrectAnswer = new MutableLiveData<>();               // true if the answer is wrong
+    // List of the draws (pictures and words)
+    ArrayList<WriteTheWordModel> writeTheWordList = new ArrayList<>();
+
+    // Current draw (the picture and the word)
+    public MutableLiveData<WriteTheWordModel> currentModel = new MutableLiveData<>();
+
+    // Counter of the draws
+    MutableLiveData<Integer> draw = new MutableLiveData<>();
+
+    MutableLiveData<Boolean> isGameOver = new MutableLiveData<>();
+    MutableLiveData<Boolean> isErrorLoading = new MutableLiveData<>();
+    MutableLiveData<Integer> score = new MutableLiveData<>();
+    MutableLiveData<ColorEnum> borderWordColor = new MutableLiveData<>();
+    MutableLiveData<Boolean> isIncorrectAnswer = new MutableLiveData<>();
 
     // Gets the list of draws in writeTheWordList,
     // initializes score, draw and isGameOver,
     // and gets the first draw in currentModel
     public void getData(LanguageEnum language, Context context) {
-        if (writeTheWordList.isEmpty()) {    // initializes counter of draws
-            draw.postValue(0);              // initializes isGameOver
-            isGameOver.postValue(false);    // initializes the score
+        if (writeTheWordList.isEmpty()) {
+            // data initialization
+            draw.postValue(0);
+            isGameOver.postValue(false);
             score.postValue(0);
 
             getWriteTheWordList(language, context);
@@ -43,14 +50,15 @@ public class WriteTheWordViewModel extends ViewModel {
     }
 
     private void getWriteTheWordList(LanguageEnum language, Context context) {
-        WriteTheWordRepository.getWriteTheWordList(             // gets the list of draw from the repository, filtered by the chosen language
+        // gets the list of draw from the repository, filtered by the chosen language
+        WriteTheWordRepository.getWriteTheWordList(
                 new Result<List<WriteTheWordModel>>() {
                     @Override
                     public void onResult(List<WriteTheWordModel> result) {
                         if (result != null && result.size() != 0 && result.get(0) != null) {
                             writeTheWordList.clear();
-                            writeTheWordList.addAll(result);            // puts the list of draws in writeTheWordList
-                            currentModel.postValue(result.get(0));      // puts the first draw in currentModel
+                            writeTheWordList.addAll(result);
+                            currentModel.postValue(result.get(0));
                             int i = 0;
                         } else {
                             isErrorLoading.postValue(true);
@@ -72,19 +80,19 @@ public class WriteTheWordViewModel extends ViewModel {
 
         //check if the word written is correct
         if (isWordCorrect(textValidate)) {
-            int newScore = score.getValue() + 1;     // if result is correct, score increases by 1
+            int newScore = score.getValue() + 1;
             score.postValue(newScore);
-            changeWordColor(ColorEnum.GREEN);        // and word color displays in GREEN
+            changeWordColor(ColorEnum.GREEN);
         } else {
             changeWordColor(ColorEnum.RED);
-            isIncorrectAnswer.postValue(true);       // if result is incorrect, word color displays in RED
+            isIncorrectAnswer.postValue(true);
         }
 
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                isIncorrectAnswer.postValue(false);// A delay after displaying of the word color
-                goToTheNextDraw(context);           // After the delay, goes to the next draw
+                isIncorrectAnswer.postValue(false);
+                goToTheNextDraw(context);
             }
         }, Utils.getPrefs(context, "delay", 1500));
     }

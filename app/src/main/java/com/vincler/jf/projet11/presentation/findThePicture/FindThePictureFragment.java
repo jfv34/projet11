@@ -25,13 +25,13 @@ import com.vincler.jf.projet11.utils.Utils;
 
 public class FindThePictureFragment extends Fragment {
 
-    private LanguageEnum bundleLanguage;            // Language to learn, chosen in the menu
-    private FindThePictureViewModel viewModel;      // ViewModel
-    private TextView wordText;                      // The word
-    private ImageView imageViewTopLeft;             // Image top left
-    private ImageView imageViewTopRight;            // Image top right
-    private ImageView imageViewBottomLeft;          // Image bottom left
-    private ImageView imageViewBottomRight;         // Image bottom right
+    private LanguageEnum bundleLanguage;
+    private FindThePictureViewModel viewModel;
+    private TextView wordText;
+    private ImageView imageViewTopLeft;
+    private ImageView imageViewTopRight;
+    private ImageView imageViewBottomLeft;
+    private ImageView imageViewBottomRight;
 
     // instantiate this fragment
     public static FindThePictureFragment newInstance(LanguageEnum bundleLanguage) {
