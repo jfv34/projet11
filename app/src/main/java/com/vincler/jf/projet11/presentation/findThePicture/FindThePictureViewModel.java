@@ -29,14 +29,15 @@ public class FindThePictureViewModel extends ViewModel {
     MutableLiveData<Integer> score = new MutableLiveData<>();                       // counter of the correct answer by the user
     public MutableLiveData<ColorModel> borderPictureColor = new MutableLiveData<>(); // border color for the chosen picture
 
-    // Gets the list of draws in findThePictureList,
-    // initializes score, draw and isGameOver,
-    // and gets the first draw in currentModel
+    /* Gets the list of draws in findThePictureList,
+    initializes score, draw and isGameOver,
+    /and gets the first draw in currentModel */
     public void getData(LanguageEnum language) {
         if (findThePictureList.isEmpty()) {
-            draw.postValue(0);                                  // initializes counter of draws
-            isGameOver.postValue(false);                        // initializes isGameOver
-            score.postValue(0);                                 // initializes the score
+            // data initialization
+            draw.postValue(0);
+            isGameOver.postValue(false);
+            score.postValue(0);
 
             FindThePictureRepository.getFindThePictureList(    // gets the list of draw from the repository, filtered by the chosen language
                     new Result<List<FindThePictureModel>>() {
