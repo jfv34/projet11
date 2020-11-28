@@ -12,7 +12,8 @@ import com.vincler.jf.projet11.presentation.writetheword.WriteTheWordFragment;
 import com.vincler.jf.projet11.utils.Utils;
 
 public class GameActivity extends AppCompatActivity {
-    private GameActivityDependency gameActivityDependency;  // Langage and gameId chosen by the user
+    // Langage and gameId chosen by the user
+    private GameActivityDependency gameActivityDependency;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,14 +26,19 @@ public class GameActivity extends AppCompatActivity {
 
             switch (gameActivityDependency.getGameId()) {
                 case 1:
-                    callFragmentGame1();                    // Game "find the picture"
+                    // Game "find the picture"
+                    callFragmentGame1();
                     break;
                 case 2:
-                    callFragmentGame2();                    // Game "find the word"
+                    // Game "find the word"
+                    callFragmentGame2();
                     break;
-                case 3:                                     // Game "write the word with first letter"
-                case 4:                                     // Game "write the word without first letter"
-                    callFragmentGame3_or_4();               // The same fragment for games 3 and 4
+                case 3:
+                    // Game "write the word with first letter"
+                case 4:
+                    // Game "write the word without first letter"
+                    // The same fragment for games 3 and 4
+                    callFragmentGame3_or_4();
             }
         }
     }

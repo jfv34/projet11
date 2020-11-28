@@ -22,22 +22,23 @@ import com.vincler.jf.projet11.utils.Utils;
 
 // This class displays the view of the game "Find the word"
 // The user must choose from four words the one that corresponds to the picture.
+
 public class FindTheWordFragment extends Fragment {
 
-    private LanguageEnum bundleLanguage;        // Language to learn, chosen in the menu
-    private FindTheWordViewModel viewModel;     // ViewModel
-    private ImageView pictureImageView;         // The picture
-    private TextView wordTopLeft;               // Word top left
-    private TextView wordTopRight;              // Word top right
-    private TextView wordBottomLeft;            // Word bottom left
-    private TextView wordBottomRight;           // Word bottom right
+    private LanguageEnum bundleLanguage;
+    private FindTheWordViewModel viewModel;
+    private ImageView pictureImageView;
+    private TextView wordTopLeft;
+    private TextView wordTopRight;
+    private TextView wordBottomLeft;
+    private TextView wordBottomRight;
 
     // instantiate this fragment
     public static FindTheWordFragment newInstance(LanguageEnum bundleLanguage) {
         FindTheWordFragment findTheWordFragment = new FindTheWordFragment();
 
         Bundle args = new Bundle();
-        args.putSerializable("language", bundleLanguage); // Gets langage from the menu
+        args.putSerializable("language", bundleLanguage);
         findTheWordFragment.setArguments(args);
         return findTheWordFragment;
     }
@@ -59,12 +60,13 @@ public class FindTheWordFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         viewModel = new ViewModelProvider(this).get(FindTheWordViewModel.class);
-        viewModel.getData(bundleLanguage);  // Gets the list of draws and add the first draw in viewModel.currentModel
+        // Gets the list of draws and add the first draw in viewModel.currentModel
+        viewModel.getData(bundleLanguage);
 
         // Displays the current draw (viewModel.currentModel):
         viewModel.currentModel.observe(getViewLifecycleOwner(), model ->
                 {
-                    displayPicture(model.getPicture(),pictureImageView);
+                    displayPicture(model.getPicture(), pictureImageView);
                     wordTopLeft.setText(model.getTopLeftWord());
                     wordTopRight.setText(model.getTopRightWord());
                     wordBottomLeft.setText(model.getBottomLeftWord());
@@ -121,31 +123,31 @@ public class FindTheWordFragment extends Fragment {
 
         String colorBorder = "#80000000";
 
-        if (borderTextColor.getColorEnum() == ColorEnum.GREEN) {    // GREED for correct answer
+        if (borderTextColor.getColorEnum() == ColorEnum.GREEN) {
             colorBorder = "#00FF00";
         }
-        if (borderTextColor.getColorEnum() == ColorEnum.RED) {      // RED for wrong answer
+        if (borderTextColor.getColorEnum() == ColorEnum.RED) {
             colorBorder = "#FF0000";
         }
-        if (borderTextColor.getColorEnum() == ColorEnum.NONE) {     // NONE for color of the word by default (grey)
+        if (borderTextColor.getColorEnum() == ColorEnum.NONE) {
             colorBorder = "#80000000";
         }
 
         TextView textView = null;
         if (borderTextColor.getPosition() == 0) {
-            textView = wordTopLeft;                                         // Textview is one at the top left
+            textView = wordTopLeft;
         }
         if (borderTextColor.getPosition() == 1) {
-            textView = wordTopRight;                                        // TextView is one at the top right
+            textView = wordTopRight;
         }
         if (borderTextColor.getPosition() == 2) {
-            textView = wordBottomLeft;                                      // TextView is one at the bottom left
+            textView = wordBottomLeft;
         }
         if (borderTextColor.getPosition() == 3) {
-            textView = wordBottomRight;                                     // TextView is one at the bottom right
+            textView = wordBottomRight;
         }
 
-        textView.setTextColor(Color.parseColor(colorBorder));                // Coloring word of the textView attributed
+        textView.setTextColor(Color.parseColor(colorBorder));
     }
 
     // Displays picture (loading by url) using Glide library.

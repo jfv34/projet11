@@ -38,7 +38,7 @@ public class FindThePictureFragment extends Fragment {
         FindThePictureFragment findThePictureFragment = new FindThePictureFragment();
 
         Bundle args = new Bundle();
-        args.putSerializable("language", bundleLanguage); // Gets langage from the menu
+        args.putSerializable("language", bundleLanguage);
         findThePictureFragment.setArguments(args);
         return findThePictureFragment;
     }
@@ -59,7 +59,8 @@ public class FindThePictureFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         viewModel = new ViewModelProvider(this).get(FindThePictureViewModel.class);
-        viewModel.getData(bundleLanguage);  // Gets the list of draws and add the first draw in viewModel.currentModel
+        // Gets the list of draws and add the first draw in viewModel.currentModel
+        viewModel.getData(bundleLanguage);
 
         // Displays the current draw (viewModel.currentModel):
         viewModel.currentModel.observe(getViewLifecycleOwner(), model ->
@@ -125,39 +126,39 @@ public class FindThePictureFragment extends Fragment {
         String colorBorder = "";
 
         if (borderPictureColor.getColorEnum() == ColorEnum.GREEN) {
-            colorBorder = "#0AEA14";                                            // GREED for correct answer
+            colorBorder = "#0AEA14";
         }
         if (borderPictureColor.getColorEnum() == ColorEnum.RED) {
-            colorBorder = "#E53935";                                            // RED for wrong answer
+            colorBorder = "#E53935";
         }
         if (borderPictureColor.getColorEnum() == ColorEnum.NONE) {
-            colorBorder = "#00000000";                                          // By default: color of the background for invisible border
+            colorBorder = "#00000000";
         }
 
         ImageView imageView = null;
         if (borderPictureColor.getPosition() == 0) {
-            imageView = imageViewTopLeft;                                       // imageView is one at the top left
+            imageView = imageViewTopLeft;
         }
         if (borderPictureColor.getPosition() == 1) {
-            imageView = imageViewTopRight;                                      // ImageView is one at the top right
+            imageView = imageViewTopRight;
         }
-        if (borderPictureColor.getPosition() == 2) {                     // ImageView is one at the bottom left
+        if (borderPictureColor.getPosition() == 2) {
             imageView = imageViewBottomLeft;
         }
-        if (borderPictureColor.getPosition() == 3) {                     // ImageView is one at the bottom right
+        if (borderPictureColor.getPosition() == 3) {
             imageView = imageViewBottomRight;
         }
 
-        imageView.setBackgroundColor(Color.parseColor(colorBorder));            // Displays border picture for the imageView and color attributed
+        imageView.setBackgroundColor(Color.parseColor(colorBorder));
     }
 
     // Displays picture (loading by url) in imageView attributed, using Glide library.
     private void displayPicture(String url, ImageView imageView) {
 
         Glide.with(this)
-                .load(url) // image url
-                .override(500, 500) // resizing
+                .load(url)
+                .override(500, 500)
                 .centerCrop()
-                .into(imageView);  // imageview object
+                .into(imageView);
     }
 }

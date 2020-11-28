@@ -36,6 +36,7 @@ public class MenuFragment extends Fragment {
     private TextView game4TextView;
     private ImageView settingsButton;
 
+    // instantiate this fragment
     public static MenuFragment newInstance() {
         return new MenuFragment();
     }

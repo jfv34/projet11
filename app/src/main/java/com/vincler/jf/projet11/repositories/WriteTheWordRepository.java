@@ -5,7 +5,6 @@ import android.content.Context;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.vincler.jf.projet11.models.Constants;
 import com.vincler.jf.projet11.models.LanguageEnum;
 import com.vincler.jf.projet11.models.WriteTheWordModel;
 import com.vincler.jf.projet11.utils.Utils;
@@ -37,25 +36,33 @@ public class WriteTheWordRepository {
                                             {
                                                 List<DocumentSnapshot> picturesDocuments =
                                                         queryDocumentSnapshots1.getDocuments();
-
                                                 ArrayList<WriteTheWordModel> writeTheWordModelList = new ArrayList<>();
+                                                // Generate randomList for draws in random order
                                                 List<Integer> randomList = Utils.getListRandom(wordsDocuments.size());
-                                                for (int i = 0; i < Utils.getPrefs(context,"drawsPerGame",7); i++) {
 
+                                                // Gets draw for each words (filtered by language)
+                                                for (int i = 0; i < Utils.getPrefs(context, "drawsPerGame", 7); i++) {
+
+                                                    // Get the picture of this word
                                                     String pictureId = wordsDocuments.get(randomList.get(i)).get("picture_id").toString();
                                                     String picture = "";
+
+                                                    // Get the url of this picture
                                                     for (int j = 0; j < picturesDocuments.size(); j++) {
                                                         String id = picturesDocuments.get(j).getId();
                                                         if (id.equals(pictureId)) {
                                                             picture = picturesDocuments.get(j).get("url").toString();
                                                         }
                                                     }
+
+                                                    // Create a draw
                                                     WriteTheWordModel writeTheWordModel = new WriteTheWordModel(
                                                             picture,
                                                             wordsDocuments.get(randomList.get(i)).get("word").toString(),
                                                             wordsDocuments.get(randomList.get(i)).getId()
                                                     );
 
+                                                    // Add this draw in the list of the draws
                                                     writeTheWordModelList.add(writeTheWordModel);
                                                 }
                                                 if (result != null) {
@@ -63,10 +70,10 @@ public class WriteTheWordRepository {
                                                 }
                                             }
                                     )
-                                    .addOnFailureListener(e -> {
-                                        e.printStackTrace();
-                                        result.onError();
-                                    });
+                            .addOnFailureListener(e -> {
+                                e.printStackTrace();
+                                result.onError();
+                            });
                         }
                 );
     }

@@ -14,6 +14,7 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.vincler.jf.projet11.R;
 import com.vincler.jf.projet11.utils.Utils;
 
+// This fragment display the score after the end of the game
 public class ResultGameFragment extends Fragment {
 
     TextView textview1;
@@ -22,6 +23,7 @@ public class ResultGameFragment extends Fragment {
     ExtendedFloatingActionButton returnToMenuFab;
     private int bundleScore;
 
+    // instantiate this fragment
     public static ResultGameFragment newInstance(int bundleScore) {
         ResultGameFragment resultGameFragment = new ResultGameFragment();
         Bundle args = new Bundle();

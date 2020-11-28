@@ -32,19 +32,19 @@ import com.vincler.jf.projet11.utils.Utils;
 
 public class WriteTheWordFragment extends Fragment {
 
-    private GameActivityDependency bundleGameActivityDependency;  // Game and Language to learn, chosen in the menu
-    private WriteTheWordViewModel viewModel;                      // ViewModel
-    private ImageView pictureImageView;                           // The picture
-    private EditText wordET;                                      // To write the word find
-    private TextView correctWordTV;                               // To display the correct answer
-    private ExtendedFloatingActionButton validateFab;             // User validates his choice
+    private GameActivityDependency bundleGameActivityDependency;
+    private WriteTheWordViewModel viewModel;
+    private ImageView pictureImageView;
+    private EditText wordET;
+    private TextView correctWordTV;
+    private ExtendedFloatingActionButton validateFab;
 
     // instantiate this fragment
     public static WriteTheWordFragment newInstance(GameActivityDependency bundleGameActivityDependency) {
         WriteTheWordFragment writeTheWordFragment = new WriteTheWordFragment();
 
         Bundle args = new Bundle();
-        args.putSerializable("value", bundleGameActivityDependency);  // Gets game and langage from the menu
+        args.putSerializable("value", bundleGameActivityDependency);
         writeTheWordFragment.setArguments(args);
         return writeTheWordFragment;
     }
@@ -68,26 +68,26 @@ public class WriteTheWordFragment extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(WriteTheWordViewModel.class);
         viewModel.getData(bundleGameActivityDependency.getLanguage(), getContext());
-        if (bundleGameActivityDependency.getGameId() == 3) { // gravity start for word with first letter
+        if (bundleGameActivityDependency.getGameId() == 3) {
             wordET.setGravity(Gravity.START);
         } else
-            wordET.setGravity(Gravity.CENTER_HORIZONTAL); // gravity center for word without first letter
+            wordET.setGravity(Gravity.CENTER_HORIZONTAL);
         displayBackgroundWord(ColorEnum.NONE);
 
         // Displays the current draw (viewModel.currentModel):
         viewModel.currentModel.observe(getViewLifecycleOwner(), model ->
                 {
-                    displayPicture(model.getPicture(), pictureImageView); // displays the picture
-                    correctWordTV.setText("");                  // clear the correctWord TextView
-                    editTextinAllCaps();                        // EditText in all caps
-                    wordET.getText().clear();                   // clear the EditText
+                    displayPicture(model.getPicture(), pictureImageView);
+                    correctWordTV.setText("");
+                    editTextinAllCaps();
+                    wordET.getText().clear();
                     if (bundleGameActivityDependency.getGameId() == 3) {
                         if (wordET.getText().length() == 0) {
-                            displayFistLetter();                // displays first letter for the game 3
+                            displayFistLetter();
                         }
 
                     } else {
-                        wordET.setHint("Write the word");       // displays hint for the game 4
+                        wordET.setHint("Write the word");
                     }
                 }
         );
@@ -145,15 +145,12 @@ public class WriteTheWordFragment extends Fragment {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String firstLetter = viewModel.getFirstLetter();
                 if (!firstLetter.equals("")) {
-                    // if there are the first letter in viewModel...
                     if (wordET.length() > 0) {
-                        // if first letter in EditText if wrong, displays the correct first letter
                         String firstLetterInEditText = wordET.getText().toString().substring(0, 1);
                         if (!firstLetterInEditText.equals(firstLetter.toUpperCase())) {
                             displayFistLetter();
                         }
                     } else {
-                        // if EditText is empty, displays the first letter
                         displayFistLetter();
                     }
                 }
@@ -189,26 +186,26 @@ public class WriteTheWordFragment extends Fragment {
         String color = "";
 
         if (borderWordColor == ColorEnum.GREEN) {
-            color = "#0AEA14";                          // Background GREEN for a correct word
+            color = "#0AEA14";
         }
         if (borderWordColor == ColorEnum.RED) {
-            color = "#E53935";                          // Background RED for a wrong word
+            color = "#E53935";
         }
         if (borderWordColor == ColorEnum.NONE) {
-            color = "#E1CDCDCD";                        // Background NONE (grey) before the choice
+            color = "#E1CDCDCD";
         }
 
-        wordET.setBackgroundColor(Color.parseColor(color));  // Display background word
+        wordET.setBackgroundColor(Color.parseColor(color));
     }
 
     // Displays picture (loading by url) in imageView attributed, using Glide library.
     private void displayPicture(String url, ImageView imageView) {
 
         Glide.with(this)
-                .load(url) // image url
-                .override(500, 500) // resizing
+                .load(url)
+                .override(500, 500)
                 .centerCrop()
-                .into(imageView);  // imageview object
+                .into(imageView);
     }
 
     // When the game is over, gets the score and replace this fragment by ResultGameFragment
