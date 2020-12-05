@@ -13,4 +13,9 @@
     <string name="settings">Settings</string>
     <string name="languagelearning">Language learning</string>
     <string name="share_your_score">Share your score:</string>
+    <string name="share_your_score_mess1">"I got the score of " </string>
+    <string name="share_your_score_mess2">" on the LanguagesLearning app !"</string>
+    <string name="enterthephonenumber">Enter the phone number</string>
+    <string name="entertheemailaddress">Enter the email address</string>
+    <string name="share_your_score_title_mail">My score in LanguageLearning</string>
 </resources>

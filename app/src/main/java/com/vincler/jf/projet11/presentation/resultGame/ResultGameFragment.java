@@ -71,7 +71,7 @@ public class ResultGameFragment extends Fragment {
             getActivity().finish();
         });
         shareScore.setOnClickListener(view12 -> {
-            ShareScoreFragment shareScoreFragment = ShareScoreFragment.newInstance();
+            ShareScoreFragment shareScoreFragment = ShareScoreFragment.newInstance(bundleScore);
             Utils.replaceFragmentInGameActivity(getActivity(), shareScoreFragment);
         });
     }
