@@ -47,6 +47,15 @@
             custom:progress_text_size="20dp"
             custom:progress_unreached_bar_height="40dp" />
 
+        <ImageView
+            android:id="@+id/fragment_result_game_shareScore_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_large"
+            app:layout_constraintEnd_toEndOf="@id/fragment_result_game_progressbar"
+            app:layout_constraintTop_toBottomOf="@id/fragment_result_game_progressbar"
+            android:src="@drawable/ic_share_24px"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton

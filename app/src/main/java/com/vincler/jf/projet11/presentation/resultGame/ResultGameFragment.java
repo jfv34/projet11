@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -21,6 +22,7 @@ public class ResultGameFragment extends Fragment {
     TextView textview2;
     NumberProgressBar progressBar;
     ExtendedFloatingActionButton returnToMenuFab;
+    ImageView shareScore;
     private int bundleScore;
 
     // instantiate this fragment
@@ -46,6 +48,7 @@ public class ResultGameFragment extends Fragment {
         textview2 = root.findViewById(R.id.fragment_result_game_2_textview);
         progressBar = root.findViewById(R.id.fragment_result_game_progressbar);
         returnToMenuFab = root.findViewById(R.id.fragment_result_game_return_menu_fab);
+        shareScore = root.findViewById(R.id.fragment_result_game_shareScore_iv);
         return root;
     }
 
@@ -61,11 +64,15 @@ public class ResultGameFragment extends Fragment {
         progressBar.setProgressTextSize(60);
         progressBar.setUnreachedBarHeight(10);
         progressBar.setReachedBarHeight(15);
-        progressBar.setMax(Utils.getPrefs(getContext(),"drawsPerGame",7));
+        progressBar.setMax(Utils.getPrefs(getContext(), "drawsPerGame", 7));
         progressBar.setProgress(bundleScore);
 
         returnToMenuFab.setOnClickListener(view1 -> {
             getActivity().finish();
+        });
+        shareScore.setOnClickListener(view12 -> {
+            ShareScoreFragment shareScoreFragment = ShareScoreFragment.newInstance();
+            Utils.replaceFragmentInGameActivity(getActivity(), shareScoreFragment);
         });
     }
 }

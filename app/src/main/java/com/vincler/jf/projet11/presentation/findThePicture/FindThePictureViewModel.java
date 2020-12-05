@@ -1,6 +1,7 @@
 package com.vincler.jf.projet11.presentation.findThePicture;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -112,7 +113,8 @@ public class FindThePictureViewModel extends ViewModel {
     // If it's the last draw, go to the Result.
     public void goToTheNextDraw(int index, Context context) {
 
-        changeBorderPictureColor(ColorEnum.NONE, index, ColorEnum.NONE, currentModel.getValue().getCorrectPicturePosition());
+        ColorModel newPicturesColor = new ColorModel(ColorEnum.NONE, index,ColorEnum.NONE,currentModel.getValue().getCorrectPicturePosition());
+        borderPictureColor.postValue(newPicturesColor);
         int newDraw = draw.getValue() + 1;
         int numberOfDraw = Utils.getPrefs(context, "drawsPerGame", 7);
         if (newDraw < numberOfDraw) {

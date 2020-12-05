@@ -116,7 +116,8 @@ public class FindThePictureFragment extends Fragment {
 
     // When an image is clicked, call viewModel.userChoosePictureAtIndex and send him the image position (index)
     private void imageClickListener(ImageView imageView, int index) {
-        imageView.setOnClickListener(view -> viewModel.userChoosePictureAtIndex(index, getContext()));
+        imageView.setOnClickListener(
+                view -> viewModel.userChoosePictureAtIndex(index, getContext()));
     }
 
     // Displays border picture when user clicks on it.
@@ -149,7 +150,7 @@ public class FindThePictureFragment extends Fragment {
         ImageView imageView = null;
         ImageView imageView2 = null;
 
-        if (borderPictureColor.getPosition() == 0) {
+        if (borderPictureColor.getColorEnum() != null && borderPictureColor.getPosition() == 0) {
             imageView = imageViewTopLeft;
         }
         if (borderPictureColor.getPosition() == 1) {
@@ -162,7 +163,7 @@ public class FindThePictureFragment extends Fragment {
             imageView = imageViewBottomRight;
         }
 
-        if (borderPictureColor.getPosition2() == 0) {
+        if (borderPictureColor.getColorEnum2() != null && borderPictureColor.getPosition2() == 0) {
             imageView2 = imageViewTopLeft;
         }
         if (borderPictureColor.getPosition2() == 1) {
@@ -175,9 +176,12 @@ public class FindThePictureFragment extends Fragment {
             imageView2 = imageViewBottomRight;
         }
 
-
-        imageView.setBackgroundColor(Color.parseColor(colorBorder));
-        imageView2.setBackgroundColor(Color.parseColor(colorBorder2));
+        if (imageView != null) {
+            imageView.setBackgroundColor(Color.parseColor(colorBorder));
+        }
+        if (imageView2 != null) {
+            imageView2.setBackgroundColor(Color.parseColor(colorBorder2));
+        }
     }
 
     // Displays picture (loading by url) in imageView attributed, using Glide library.
