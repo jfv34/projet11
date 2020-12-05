@@ -100,7 +100,7 @@ public class FindThePictureFragment extends Fragment {
         // When border picture color must change: call displayBorderPicture:
         viewModel.borderPictureColor.observe(getViewLifecycleOwner(), borderPictureColor ->
                 {
-                    displayBorderPicture(borderPictureColor);
+                        displayBorderPicture(borderPictureColor);
                 }
         );
 
@@ -123,7 +123,8 @@ public class FindThePictureFragment extends Fragment {
     // BorderColorModel contains colors and words positions
     private void displayBorderPicture(ColorModel borderPictureColor) {
 
-        String colorBorder = "";
+        String colorBorder = "#00000000";
+        String colorBorder2 = "#00000000";
 
         if (borderPictureColor.getColorEnum() == ColorEnum.GREEN) {
             colorBorder = "#0AEA14";
@@ -135,7 +136,19 @@ public class FindThePictureFragment extends Fragment {
             colorBorder = "#00000000";
         }
 
+        if (borderPictureColor.getColorEnum2() == ColorEnum.GREEN) {
+            colorBorder2 = "#0AEA14";
+        }
+        if (borderPictureColor.getColorEnum2() == ColorEnum.RED) {
+            colorBorder2 = "#E53935";
+        }
+        if (borderPictureColor.getColorEnum2() == ColorEnum.NONE) {
+            colorBorder2 = "#00000000";
+        }
+
         ImageView imageView = null;
+        ImageView imageView2 = null;
+
         if (borderPictureColor.getPosition() == 0) {
             imageView = imageViewTopLeft;
         }
@@ -149,7 +162,22 @@ public class FindThePictureFragment extends Fragment {
             imageView = imageViewBottomRight;
         }
 
+        if (borderPictureColor.getPosition2() == 0) {
+            imageView2 = imageViewTopLeft;
+        }
+        if (borderPictureColor.getPosition2() == 1) {
+            imageView2 = imageViewTopRight;
+        }
+        if (borderPictureColor.getPosition2() == 2) {
+            imageView2 = imageViewBottomLeft;
+        }
+        if (borderPictureColor.getPosition2() == 3) {
+            imageView2 = imageViewBottomRight;
+        }
+
+
         imageView.setBackgroundColor(Color.parseColor(colorBorder));
+        imageView2.setBackgroundColor(Color.parseColor(colorBorder2));
     }
 
     // Displays picture (loading by url) in imageView attributed, using Glide library.

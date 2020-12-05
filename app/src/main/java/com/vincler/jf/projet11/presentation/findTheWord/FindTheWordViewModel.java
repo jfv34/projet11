@@ -99,7 +99,7 @@ public class FindTheWordViewModel extends ViewModel {
     // chosenWordColor  = the color for the chosen word
     public void changeWordColor(ColorEnum chosenWordColor, int index) {
 
-        ColorModel newChosenWordColor = new ColorModel(chosenWordColor, index);
+        ColorModel newChosenWordColor = new ColorModel(chosenWordColor, index, null, 0);
         wordColor.postValue(newChosenWordColor);
     }
 

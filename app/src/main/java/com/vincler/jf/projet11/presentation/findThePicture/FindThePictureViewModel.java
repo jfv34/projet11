@@ -69,7 +69,7 @@ public class FindThePictureViewModel extends ViewModel {
 
     // when user choose a picture,
     // checks if it's a correct answer,
-    // display the border color appropriate during some delay,
+    // display the borders colors appropriates during some delay,
     // and go to the new draw
     // index = the picture position clicked by the user
     public void userChoosePictureAtIndex(int index, Context context) {
@@ -79,10 +79,10 @@ public class FindThePictureViewModel extends ViewModel {
         if (iscorrectPosition) {
             int newScore = score.getValue() + 1;
             score.postValue(newScore);
-            changeBorderPictureColor(ColorEnum.GREEN, index);
+            changeBorderPictureColor(ColorEnum.GREEN, index, null, 0);
         }
         if (!iscorrectPosition) {
-            changeBorderPictureColor(ColorEnum.RED, index);
+            changeBorderPictureColor(ColorEnum.RED, index, ColorEnum.GREEN, currentModel.getValue().getCorrectPicturePosition());
         }
 
         new Timer().schedule(new TimerTask() {
@@ -93,12 +93,15 @@ public class FindThePictureViewModel extends ViewModel {
         }, Utils.getPrefs(context, "delay", 1500));
     }
 
-    // changes border picture color
+    // changes borders pictures colors
     // index = the image position to change
     // borderColor  = the border color to displays
-    public void changeBorderPictureColor(ColorEnum borderColor, int index) {
+    // index2 = the correct image position to change if the answer is incorrect
+    // borderColor2  = the border color to displays if the answer is incorrect
 
-        ColorModel newBorderPictureColor = new ColorModel(borderColor, index);
+    public void changeBorderPictureColor(ColorEnum borderColor, int index, ColorEnum borderColor2, int index2) {
+
+        ColorModel newBorderPictureColor = new ColorModel(borderColor, index, borderColor2, index2);
         borderPictureColor.postValue(newBorderPictureColor);
     }
 
@@ -109,7 +112,7 @@ public class FindThePictureViewModel extends ViewModel {
     // If it's the last draw, go to the Result.
     public void goToTheNextDraw(int index, Context context) {
 
-        changeBorderPictureColor(ColorEnum.NONE, index);
+        changeBorderPictureColor(ColorEnum.NONE, index, ColorEnum.NONE, currentModel.getValue().getCorrectPicturePosition());
         int newDraw = draw.getValue() + 1;
         int numberOfDraw = Utils.getPrefs(context, "drawsPerGame", 7);
         if (newDraw < numberOfDraw) {
